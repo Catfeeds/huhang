@@ -1,0 +1,184 @@
+{include file="common/header" /}
+<!--banner-->
+{include file="common/banner" /}
+<!-- 招标板块 -->
+<style>
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+</style>
+<div class="Bidding con clearfix">
+    <!-- 右 -->
+    <div class="comm-right fr">
+        <!-- 面包屑 -->
+        <div class="bread">
+            <em>您的位置：</em>
+            <span class="layui-breadcrumb" lay-separator=">">
+                   <a href="<?=url('index/index')?>?mt_id={$mt_id}">{$merName}</a>
+                    <a>
+                        <cite>荣誉资质</cite>
+                    </a>
+                </span>
+        </div>
+        <!-- 页面主体 -->
+        <div class="honor-container">
+            <ul class="clearfix">
+                {if condition="$honors neq null"}
+                {volist name="honors" id="hon"}
+                <li>
+                        <span>
+                            <img src="{$hon.h_img}" alt="{$hon.h_img_alt}">
+                        </span>
+                    <i>点击全屏</i>
+                    <p>{$hon.h_name}</p>
+                </li>
+                {/volist}
+                {else/}
+                <li>暂无信息
+                </li>
+                {/if}
+
+            </ul>
+        </div>
+    </div>
+    <!-- 左 -->
+    <!-- 招标预约框-->
+    {include file="common/bidding" /}
+</div>
+
+<!-- 分页 -->
+<div class="paging con" style="margin: 30px auto 40px;">
+    <div class="paging-con">
+        <p>
+            <a href="javascript:;" style="width: 46px;">首页</a>
+            <a href="javascript:;">
+                <i class="layui-icon layui-icon-left"></i>
+            </a>
+            <a class="paging-this" href="javascript:;">1</a>
+            <a href="javascript:;">2</a>
+            <a href="javascript:;">3</a>
+            <a href="javascript:;">4</a>
+            <a href="javascript:;">5</a>
+            <a href="javascript:;">
+                <i class="layui-icon layui-icon-right"></i>
+            </a>
+            <a href="javascript:;" style="width: 46px;">尾页</a>
+        </p>
+    </div>
+</div>
+<!-- 全屏图片 -->
+<div class="qp-img">
+    <div class="con">
+        <i class="layui-icon layui-icon-close"></i>
+        <img src="" alt="" class="fuzhi-img">
+    </div>
+</div>
+<!-- 服务流程 -->
+
+{include file="common/serviceStep" /}
+<!-- 页面主体结束 -->
+
+<!-- 友情链接 -->
+{include file="common/friendlink" /}
+
+<!-- footer -->
+{include file="common/footer" /}
+{include file="common/bottom" /}
+<script>
+    $(".honor-container li i").on('click', function () {
+        var _this = $(this),
+            _thisImg = _this.siblings('span').children('img').attr('src'),
+            fuzhi = $(".fuzhi-img");
+        fuzhi.attr('src', _thisImg)
+        $(".qp-img").show();
+    })
+</script>
+<script>
+    layui.use(['form','jquery'] ,function(){
+        var form = layui.form,
+            $ = layui.jquery;
+        //根据联动的省份id查找城市
+        form.on('select(art_p_id)', function(data){
+            var p_id=data.value;
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('admin/common/getCityName')?>?p_id="+p_id,
+                data: {p_id:p_id},
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    var code=data.data;
+                    $("#city").html("<option value=''>城市</option>");
+                    $.each(code, function(i, val) {
+                        var option1 = $("<option>").val(val.c_id).text(val.c_name);
+                        $("#city").append(option1);
+                        form.render('select');
+                    });
+                    $("#city").get(0).selectedIndex=0;
+                }
+            });
+        });
+        //提交要添加的数据
+        form.on('submit(addTypes)', function(){
+            $('#addTypes').removeAttr('lay-filter');
+            $.ajax({
+                type:"post",
+                url:"<?=url('index/point')?>",
+                data:$("#addForm").serialize(),
+                success:function (result) {
+                    console.log(result);
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            window.location.reload();
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }
+                },
+                error:function (error) {
+                    console.log(error);
+                }
+            })
+        });
+    });
+</script>
+<script type="text/javascript" src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<script>
+    function getUrlParms(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)
+            return unescape(r[2]);
+        return null;
+    }
+    var refer=document.referrer;
+    var userIp= returnCitySN.cip;
+    var laiyuan=getUrlParms("laiyuan");
+    var chuangyi=getUrlParms("chuangyi");
+    var curUrl = window.location.href;
+    $('.laiyuan').val(laiyuan);
+    $('.chuangyi').val(chuangyi);
+    $('.userIp').val(userIp);
+    $('.curUrl').val(curUrl);
+    $('.refer').val(refer);
+</script>

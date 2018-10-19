@@ -1,0 +1,507 @@
+{include file="common/header" /}
+
+<!-- banner 轮播 -->
+<div class="layui-carousel" style="background-color: #000;" id="test1">
+    <div class="ban-form">
+        <h2>免费发布</h2>
+        <form class="layui-form" id="addForm">
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <select name="cus_type" lay-verify="required">
+                        <option value="">请选择您的招标类型</option>
+                        {volist name="typeData" id="type"}
+                        <option value="{$type.type_id}">{$type.type_name}</option>
+                        {/volist}
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <input type="text" name="cus_area" class="layui-input" placeholder="请输入您的装修面积" lay-verify="required">
+                </div>
+            </div>
+            <input name='cus_position' type='hidden' value='平台端首页'>
+            <input type=hidden name=cus_from class=laiyuan>
+            <input type=hidden name=cus_origin class=chuangyi>
+            <input type=hidden name=cus_ip class=userIp>
+            <input type=hidden name=cus_link class=curUrl>
+            <input type=hidden name=refer class=refer>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <input type="text" name="cus_name" class="layui-input" placeholder="请输入您的称呼" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <input type="text" name="cus_phone" class="layui-input" placeholder="请输入您的手机号码" lay-verify="phone">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block" style="text-align: center">
+                    <span lay-submit lay-filter="addType" style="width: 100%" id="addType" class="layui-btn layui-btn-fluid layui-btn-red">
+                        免费发布招标
+                    </span>
+                </div>
+            </div>
+        </form>
+        <p>已有
+            <em class="text-red">{$allOrder}</em>人预约服务
+        </p>
+    </div>
+
+    <div carousel-item class="clearfix">
+        {volist name="banner" id="ban"}
+        <div class="fl">
+            <a {if condition="$ban.ba_url neq null"} href="{$ban.ba_url}" target="_blank" {/if} >
+            <img src="{$ban.ba_img}" alt="{$ban.ba_alt}">
+            </a>
+        </div>
+        {/volist}
+    </div>
+</div>
+
+<!-- 办公空间 -->
+<div class="office con">
+    <div class="office-tab-btn clearfix" id="typeData">
+        {volist name="typeData" id="type"}
+            <span data-value="{$type.type_id}">{$type.type_name}</span>
+        {/volist}
+        <a href="<?=url('example/index')?>" class="fr">更多>></a>
+    </div>
+    <div class="office-tab-contain">
+        <ul>
+            {volist name="typeCase" id='case'}
+            <li class="clearfix">
+                <div class="fl left">
+                    <a
+                            {if isset($case.type_case[0]['case_id'])}
+                    href="<?=url('example/details')?>?case_id={$case.type_case[0]['case_id']}"
+                    {/if}
+                    >
+                    <img
+                            {if isset($case.type_case[0]['case_img'])} src="{$case.type_case[0]['case_img']}" {/if}
+                    {if isset($case.type_case[0]['case_img_alt'])} src="{$case.type_case[0]['case_img_alt']}"{/if}
+                    >
+                    </a>
+                </div>
+                <div class="fr right">
+                        <span>
+                            <a
+                                {if isset($case.type_case[1]['case_id'])}
+                                href="<?=url('example/details')?>?case_id={$case.type_case[1]['case_id']}"
+                                {/if}
+                            >
+                            <img
+                                {if isset($case.type_case[1]['case_img'])} src="{$case.type_case[1]['case_img']}" {/if}
+                                {if isset($case.type_case[1]['case_img_alt'])} src="{$case.type_case[1]['case_img_alt']}"{/if}
+                            >
+                            </a>
+                        </span>
+                    <span>
+                            <a
+                                {if isset($case.type_case[2]['case_id'])}
+                                href="<?=url('example/details')?>?case_id={$case.type_case[2]['case_id']}"
+                                {/if}
+                            >
+                            <img
+                                {if isset($case.type_case[2]['case_img'])} src="{$case.type_case[2]['case_img']}" {/if}
+                                {if isset($case.type_case[2]['case_img_alt'])} src="{$case.type_case[2]['case_img_alt']}"{/if}
+
+                            >
+                        </a>
+                        </span>
+                    <span>
+                            <a
+                                {if isset($case.type_case[3]['case_id'])}
+                                href="<?=url('example/details')?>?case_id={$case.type_case[3]['case_id']}"
+                                {/if}
+                            >
+                            <img
+
+                                {if isset($case.type_case[3]['case_img'])} src="{$case.type_case[3]['case_img']}" {/if}
+                                {if isset($case.type_case[3]['case_img_alt'])} src="{$case.type_case[3]['case_img_alt']}"{/if}
+
+                            >
+                        </a>
+                        </span>
+                    <span>
+                            <a
+                                {if isset($case.type_case[4]['case_id'])}
+                                href="<?=url('example/details')?>?case_id={$case.type_case[4]['case_id']}"
+                                {/if}
+                            >
+                            <img
+                                    {if isset($case.type_case[4]['case_img'])} src="{$case.type_case[4]['case_img']}" {/if}
+                                {if isset($case.type_case[4]['case_img_alt'])} src="{$case.type_case[4]['case_img_alt']}"{/if}
+                            >
+                        </a>
+                        </span>
+                </div>
+            </li>
+            {/volist}
+        </ul>
+    </div>
+</div>
+
+<!-- 招标板块 -->
+<div class="Bidding con clearfix">
+    <!-- 右 -->
+    <div class="bidding-left fr">
+        <table class="layui-table" lay-skin="line">
+            <colgroup>
+                <col width="193">
+                <col width="410">
+                <col width="150">
+            </colgroup>
+            <thead>
+            <tr>
+                <th>招标金额</th>
+                <th>项目名称</th>
+                <th>建筑面积</th>
+                <th>招标状态</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <p>
+                        <i>
+                            <img src="__MERCH__/images/jine.png" alt="">
+                        </i>￥5万
+                    </p>
+                    <span>发布时间：2018-05-13</span>
+                </td>
+                <td>
+                    <h3>西安市某某幼儿园装修</h3>
+                    <span>招标编号：201803280002</span>
+                    <span>招标要求：场地已选好，继续装修公司设计方案</span>
+                </td>
+                <td>800平米</td>
+                <td style="text-align: center;">
+                    <span class="biddcen">招标中</span>
+                    <button class="layui-btn layui-btn-red layui-open-show">立即投标(2)</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>
+                        <i>
+                            <img src="__MERCH__/images/jine.png" alt="">
+                        </i>￥5万
+                    </p>
+                    <span>发布时间：2018-05-13</span>
+                </td>
+                <td>
+                    <h3>西安市某某幼儿园装修</h3>
+                    <span>招标编号：201803280002</span>
+                    <span>招标要求：场地已选好，继续装修公司设计方案</span>
+                </td>
+                <td>800平米</td>
+                <td style="text-align: center;">
+                    <span class="biddcen">招标中</span>
+                    <button class="layui-btn layui-btn-red layui-open-show">立即投标(2)</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>
+                        <i>
+                            <img src="__MERCH__/images/jine.png" alt="">
+                        </i>￥5万
+                    </p>
+                    <span>发布时间：2018-05-13</span>
+                </td>
+                <td>
+                    <h3>西安市某某幼儿园装修</h3>
+                    <span>招标编号：201803280002</span>
+                    <span>招标要求：场地已选好，继续装修公司设计方案</span>
+                </td>
+                <td>800平米</td>
+                <td style="text-align: center;">
+                    <span class="biddcen">招标中</span>
+                    <button class="layui-btn layui-btn-red layui-open-show">立即投标(2)</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>
+                        <i>
+                            <img src="__MERCH__/images/jine.png" alt="">
+                        </i>￥5万
+                    </p>
+                    <span>发布时间：2018-05-13</span>
+                </td>
+                <td>
+                    <h3>西安市某某幼儿园装修</h3>
+                    <span>招标编号：201803280002</span>
+                    <span>招标要求：场地已选好，继续装修公司设计方案</span>
+                </td>
+                <td>800平米</td>
+                <td style="text-align: center;">
+                    <span class="biddcen">招标中</span>
+                    <button class="layui-btn layui-btn-red layui-open-show">立即投标(2)</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>
+                        <i>
+                            <img src="__MERCH__/images/jine.png" alt="">
+                        </i>￥5万
+                    </p>
+                    <span>发布时间：2018-05-13</span>
+                </td>
+                <td>
+                    <h3>西安市某某幼儿园装修</h3>
+                    <span>招标编号：201803280002</span>
+                    <span>招标要求：场地已选好，继续装修公司设计方案</span>
+                </td>
+                <td>800平米</td>
+                <td style="text-align: center;">
+                    <span class="biddcen">招标中</span>
+                    <button class="layui-btn layui-btn-grays">立即投标(2)</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>
+                        <i>
+                            <img src="__MERCH__/images/jine.png" alt="">
+                        </i>￥5万
+                    </p>
+                    <span>发布时间：2018-05-13</span>
+                </td>
+                <td>
+                    <h3>西安市某某幼儿园装修</h3>
+                    <span>招标编号：201803280002</span>
+                    <span>招标要求：场地已选好，继续装修公司设计方案</span>
+                </td>
+                <td>800平米</td>
+                <td style="text-align: center;">
+                    <span class="biddcen">招标中</span>
+                    <button class="layui-btn layui-btn-grays">立即投标(2)</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>
+                        <i>
+                            <img src="__MERCH__/images/jine.png" alt="">
+                        </i>￥5万
+                    </p>
+                    <span>发布时间：2018-05-13</span>
+                </td>
+                <td>
+                    <h3>西安市某某幼儿园装修</h3>
+                    <span>招标编号：201803280002</span>
+                    <span>招标要求：场地已选好，继续装修公司设计方案</span>
+                </td>
+                <td>800平米</td>
+                <td style="text-align: center;">
+                    <span class="biddcen">招标中</span>
+                    <button class="layui-btn layui-btn-grays">立即投标(2)</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 左 -->
+    <div class="bidding-right fl">
+            <span>
+                <img src="__MERCH__/images/inadv.png" alt="">
+            </span>
+        <div class="Boutique">
+            <h3>如何找合适的精品装修公司？</h3>
+            <div class="clearfix Boutique-container">
+                    <span class="fl">
+                        <img src="__MERCH__/images/the-icon11.png" alt="">
+                    </span>
+                <div class="fl">
+                    <p>比方案</p>
+                    <span>比4套设计方案</span>
+                </div>
+            </div>
+            <div class="clearfix Boutique-container">
+                    <span class="fl">
+                        <img src="__MERCH__/images/the-icon12.png" alt="">
+                    </span>
+                <div class="fl">
+                    <p>比报价</p>
+                    <span>比4家公司报价，选最佳</span>
+                </div>
+            </div>
+            <div class="clearfix Boutique-container">
+                    <span class="fl">
+                        <img src="__MERCH__/images/the-icon13.png" alt="">
+                    </span>
+                <div class="fl">
+                    <p>比服务</p>
+                    <span>比客服服务，让您省心，放心</span>
+                </div>
+            </div>
+            <div class="clearfix Boutique-container">
+                    <span class="fl">
+                        <img src="__MERCH__/images/the-icon14.png" alt="">
+                    </span>
+                <div class="fl">
+                    <p>比保障</p>
+                    <span>比6大保障帮助业主安心装修</span>
+                </div>
+            </div>
+        </div>
+        <div class="Boutique-footer">
+            <h2>促销信息：</h2>
+            <p>· 今日看点 · 业之峰618粽情端午-年中…</p>
+            <p>· 7月10日-7月24日北京业之峰21周年… 拷贝</p>
+        </div>
+    </div>
+</div>
+
+<!-- 通用列表展示 -->
+<div class="com-lists con clearfix">
+    <div class="fl">
+        <h3>
+            <i>
+                <img src="__MERCH__/images/inimg5.png" alt="">
+            </i>
+            公装护航网-企业新闻
+            <a class="fr" href="<?=url('company/news')?>">更多>></a>
+        </h3>
+        <ul>
+            {if condition="$news neq null"}
+                {volist name="news" id="vo"}
+                    <li class="clearfix">
+                    <div class="fl left">
+                        <h4>
+                            <a href="<?=url('company/details')?>?art_id={$vo.art_id}">{$vo.art_title}</a>
+                        </h4>
+                        <p>
+                            {$vo.art_subtitle}
+                        </p>
+                    </div>
+                    <div class="fl right">
+                        <img src="{$vo.art_img}" alt="{$vo.art_img_alt}">
+                    </div>
+                </li>
+                {/volist}
+            {else/}
+                <li class="clearfix">暂无信息</li>
+            {/if}
+        </ul>
+    </div>
+    <div class="fr">
+        <h3>
+            <i>
+                <img src="__MERCH__/images/inimg5.png" alt="">
+            </i>
+            公装护航网-企业动态
+            <a class="fr" href="<?=url('company/news')?>">更多>></a>
+        </h3>
+        <ul>
+            {if condition="$industral neq null"}
+            {volist name="industral" id="vo"}
+            <li class="clearfix">
+                <div class="fl left">
+                    <h4>
+                        <a href="<?=url('company/details')?>?art_id={$vo.art_id}">{$vo.art_title}</a>
+                    </h4>
+                    <p>
+                        {$vo.art_subtitle}
+                    </p>
+                </div>
+                <div class="fl right">
+                    <img src="{$vo.art_img}" alt="{$vo.art_img_alt}">
+                </div>
+            </li>
+            {/volist}
+            {else/}
+            <li class="clearfix">暂无信息</li>
+            {/if}
+        </ul>
+    </div>
+</div>
+<!-- 服务流程 -->
+
+{include file="common/serviceStep" /}
+<!-- 页面主体结束 -->
+
+<!-- 友情链接 -->
+{include file="common/friendlink" /}
+
+<!-- footer -->
+{include file="common/footer" /}
+{include file="common/bottom" /}
+<script>
+    $('#typeData span:first ').addClass('btn-this');
+</script>
+<script>
+    layui.use(['form','jquery'] ,function(){
+        var form = layui.form,
+            $ = layui.jquery;
+        //根据联动的省份id查找城市
+        form.on('select(art_p_id)', function(data){
+            var p_id=data.value;
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('admin/common/getCityName')?>?p_id="+p_id,
+                data: {p_id:p_id},
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    var code=data.data;
+                    $("#city").html("<option value=''>城市</option>");
+                    $.each(code, function(i, val) {
+                        var option1 = $("<option>").val(val.c_id).text(val.c_name);
+                        $("#city").append(option1);
+                        form.render('select');
+                    });
+                    $("#city").get(0).selectedIndex=0;
+                }
+            });
+        });
+        //提交要添加的数据
+        form.on('submit(addType)', function(){
+            $('#addType').removeAttr('lay-filter');
+            $.ajax({
+                type:"post",
+                url:"<?=url('index/point')?>",
+                data:$("#addForm").serialize(),
+                success:function (result) {
+                    console.log(result);
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            window.location.reload();
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }
+                },
+                error:function (error) {
+                    console.log(error);
+                }
+            })
+        });
+        $('#typeData span:first ').addClass('btn-this');
+    });
+</script>
+<script type="text/javascript" src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<script>
+    function getUrlParms(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)
+            return unescape(r[2]);
+        return null;
+    }
+    var refer=document.referrer;
+    var userIp= returnCitySN.cip;
+    var laiyuan=getUrlParms("laiyuan");
+    var chuangyi=getUrlParms("chuangyi");
+    var curUrl = window.location.href;
+    $('.laiyuan').val(laiyuan);
+    $('.chuangyi').val(chuangyi);
+    $('.userIp').val(userIp);
+    $('.curUrl').val(curUrl);
+    $('.refer').val(refer);
+</script>

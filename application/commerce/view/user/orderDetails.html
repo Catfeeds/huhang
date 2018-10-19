@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="__LAY__/css/layui.css">
+    <script src="__PUBLIC__/js/jquery.js"></script>
+    <script src="__LAY__/layui.js"></script>
+</head>
+<form class="layui-form" id="addForm" style="margin-top: 10px;">
+    <div class="layui-row" style="margin-left: 10px;">
+        <div class="layui-col-xs6">
+            <div class="grid-demo grid-demo-bg1">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">客户编号</label>
+                        <div class="layui-input-block" style="line-height: 36px">201808090001
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs6">
+            <div class="grid-demo">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">分单时间</label>
+                        <div class="layui-input-block" style="line-height: 36px">2018-05-22 16:54:55
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row" style="margin-left: 10px;">
+        <div class="layui-col-xs6">
+            <div class="grid-demo grid-demo-bg1">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">客户姓名</label>
+                        <div class="layui-input-block" style="line-height: 36px">叶**
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs6">
+            <div class="grid-demo">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">项目类型</label>
+                        <div class="layui-input-block" style="line-height: 36px">餐饮空间
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row" style="margin-left: 10px;">
+        <div class="layui-col-xs6">
+            <div class="grid-demo grid-demo-bg1">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">联系电话</label>
+                        <div class="layui-input-block" style="line-height: 36px">182*****991
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs6">
+            <div class="grid-demo">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">公司名称</label>
+                        <div class="layui-input-block" style="line-height: 36px">**********有限公司
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row" style="margin-left: 10px;">
+        <div class="layui-col-xs6">
+            <div class="grid-demo grid-demo-bg1">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">项目预算</label>
+                        <div class="layui-input-block" style="line-height: 36px">￥750000元
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs6">
+            <div class="grid-demo">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">项目面积</label>
+                        <div class="layui-input-block" style="line-height: 36px">1200平米
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row" style="margin-left: 10px;">
+        <div class="layui-col-xs6">
+            <div class="grid-demo grid-demo-bg1">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">计划开工时间</label>
+                        <div class="layui-input-block" style="line-height: 36px">2018-05-22 16:54:55
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">其他信息</label>
+        <div class="layui-input-block" style="margin-right: 20px;">
+            刚租好房子，准备赶快装修，不会设计，也不懂装修，想找一家靠谱的装修公司全权负责刚租好房子，准备赶快装修，不会设计，也不懂装修，想找一家靠谱的装修公司全权负，刚租好房子，准备赶快装修，不会设计，也不懂装修，想找一家靠谱的装修公司全权负责
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <span class="layui-btn" lay-submit="" lay-filter="editCus">确认收到</span>
+        </div>
+    </div>
+</form>
+</html>
+<script>
+    layui.use(['form', 'jquery'], function(){
+        var form = layui.form
+            ,$ = layui.jquery;
+        form.on('submit(editCus)', function(){
+            $('#addType').removeAttr('lay-filter');
+            $.ajax({
+                'type':"post",
+                'url':"<?=url('activity/signAct')?>",
+                'data':$('#addForm').serialize(),
+                'success':function (result) {
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            var index=parent.layer.getFrameIndex(window.name);
+                            parent.layer.close(index);
+                            window.parent.location.reload();
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            var index=parent.layer.getFrameIndex(window.name);
+                            parent.layer.close(index);
+                            window.parent.location.reload();
+                        });
+                    }
+                },
+                'error':function (error) {
+                    console.log(error);
+                }
+            })
+        });
+    });
+</script>

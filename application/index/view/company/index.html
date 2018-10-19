@@ -1,0 +1,264 @@
+{include file="common/header" /}
+<!-- 页面主体 -->
+<!-- 焦点图 -->
+<div class="comban">
+    <img src="__PUBLIC__/images/the-ban.png" alt="">
+</div>
+
+<!-- 面包屑 -->
+<div class="crumbs con">
+        <span class="layui-breadcrumb" lay-separator=">">
+            <a href="<?=url('index/index')?>">首页</a>
+            <a>
+                <cite>装修公司</cite>
+            </a>
+        </span>
+</div>
+<!--  -->
+
+<!-- 页面主体 -->
+<div class="the-con con clearfix">
+    <!-- 左侧 -->
+    <div class="the-con-left fl">
+        <!-- 上 -->
+        <div class="top">
+            <ul class="clearfix">
+                <li>
+                    <a href="">综合指数</a>
+                    <i>
+                        <img src="__PUBLIC__/images/the-icon1.png" alt="">
+                    </i>
+                </li>
+                <li>
+                    <a href="">口碑指数</a>
+                    <i>
+                        <img src="__PUBLIC__/images/the-icon2.png" alt="">
+                    </i>
+                </li>
+                <li>
+                    <a href="">案例指数</a>
+                    <i>
+                        <img src="__PUBLIC__/images/the-icon3.png" alt="">
+                    </i>
+                </li>
+                <li>
+                    <a href="">浏览指数</a>
+                    <i>
+                        <img src="__PUBLIC__/images/the-icon4.png" alt="">
+                    </i>
+                </li>
+            </ul>
+        </div>
+        <!-- 下 -->
+        <div class="bto">
+            <ol>
+                {if condition="$merchant neq null"}
+                    {volist name="merchant" id="mer"}
+                        <li class="clearfix">
+                            <div class="fl bto-left">
+                                <img src="{$mer.mt_logo}" alt="">
+                            </div>
+                            <div class="fl bto-media">
+                                <h3>{$mer.mt_name}</h3>
+                                <!-- 服务类型 -->
+                                <div class="bto-media-type">
+                                    <em>服务类型：</em>
+                                    {$mer.service_id}
+                                </div>
+                                <!-- 认证 -->
+                                <div class="certified clearfix">
+                                    {if condition="$mer.mt_rank egt 2"}
+                                        <span class="layui-badge-rim fl">
+                                            <i>
+                                                <img src="__PUBLIC__/images/the-icon5.png" alt="">
+                                            </i>通过企业认证
+                                        </span>
+                                    {/if}
+                                    <!--口碑认证：满足合作期内/有余额   任意条件即亮-->
+                                    {if condition="($mer.mt_money gt 0) OR ($mer.mt_deadline gt $current)"}
+                                        <span class="layui-badge-rim fl">
+                                                <i>
+                                                    <img src="__PUBLIC__/images/the-icon5.png" alt="">
+                                                </i>通过口碑认证
+                                        </span>
+                                    {/if}
+
+                                    <div class="fl">
+                                        <span>推荐度：</span>
+                                        <!--推荐度：商家接单量的多少（一星5单；二星10单自由设置）-->
+                                        <i>
+                                            <img src="__PUBLIC__/images/the-icon6.png" alt="">
+                                        </i>
+                                        <i>
+                                            <img src="__PUBLIC__/images/the-icon7.png" alt="">
+                                        </i>
+                                        <i>
+                                            <img src="__PUBLIC__/images/the-icon8.png" alt="">
+                                        </i>
+                                    </div>
+                                </div>
+                                <p>
+                                    <i>
+                                        <img src="__PUBLIC__/images/the-icon10.png" alt="">
+                                    </i>
+                                    {$mer.mt_address}
+                                </p>
+                            </div>
+                            <!-- 右 -->
+                            <div class="fr bto-right">
+                                <div>
+                                    <span><a href="<?=url('merchant/company/profile')?>?mt_id={$mer.mt_id}">公司简介</a></span>
+                                    <i>|</i>
+                                    <span><a href="<?=url('merchant/company/honor')?>?mt_id={$mer.mt_id}">资质证书</a></span>
+                                </div>
+                                <p>
+                                    <button class="layui-btn layui-open-show layui-btn-red">
+                                        <i>
+                                            <img src="__PUBLIC__/images/the-icon9.png" alt="">
+                                        </i>立即咨询
+                                    </button>
+                                </p>
+                                <em>
+                                    <i>{$mer.mt_order_num}</i>位业主以咨询
+                                </em>
+                            </div>
+                        </li>
+                    {/volist}
+                {else/}
+                <li class="clearfix">暂无内容</li>
+                {/if}
+            </ol>
+        </div>
+        <!-- 分页 -->
+        <div class="paging con-the">
+            <div class="paging-con">
+                <p>
+                    <a href="javascript:;" style="width: 46px;">首页</a>
+                    <a href="javascript:;">
+                        <i class="layui-icon layui-icon-left"></i>
+                    </a>
+                    <a class="paging-this" href="javascript:;">1</a>
+                    <a href="javascript:;">2</a>
+                    <a href="javascript:;">3</a>
+                    <a href="javascript:;">4</a>
+                    <a href="javascript:;">5</a>
+                    <a href="javascript:;">
+                        <i class="layui-icon layui-icon-right"></i>
+                    </a>
+                    <a href="javascript:;" style="width: 46px;">尾页</a>
+                    <span>
+                            到第
+                            <input type="text" value="1">页
+                            <button class="layui-btn fr layui-btn-primary layui-btn-sm">确认</button>
+                        </span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- 右侧 -->
+    {include file="common/bidding" /}
+</div>
+<!-- 服务流程 -->
+
+{include file="common/serviceStep" /}
+
+<!-- 页面主体结束 -->
+<!-- 友情链接 -->
+{include file="common/friendlink" /}
+<!-- footer -->
+{include file="common/footer" /}
+{include file="common/bottom" /}
+<script>
+    layui.use(['form','jquery'] ,function(){
+        var form = layui.form,
+            $ = layui.jquery;
+        //根据联动的省份id查找城市
+        form.on('select(art_p_id)', function(data){
+            var p_id=data.value;
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('admin/common/getCityName')?>?p_id="+p_id,
+                data: {p_id:p_id},
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    var code=data.data;
+                    $("#city").html("<option value=''>城市</option>");
+                    $.each(code, function(i, val) {
+                        var option1 = $("<option>").val(val.c_id).text(val.c_name);
+                        $("#city").append(option1);
+                        form.render('select');
+                    });
+                    $("#city").get(0).selectedIndex=0;
+                }
+            });
+        });
+        //提交要添加的数据
+        form.on('submit(addType)', function(){
+            $('#addType').removeAttr('lay-filter');
+            $.ajax({
+                type:"post",
+                url:"<?=url('index/point')?>",
+                data:$("#addForm").serialize(),
+                success:function (result) {
+                    console.log(result);
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            window.location.reload();
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }
+                },
+                error:function (error) {
+                    console.log(error);
+                }
+            })
+        });
+
+        //提交投标信息，寻求合作！
+        form.on('submit(addBid)', function(){
+            $('#addBid').removeAttr('lay-filter');
+            $.ajax({
+                type:"post",
+                url:"<?=url('index/bidding')?>",
+                data:$("#bidForm").serialize(),
+                success:function (result) {
+                    console.log(result);
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            window.location.reload();
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }
+                },
+                error:function (error) {
+                    console.log(error);
+                }
+            })
+        });
+
+        $('#typeData span:first ').addClass('btn-this');
+    });
+</script>
+<script type="text/javascript" src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<script>
+    function getUrlParms(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)
+            return unescape(r[2]);
+        return null;
+    }
+    var refer=document.referrer;
+    var userIp= returnCitySN.cip;
+    var laiyuan=getUrlParms("laiyuan");
+    var chuangyi=getUrlParms("chuangyi");
+    var curUrl = window.location.href;
+    $('.laiyuan').val(laiyuan);
+    $('.chuangyi').val(chuangyi);
+    $('.userIp').val(userIp);
+    $('.curUrl').val(curUrl);
+    $('.refer').val(refer);
+</script>

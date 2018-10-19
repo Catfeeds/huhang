@@ -1,0 +1,83 @@
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:#808080; opacity:1;
+}
+ ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #808080;opacity:1;
+}
+ input:-ms-input-placeholder{
+    color: #808080;opacity:1;
+}
+ input::-webkit-input-placeholder{
+    color: #808080;opacity:1;
+}
+ input[type=number] {  
+    -moz-appearance:textfield;  
+}  
+input[type=number]::-webkit-inner-spin-button,  
+input[type=number]::-webkit-outer-spin-button {  
+    -webkit-appearance: none;  
+    margin: 0;  
+}
+// 宽
+.w(@w:1200px){
+    width: @w;
+}
+// 高
+.h(@h:110px){
+    height: @h;
+}
+.bg(@color:#fff;){
+    background: @color;
+}
+// 外边距
+.mar(@mar:0 0){
+    margin: @mar;
+}
+.mt(@mt:30px){
+    margin-top: @mt;
+}
+.ml(@ml:30px){
+    margin-left: @ml;
+}
+.mr(@mr:30px){
+    margin-right: @mr;
+}
+.mb(@mb:30px){
+    margin-bottom: @mb;
+}
+
+//  内边距
+.pl(@pl:30px){
+    padding-left: @pl;
+}
+.pr(@pr:30px){
+    padding-right: @pr;
+}
+.pt(@pt:30px){
+    padding-top: @pt;
+}.pb(@pb:30px){
+    padding-bottom: @pb;
+}
+
+// 行高
+.lh(@lh:30px){
+    line-height: @lh;
+}
+// 字体大小
+.ft(@ft:16px){
+    font-size: @ft;
+}
+// 颜色
+.color(@c:#646464){
+    color: @c;
+}
+
+.dis(@d:inline-block){
+    display:@d;
+}
+.weight(@we:600){
+    font-weight: @we;
+}
+.cen{
+    text-align: center;
+}

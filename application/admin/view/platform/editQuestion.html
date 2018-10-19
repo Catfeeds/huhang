@@ -1,0 +1,170 @@
+{include file="common/header" /}
+<div class="layui-body" style="margin-top: 60px">
+    <div style="margin-top: 5px;margin-bottom: 3px;">
+    <span class="layui-breadcrumb" lay-separator=">">
+        <a>运营管理</a>
+        <a>内容管理</a>
+        <a href="<?=url('platform/question')?>">问答管理</a>
+        <a><cite>添加问答</cite></a>
+    </span>
+        <div style="float:right;margin-right:20px;margin-bottom: 12px;">
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="<?=url('platform/question')?>">
+                <i class="layui-icon layui-icon-return"></i>
+                返回列表
+            </a>
+        </div>
+    </div>
+    <hr/>
+    <div style="padding: 15px;">
+        <form class="layui-form layui-form-pane1" id="addForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>基础信息</label>
+                <div class="layui-input-inline">
+                    <select name="qa_p_id" lay-verify="required" lay-filter="art_p_id">
+                        <option value="">请选择省份</option>
+                        {volist name='prov' id='vo'}
+                        <option value="{$vo.p_id}" {if condition="$question.qa_p_id eq $vo.p_id"}selected{/if}>{$vo.p_name}</option>
+                        {/volist}
+                    </select>
+                </div>
+                <div class="layui-input-inline">
+                    <select name="qa_c_id" lay-verify="required" id="art_c_id" lay-filter="art_c_id">
+                        <option value="">请选择城市</option>
+                        {volist name='city' id='vo'}
+                        <option value="{$vo.c_id}" {if condition="$vo.c_id eq $question.qa_c_id"}selected{/if}>{$vo.c_name}</option>
+                        {/volist}
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>商户名称</label>
+                <div class="layui-input-inline">
+                    <select name="qa_m_id" id="art_m_id" lay-filter="art_m_id" lay-search="">
+                        <option value="">请选择或搜索商户</option>
+                        {volist name='merchant' id='vo'}
+                        <option value="{$vo.mt_id}" {if condition="$vo.mt_id eq $question.qa_m_id"}selected{/if}>{$vo.mt_short_name}</option>
+                        {/volist}
+                    </select>
+
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label"><span style="color: red;">*</span>问题内容</label>
+                <div class="layui-input-block">
+                    <textarea placeholder="请输入问题内容" lay-verify="required|question" name="qa_question" class="layui-textarea">{$question.qa_question}</textarea>
+                </div>
+            </div>
+            <div class="layui-form-item" pane>
+                <label class="layui-form-label">审核状态</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="qa_status" value="1" title="待审核" {if condition="$question.qa_status eq 1"}checked{/if}>
+                    <input type="radio" name="qa_status" value="2" title="通过" {if condition="$question.qa_status eq 2"}checked{/if}>
+                    <input type="radio" name="qa_status" value="3" title="驳回" {if condition="$question.qa_status eq 3"}checked{/if}>
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text"  id="remarks" {if condition="$question.qa_status neq 3"}style="display: none"{/if}>
+                <label class="layui-form-label"><span style="color: red;">*</span>审核备注</label>
+                <div class="layui-input-block">
+                    <textarea placeholder="请输入审核备注" id="qa_tip" name="qa_tip" class="layui-textarea">{$question.qa_tip}</textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <span class="layui-btn" id="addType" lay-submit lay-filter="addType">修改</span>
+                    <a class="layui-btn layui-btn-primary" href="<?=url('platform/question')?>">返回</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="common/footer" /}
+<script>
+    layui.use(['form','upload','jquery','upload','layedit'] ,function(){
+        var form = layui.form,
+            upload = layui.upload,
+            layedit = layui.layedit,
+            $ = layui.jquery;
+        form.on('radio', function(data){
+            var case_status=data.value;
+            if(case_status == 3){
+                $('#remarks').show();
+                $('#qa_tip').attr('lay-verify',"required");
+            }else{
+                $('#remarks').hide();
+                $('#qa_tip').removeAttr('lay-verify');
+            }
+        });
+        //根据联动的省份id查找城市
+        form.on('select(art_p_id)', function(data){
+            var p_id=data.value;
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('common/getCityName')?>?p_id="+p_id,
+                data: {p_id:p_id},
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    var code=data.data;
+                    $("#art_c_id").html("<option value=''>请选择城市</option>");
+                    $("#art_m_id").html("<option value=''>请选择或搜索商户</option>");
+                    $.each(code, function(i, val) {
+                        var option1 = $("<option>").val(val.c_id).text(val.c_name);
+                        $("#art_c_id").append(option1);
+                        form.render('select');
+                    });
+                    $("#art_c_id").get(0).selectedIndex=0;
+                }
+            });
+        });
+        //根据城市的id去查找商户
+        form.on('select(art_c_id)', function(data){
+            var c_id=data.value;
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('common/getMerchantName')?>?b_id="+c_id,
+                data: {c_id:c_id},
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    var code=data.data;
+                    $("#art_m_id").html("<option value=''>请选择或搜索商户</option>");
+                    $.each(code, function(i, val) {
+                        var option1 = $("<option>").val(val.mt_id).text(val.mt_short_name);
+                        $("#art_m_id").append(option1);
+                        form.render('select');
+                    });
+                    $("#art_m_id").get(0).selectedIndex=0;
+                }
+            });
+        });
+        form.verify({
+            question: function(value){
+                if(value.length < 5){
+                    return '问题至少得5个字符啊';
+                }
+            }
+        });
+        form.on('submit(addType)', function(){
+            $('#addType').removeAttr('lay-filter');
+            $.ajax({
+                'type':"post",
+                'url':"<?=url('platform/editQuestion')?>?qa_id={$question.qa_id}",
+                'data':$('#addForm').serialize(),
+                'success':function (result) {
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            location.href="<?=url('platform/question')?>";
+                        });
+                    }else if(result.code == '2'){
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }else if(result.code == '3'){
+                        layer.msg(result.msg, {icon: 3, time: 3000});
+                    }
+                },
+                'error':function (error) {
+                    console.log(error);
+                }
+            })
+        });
+    });
+</script>

@@ -1,0 +1,210 @@
+{include file="common/header" /}
+
+<!-- 页面主体 -->
+<!-- 焦点图 -->
+<div class="comban"><img src="__PUBLIC__/images/x-ban.png" alt=""></div>
+
+<!-- 面包屑 -->
+<div class="crumbs con">
+        <span class="layui-breadcrumb" lay-separator=">">
+            <a href="<?=url('index/index')?>">首页</a>
+            <a>
+                <cite>本地资讯</cite>
+            </a>
+        </span>
+</div>
+<!--  -->
+
+<!-- 页面主体 -->
+<div class="the-con con clearfix">
+    <!-- 左侧 -->
+    <div class="the-con-left fl">
+        <div class="advisory-left">
+            <div class="layui-tab layui-tab-card">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">全部文章</a></li>
+                    {volist name="artType" id="type"}
+                    <li>{$type.type_name}</li>
+                    {/volist}
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">
+                        <ol class="advisory-content">
+                            {volist name="article" id="art"}
+                                <li class="clearfix">
+                                    <span class="fl">
+                                        <a href="<?=url('news/details')?>?art_id={$art.art_id}">
+                                            <img src="{$art.art_img}" alt="{$art.art_img_alt}">
+                                        </a>
+                                    </span>
+                                    <div class="fl">
+                                        <h3>
+                                            <a href="<?=url('news/details')?>?art_id={$art.art_id}">{$art.art_title}</a>
+                                            <small class="fr">{$art.type_name}</small>
+                                        </h3>
+                                        <p>{$art.art_subtitle}</p>
+                                        <em>
+                                            <i>
+                                                <img src="__PUBLIC__/images/shijian.png" alt="">{$art.art_indextime}
+                                            </i>
+                                            <i>
+                                                <img src="__PUBLIC__/images/liulan.png" alt="">{$art.art_view}
+                                            </i>
+                                            <a class="fr" href="">来源：www.huhang315.com</a>
+                                        </em>
+                                    </div>
+                                </li>
+                            {/volist}
+                        </ol>
+                    </div>
+                    {volist name="artType" id="arts"}
+                        <div class="layui-tab-item">
+                        <ol class="advisory-content">
+                            {if condition="$arts.article_content neq null"}
+                                {volist name="arts.article_content" id="art"}
+                                    <li class="clearfix">
+                                        <span class="fl">
+                                            <a href="<?=url('news/details')?>?art_id={$art.art_id}">
+                                                <img src="{$art.art_img}" alt="{$art.art_img_alt}">
+                                            </a>
+                                        </span>
+                                    <div class="fl">
+                                        <h3>
+                                            <a href="<?=url('news/details')?>?art_id={$art.art_id}">{$art.art_title}</a>
+                                            <small class="fr">{$art.type_name}</small>
+                                        </h3>
+                                        <p>{$art.art_subtitle}</p>
+                                        <em>
+                                            <i>
+                                                <img src="__PUBLIC__/images/shijian.png" alt="">{$art.art_indextime}
+                                            </i>
+                                            <i>
+                                                <img src="__PUBLIC__/images/liulan.png" alt="">{$art.art_view}
+                                            </i>
+                                            <a class="fr" href="">来源：www.huhang315.com</a>
+                                        </em>
+                                    </div>
+                                </li>
+                                {/volist}
+                            {else/}
+                            <li class="clearfix">
+                                暂无信息
+                            </li>
+                            {/if}
+                        </ol>
+                    </div>
+                    {/volist}
+                </div>
+            </div>
+        </div>
+        <!-- 分页 -->
+        <div class="paging con-the">
+            <div class="paging-con">
+                <p>
+                    <a href="javascript:;" style="width: 46px;">首页</a>
+                    <a href="javascript:;">
+                        <i class="layui-icon layui-icon-left"></i>
+                    </a>
+                    <a class="paging-this" href="javascript:;">1</a>
+                    <a href="javascript:;">2</a>
+                    <a href="javascript:;">3</a>
+                    <a href="javascript:;">4</a>
+                    <a href="javascript:;">5</a>
+                    <a href="javascript:;">
+                        <i class="layui-icon layui-icon-right"></i>
+                    </a>
+                    <a href="javascript:;" style="width: 46px;">尾页</a>
+                    <span>
+                            到第
+                            <input type="text" value="1">页
+                            <button class="layui-btn fr layui-btn-primary layui-btn-sm">确认</button>
+                        </span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- 右侧 -->
+    {include file="common/bidding" /}
+</div>
+<!--  -->
+<!-- 服务流程 -->
+
+{include file="common/serviceStep" /}
+<!-- 页面主体结束 -->
+
+<!-- 友情链接 -->
+{include file="common/friendlink" /}
+
+<!-- footer -->
+{include file="common/footer" /}
+{include file="common/bottom" /}
+<script>
+    layui.use(['form','jquery'] ,function(){
+        var form = layui.form,
+            $ = layui.jquery;
+        //根据联动的省份id查找城市
+        form.on('select(art_p_id)', function(data){
+            var p_id=data.value;
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('admin/common/getCityName')?>?p_id="+p_id,
+                data: {p_id:p_id},
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    var code=data.data;
+                    $("#city").html("<option value=''>城市</option>");
+                    $.each(code, function(i, val) {
+                        var option1 = $("<option>").val(val.c_id).text(val.c_name);
+                        $("#city").append(option1);
+                        form.render('select');
+                    });
+                    $("#city").get(0).selectedIndex=0;
+                }
+            });
+        });
+        //提交要添加的数据
+        form.on('submit(addType)', function(){
+            $('#addType').removeAttr('lay-filter');
+            $.ajax({
+                type:"post",
+                url:"<?=url('index/point')?>",
+                data:$("#addForm").serialize(),
+                success:function (result) {
+                    console.log(result);
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            window.location.reload();
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }
+                },
+                error:function (error) {
+                    console.log(error);
+                }
+            })
+        });
+        $('#typeData span:first ').addClass('btn-this');
+    });
+</script>
+<script type="text/javascript" src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<script>
+    function getUrlParms(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)
+            return unescape(r[2]);
+        return null;
+    }
+    var refer=document.referrer;
+    var userIp= returnCitySN.cip;
+    var laiyuan=getUrlParms("laiyuan");
+    var chuangyi=getUrlParms("chuangyi");
+    var curUrl = window.location.href;
+    $('.laiyuan').val(laiyuan);
+    $('.chuangyi').val(chuangyi);
+    $('.userIp').val(userIp);
+    $('.curUrl').val(curUrl);
+    $('.refer').val(refer);
+</script>

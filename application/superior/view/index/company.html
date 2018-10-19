@@ -1,0 +1,53 @@
+{include file="common/top" /}
+<section id="n_banner" style="background:url(__SUPER__/statics/images/banner_n.jpg) center top no-repeat;">
+    <div class="box" aos="fade-up" aos-duration="2000">
+        <h2>news</h2>
+        <h1>新闻资讯</h1>
+    </div>
+</section>
+
+<!--================= end banner =================-->
+
+<!--============================content============================= -->
+<section id="n_main_box">
+    <section id="n_up_box">
+        <div class="main_box">
+            <div id="n_nav">
+                <a href="<?=url('index/news')?>"><strong>行业新闻</strong></a>
+                <a class="on" href="<?=url('index/company')?>"><strong>公司动态</strong></a>
+            </div>
+            <div id="position"> <span>当前位置：</span>
+                <a href="<?=url('index/index')?>?mt_id={$merchant.mt_id}" title="">首页</a>
+                <i> &gt; </i>
+                <a href="<?=url('index/news')?>" title="">新闻资讯 </a> <i> &gt; </i> <em>行业新闻</em>         </div>
+        </div>
+    </section>
+    <section id="n_un_box">
+        <div class="n_content main_box">
+            <section id="n_news">
+                <ul class="img_size">
+                    {volist name="article" id="art"}
+                    <li>
+                        <div class="pic_box" ><a href="<?=url('index/details')?>?art_id={$art.art_id}"target="_blank" ><img  src="{$art.art_img}" alt="{$art.art_title}" /></a></div>
+                        <div class="text_box">
+                            <h1><a href="<?=url('index/details')?>?art_id={$art.art_id}">{$art.art_title}</a></h1>
+                            <p>{$art.art_subtitle}</p>
+                        </div>
+                        <div class="fot_box">
+                            <span>{$art.art_updatetime}</span>
+                            <a href="<?=url('index/details')?>?art_id={$art.art_id}">more+</a>
+                        </div>
+                    </li>
+                    {/volist}
+                    <div class="clear"></div>
+                </ul>
+            </section>
+            <div class="page">
+                <div class="box">
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+<!--============================footer============================= -->
+{include file="common/footer" /}

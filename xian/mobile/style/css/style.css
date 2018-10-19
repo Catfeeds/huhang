@@ -1,0 +1,262 @@
+.clearfix:after,
+.clearfix:before {
+  content: "";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.clearfix {
+  *zoom: 1;
+}
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
+}
+.banner {
+  overflow: hidden;
+  height: 6.2656rem;
+  margin-top: 1.2rem;
+}
+.banner img {
+  width: 100%;
+  height: 6.2656rem;
+}
+/* 预约成功 */
+.reservations {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  padding: 0.36rem 0;
+  background: #fff;
+  margin-top: 0.24rem;
+  text-align: center;
+}
+.reservations i {
+  width: 0.6094rem;
+  display: inline-block;
+  margin-left: 0.1563rem;
+}
+.reservations i img {
+  width: 100%;
+}
+.reservations .swiper-container {
+  width: 90%;
+  font-size: 0.4rem;
+  height: 0.5rem;
+  margin-top: 0.1rem;
+  line-height: 0.5rem;
+}
+.reservations .swiper-container .swiper-slide span {
+  margin-left: 0.2563rem;
+  color: #323232;
+  display: inline-block;
+}
+.reservations .swiper-container .swiper-slide span:first-of-type {
+  margin-left: 0;
+}
+.reservations .swiper-container .swiper-slide span:nth-child(1) {
+  text-align: left;
+}
+.reservations .swiper-container .swiper-slide span:nth-child(3) {
+  text-align: right;
+}
+/* form */
+.form-bg {
+  background: #fff;
+  border-radius: 0.0625rem;
+  font-size: 0.4375rem;
+  padding: 0.8rem 0.4688rem 0.4688rem;
+  color: #909090;
+  text-align: center;
+}
+.form-bg input:-moz-placeholder,
+.form-bg textarea:-moz-placeholder {
+  color: #909090;
+}
+.form-bg input:-ms-input-placeholder,
+.form-bg textarea:-ms-input-placeholder {
+  color: #909090;
+}
+.form-bg input::-webkit-input-placeholder,
+.form-bg textarea::-webkit-input-placeholder {
+  color: #909090;
+}
+.form-bg input {
+  width: 100%;
+  height: 1.25rem;
+  border-radius: 0.0938rem;
+  font-size: 0.4375rem;
+}
+.form-bg input[type="text"],
+.form-bg input[type="number"] {
+  border: 1px solid #d9d9d9;
+  margin-bottom: 0.3656rem;
+  padding-left: 0.3rem;
+}
+.form-bg input[type="submit"] {
+  background: #C70000;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  font-size: 0.42rem;
+}
+.form-bg .f-cnet {
+  color: #e03d4a;
+  display: inline-block;
+  margin-top: 0.2563rem;
+  font-size: 0.1563rem;
+}
+body {
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+/* 通用结束 */
+/*********************************************/
+.advimg img {
+  width: 100%;
+}
+.adv-div {
+  width: 100%;
+  height: 0.4375rem;
+  background: #f0f0f0;
+}
+.advmar-bto {
+  margin-bottom: 0.375rem;
+}
+.advmar-top {
+  margin-top: 0.375rem;
+}
+.adv-bg {
+  background: #fff;
+}
+.common-title {
+  text-align: center;
+}
+.common-title img {
+  width: 6.9531rem;
+  margin: 0.7031rem 0 0.5938rem;
+}
+.style {
+  background: #fff;
+  padding: 0 0.4688rem 0.1563rem;
+}
+.style-top {
+  margin-bottom: 0.1344rem;
+}
+.style-top img {
+  width: 100%;
+}
+.style-bto li {
+  display: inline-block;
+  width: 2.875rem;
+  float: left;
+  margin-right: 0.2188rem;
+}
+.style-bto li img {
+  width: 100%;
+}
+.style-bto li:last-of-type {
+  margin-right: 0;
+}
+.fixed-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+.fixed-footer button {
+  background: #c70000;
+  font-size: 0.35rem;
+  color: #fff;
+  text-align: center;
+  height: 1.4063rem;
+  line-height: 1.4063rem;
+  width: 100%;
+  border: none;
+}
+/*********************************************/
+/* 通用底部*/
+.footer-bar {
+  text-align: center;
+  height: 3rem;
+  background: #fff;
+  font-size: 0.338rem;
+  padding-top: 0.8594rem;
+  color: #1A1A1A;
+  margin-bottom: 1.4063rem;
+}
+.footer-bar small {
+  color: #323232;
+}
+.in-layer {
+  display: none;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+}
+.in-layer h3 {
+  height: 1.25rem;
+  line-height: 1.25rem;
+  font-size: 0.4375rem;
+  color: #fff;
+  background: #c91827;
+  text-align: center;
+  font-weight: 600;
+  border-radius: 0.1563rem 0.1563rem 0 0;
+}
+.in-layer .in-layer-con {
+  width: 8.125rem;
+  height: 7.625rem;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border-radius: 0.1563rem;
+  background: #fff;
+}
+.in-layer .in-layer-con div {
+  padding: 0.4688rem;
+  text-align: center;
+}
+.in-layer .in-layer-con div input[type="text"],
+.in-layer .in-layer-con div input[type="number"] {
+  height: 1.375rem;
+  line-height: 1.375rem;
+  border: 1px solid #d9d9d9;
+  width: 100%;
+  display: block;
+  font-size: 0.4375rem;
+  padding-left: 0.2813rem;
+  margin-bottom: 0.4688rem;
+}
+.in-layer .in-layer-con div input[type="submit"] {
+  width: 3.9375rem;
+  height: 1.0313rem;
+  background: #c91827;
+  color: #fff;
+  border: none;
+  font-size: 0.4375rem;
+  border-radius: 0.1563rem;
+}
+.in-layer .in-layer-con .layer-x1 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  bottom: -0.9375rem;
+  display: inline-block;
+  height: 0.6563rem;
+  width: 0.6563rem;
+  background: url("../images/x.png") no-repeat center;
+  background-size: 100% 100%;
+}

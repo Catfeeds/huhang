@@ -1,0 +1,90 @@
+<!-- 招标预约框-->
+<div class="bidding-right fl">
+            <span>
+                <img src="__MERCH__/images/inadv.png" alt="" style="height: 150px;">
+            </span>
+
+    <div class="comm-left-one">
+        <form id="addForm" class="layui-form">
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <select name="cus_type" lay-verify="required">
+                        <option value="">请选择项目类型</option>
+                        {volist name="typeData" id="type"}
+                        <option value="{$type.type_id}">{$type.type_name}</option>
+                        {/volist}
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <input class="layui-input" name="cus_area" lay-virefy="required" placeholder="请输入您的装修面积">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-inline" style="width: 121px;">
+                    <select name="cus_provid" lay-verify="required" lay-filter="art_p_id">
+                        <option value="" selected="">省份</option>
+                        {volist name="prov" id="vo"}
+                        <option value="{$vo.p_id}">{$vo.p_name}</option>
+                        {/volist}
+                    </select>
+                </div>
+                <div class="layui-input-inline" style="width: 121px; margin-right: 0;">
+                    <select name="cus_cityid" id="city" lay-verify="required">
+                        <option value="" selected>城市</option>
+                    </select>
+                </div>
+            </div>
+            <input name='cus_position' type='hidden' value='平台端首页'>
+            <input type=hidden name=cus_from class=laiyuan>
+            <input type=hidden name=cus_origin class=chuangyi>
+            <input type=hidden name=cus_ip class=userIp>
+            <input type=hidden name=cus_link class=curUrl>
+            <input type=hidden name=refer class=refer>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <input class="layui-input" name="cus_name" lay-virefy="required" placeholder="请输入您的称呼">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <input class="layui-input" name="cus_phone" lay-virefy="required" placeholder="请输入您的手机号码">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <span class="layui-btn layui-btn-red layui-btn-fluid" lay-submit lay-filter="addTypes" id="addTypes">
+                        <i>
+                            <img src="__MERCH__/images/c.png" alt="">
+                        </i> 预约咨询
+                    </span>
+                </div>
+            </div>
+            <p>24小时服务：{$hotLine}</p>
+
+        </form>
+    </div>
+
+    <!-- comm联系我们 -->
+    <div class="comm-contact">
+        <h2>某某设计-联系我们</h2>
+        <p class="clearfix">
+            <em>联系人：</em>
+            <span>{$cityName.mt_manger}</span>
+        </p>
+        <p class="clearfix">
+            <em>联系方式：</em>
+            <span>{gt name="$cityName.mt_rank" value="2"}{$cityName.mt_hotline}{else/}{$hotLine}{/gt}</span>
+        </p>
+        <p class="clearfix">
+            <em>网址：</em>
+            <span>huhang315.com/1121</span>
+            <!--网址这里还有问题。商户网址还需要进行处理。-->
+        </p>
+        <p class="clearfix">
+            <em>地址：</em>
+            <span>{$address}</span>
+        </p>
+    </div>
+</div>

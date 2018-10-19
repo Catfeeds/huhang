@@ -1,0 +1,209 @@
+{include file="common/header" /}
+<!--banner-->
+{include file="common/banner" /}
+<style>
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+</style>
+<!-- 招标板块 -->
+<div class="Bidding con clearfix">
+    <!-- 右 -->
+    <div class="comm-right fr">
+        <!-- 面包屑 -->
+        <div class="bread">
+            <em>您的位置：</em>
+            <span class="layui-breadcrumb" lay-separator=">">
+                    <a href="<?=url('index/index')?>?mt_id={$mt_id}">{$merName}</a>
+                    <a href="<?=url('example/index')?>">装修案例</a>
+                    <a>
+                        <cite>{$example.case_title}详情</cite>
+                    </a>
+                </span>
+        </div>
+        <!-- 详情主体 -->
+        <div class="project-show-left fr">
+            <div class="top">
+                <div class="swiper-container gallery-top">
+                    <div class="swiper-wrapper">
+                        {volist name="$example.case_img" id="items"}
+                        {if condition="$items neq null"}
+                        <div class="swiper-slide">
+                            <img src="{$items}" alt="">
+                            <span class="quanping">
+                                    <i>
+                                        <img src="__MERCH__/images/x-quanpin.png" alt="">
+                                    </i> 点击全屏
+                                </span>
+                        </div>
+                        {/if}
+                        {/volist}
+                    </div>
+                    <!-- Add Arrows -->
+                    <div class="swiper-button-next swiper-button-white"></div>
+                    <div class="swiper-button-prev swiper-button-white"></div>
+                </div>
+
+            </div>
+            <div class="media">
+                <div class="swiper-container gallery-thumbs">
+                    <div class="swiper-wrapper">
+                        {volist name="$example.case_img" id="items"}
+                        {if condition="$items neq null"}
+                        <div class="swiper-slide">
+                            <img src="{$items}" alt="">
+                        </div>
+                        {/if}
+                        {/volist}
+                    </div>
+                </div>
+            </div>
+            <div class="bto">
+                <p>
+                    {$example.case_remarks}
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- 左 -->
+    <!-- 招标预约框-->
+    {include file="common/bidding" /}
+</div>
+<!-- 全屏图片 -->
+<div class="qp-img">
+    <div class="con">
+        <i class="layui-icon layui-icon-close"></i>
+        <img src="" alt="" class="fuzhi-img">
+    </div>
+</div>
+
+<!-- 服务流程 -->
+
+{include file="common/serviceStep" /}
+<!-- 页面主体结束 -->
+
+<!-- 友情链接 -->
+{include file="common/friendlink" /}
+
+<!-- footer -->
+{include file="common/footer" /}
+{include file="common/bottom" /}
+<script>
+    var galleryTop = new Swiper('.gallery-top', {
+        spaceBetween: 10,
+        loop: true,
+        loopedSlides: 5, //looped slides should be the same
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    var galleryThumbs = new Swiper('.gallery-thumbs', {
+        spaceBetween: 10,
+        slidesPerView: 5,
+        touchRatio: 0.2,
+        loop: true,
+        loopedSlides: 5, //looped slides should be the same
+        slideToClickedSlide: true,
+    });
+    galleryTop.controller.control = galleryThumbs;
+    galleryThumbs.controller.control = galleryTop;
+</script>
+<script>
+    $(".honor-container li i").on('click', function () {
+        var _this = $(this),
+            _thisImg = _this.siblings('span').children('img').attr('src'),
+            fuzhi = $(".fuzhi-img");
+        fuzhi.attr('src', _thisImg)
+        $(".qp-img").show();
+    })
+</script>
+<script>
+    layui.use(['form','jquery'] ,function(){
+        var form = layui.form,
+            $ = layui.jquery;
+        //根据联动的省份id查找城市
+        form.on('select(art_p_id)', function(data){
+            var p_id=data.value;
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('admin/common/getCityName')?>?p_id="+p_id,
+                data: {p_id:p_id},
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    var code=data.data;
+                    $("#city").html("<option value=''>城市</option>");
+                    $.each(code, function(i, val) {
+                        var option1 = $("<option>").val(val.c_id).text(val.c_name);
+                        $("#city").append(option1);
+                        form.render('select');
+                    });
+                    $("#city").get(0).selectedIndex=0;
+                }
+            });
+        });
+        //提交要添加的数据
+        form.on('submit(addTypes)', function(){
+            $('#addTypes').removeAttr('lay-filter');
+            $.ajax({
+                type:"post",
+                url:"<?=url('index/point')?>",
+                data:$("#addForm").serialize(),
+                success:function (result) {
+                    console.log(result);
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            window.location.reload();
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }
+                },
+                error:function (error) {
+                    console.log(error);
+                }
+            })
+        });
+    });
+</script>
+<script type="text/javascript" src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<script>
+    function getUrlParms(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)
+            return unescape(r[2]);
+        return null;
+    }
+    var refer=document.referrer;
+    var userIp= returnCitySN.cip;
+    var laiyuan=getUrlParms("laiyuan");
+    var chuangyi=getUrlParms("chuangyi");
+    var curUrl = window.location.href;
+    $('.laiyuan').val(laiyuan);
+    $('.chuangyi').val(chuangyi);
+    $('.userIp').val(userIp);
+    $('.curUrl').val(curUrl);
+    $('.refer').val(refer);
+</script>

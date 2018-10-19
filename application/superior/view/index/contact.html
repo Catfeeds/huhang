@@ -1,0 +1,57 @@
+{include file="common/top" /}
+<section id="n_banner" style="background:url(__SUPER__/statics/images/banner_n.jpg) center top no-repeat;">
+    <div class="box" aos="fade-up" aos-duration="2000">
+        <h2>contact</h2>
+        <h1>联系我们</h1>
+    </div>
+</section>
+<!--================= end banner =================-->
+<!--============================content============================= -->
+<section id="n_main_box">
+    <section id="n_up_box">
+        <div class="main_box">
+            <div id="n_nav">
+
+                <a class="on" href="<?=url('index/contact')?>"><strong>联系我们</strong></a>
+
+            </div>
+            <div id="position"> <span>当前位置：</span><a href="<?=url('index/index')?>?mt_id={$merchant.mt_id}" title="">首页</a> <i> &gt; </i>
+                <em>联系我们</em>        </div>
+        </div>
+    </section>
+    <section id="n_un_box">
+        <div class="n_content main_box">
+            <section id="n_contact">
+                <div class="content">
+                    <div class="title">
+                        <span  style=" ">Ring decoration</span>
+                        <strong style="">陕西中鑫盛邦实业发展有限公司</strong>
+
+                    </div>
+                    <div class="ar_article">
+                        <div class="up_box">
+
+                            <p>
+                                中鑫盛邦实业发展有限公司集装饰设计工程全方位多元化服务，始终坚持“做一项工程，立一座丰碑”的企业宗旨，致力于室内外装饰设计、软装陈设设计以及工程施工等创意领域，为客户提供持续、优化的服务。
+                            </p>
+
+
+                        </div>
+                        <div class="clear"></div>
+                        <div class="un_box">
+                            联系电话：029-88345766   /   400-1186-001<br>
+                            邮箱地址：{$merchant.mt_email}<br>
+                            公司地址：{$merchant.mt_address}
+                            <img class="ewm" style="width: 105px;height: 105px;" src="{$merchant.mt_wechat}" />
+                        </div>
+                        <a href="https://j.map.baidu.com/_7cMZ" class="bnt_map" target="_blank" style="text-align: center;padding-left: 0px;">查看地图</a>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+</section>
+
+<!--============================footer============================= -->
+{include file="common/footer" /}

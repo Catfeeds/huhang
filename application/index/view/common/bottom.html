@@ -1,0 +1,124 @@
+<!-- 页脚 -->
+<div class="Step">
+    <div class="Step-con con">
+            <span class="layui-breadcrumb" lay-separator="|">
+                <a>百度云计算</a>
+                <a>360搜索</a>
+                <a>百度</a>
+                <a>搜狗</a>
+                <a>今日头条</a>
+                <a>钉钉</a>
+                <a>腾讯</a>
+            </span>
+        <p>©copyright {$company} 版权所有</p>
+        <p>
+            <a href="">{$record}</a>
+            <a href="">免责声明</a>
+            <a href="">站长统计</a>
+        </p>
+    </div>
+</div>
+</body>
+<div id="comlayer" class="layer-hide">
+
+    <div class="com-layer-item clearfix">
+        <h2>立即投标</h2>
+        <div class="cmo-layer-left fl">
+            <p>项目信息仅供已合作商家投标，如有意向请留下您的联系信息，我们工作人员会尽快与您取得联系，请保持电话畅通！</p>
+            <a href="<?=url('register/register')?>" class="layui-btn layui-btn-red">立即注册</a>
+        </div>
+        <div class="cmo-layer-right fl">
+            <form id="bidForm" class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="text" name="mo_manger" class="layui-input" placeholder="请输入您的姓名" lay-verify='required'>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="text" name="mo_phone" class="layui-input" placeholder="请输入您的联系方式" lay-verify='phone'>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="text" name="mo_merchant" class="layui-input" placeholder="请输入您公司名称" lay-verify='required'>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <span class="layui-btn layui-btn-red" lay-submit lay-filter="addBid" id="addBid">提交信息</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="comlayers" class="layer-hide">
+
+    <div class="com-layer-item clearfix">
+        <h2>立即投标</h2>
+        <div class="cmo-layer-left fl">
+            <p>您的信息将被严格保密，我们工作人员会尽快与您取得联系，请保持电话畅通！</p>
+            <a href="<?=url('register/register')?>" class="layui-btn layui-btn-red">查看主页</a>
+        </div>
+        <div class="cmo-layer-right fl">
+            <form id="bidForm" class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="text" name="mo_manger" class="layui-input" placeholder="请输入您的姓名" lay-verify='required'>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="text" name="mo_phone" class="layui-input" placeholder="请输入您的联系方式" lay-verify='phone'>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="text" name="mo_merchant" class="layui-input" placeholder="请输入您公司名称" lay-verify='required'>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <span class="layui-btn layui-btn-red" lay-submit lay-filter="addBid" id="addBid">提交信息</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="__PUBLIC__/js/jquery.js"></script>
+<script src="__PUBLIC__/js/less.js"></script>
+<script src="__PUBLIC__/js/swiper.js"></script>
+<script src="__LAY__/layui.js"></script>
+<script src="__PUBLIC__/js/index.js"></script>
+<script>
+    layui.use(['layer', 'form', 'element', 'carousel'], function () {
+        var layer = layui.layer,
+            form = layui.form,
+            element = layui.element,
+            carousel = layui.carousel;
+        //建造实例
+        carousel.render({
+            elem: '#test1',
+            width: '100%', //设置容器宽度
+            height: '484px',
+            arrow: 'always' //始终显示箭头
+            //,anim: 'updown' //切换动画方式
+        });
+
+
+        $('.layui-open-show').on('click', function () {
+            layer.open({
+                type: 1,
+                content: $('#comlayer'),
+                title: '24小时咨询热线：029-88867375',
+                area: ['623px', '360px'],
+                closeBtn: 1,
+                skin: 'com-layer',
+
+            })
+        })
+    });
+</script>
+</html>

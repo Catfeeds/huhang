@@ -1,0 +1,65 @@
+<!--============================footer============================= -->
+<footer id="footer" class="index_footer">
+    <div class="main_box">
+        <section id="fot_nav">
+            <a href="<?=url('index/about')?>">关于我们</a>
+            <i></i>
+            <a href="<?=url('index/designer')?>">设计团队</a>
+            <i></i>
+            <a href="<?=url('index/example')?>">项目案例</a>
+            <i></i>
+            <a href="<?=url('index/news')?>">新闻资讯</a>
+            <i></i>
+            <a href="<?=url('index/wanted')?>">加入我们</a>
+            <i></i>
+            <a href="<?=url('index/contact')?>">联系我们</a>
+
+        </section>
+        <section id="s_contact" >
+
+            <p>
+                公司地址：{$merchant.mt_address}<br />
+                业务咨询：{$merchant.mt_hotline}<br />
+                <!--客户服务：400-1186-001<br />-->
+                电子邮箱：{$merchant.mt_email}             </p>
+            <div class="ewm_box">
+                <div class="box">
+                    <img src="{$merchant.mt_wechat}"  />
+
+                    <span>
+                        扫一扫二维码<br>关注{$merchant.mt_short_name}微信
+                    </span>
+                </div>
+
+            </div>
+
+
+        </section>
+        <div class="copyright">
+            <p>
+                Copyright © 2017 版权所有© {$merchant.mt_name} <br /> 技术支持 <a title="技术支持:智慧亿企" href="http://www.huhang315.com" target="_blank"> 智慧亿企</a>
+            </p>
+        </div>
+
+    </div>
+
+</footer>
+<!--============================footer_end============================= -->
+
+<!--============================gotop============================= -->
+<aside id="gotop_box">
+
+    <a  href="#header1">
+        <img src="__SUPER__/statics/images/bnt_gotop.png" alt="" />
+    </a>
+</aside>
+
+<script src="__SUPER__/statics/js/j_animate.js"></script>
+<script>
+    AOS.init({
+        easing: 'ease-out-back',
+        duration: 1000
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #808080;
+  opacity: 1;
+}
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #808080;
+  opacity: 1;
+}
+input:-ms-input-placeholder {
+  color: #808080;
+  opacity: 1;
+}
+input::-webkit-input-placeholder {
+  color: #808080;
+  opacity: 1;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.cen {
+  text-align: center;
+}

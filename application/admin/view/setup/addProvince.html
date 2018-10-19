@@ -1,0 +1,60 @@
+{include file="common/header" /}
+<div class="layui-body" style="margin-top: 60px">
+    <div style="margin-top: 5px;margin-bottom: 3px;">
+    <span class="layui-breadcrumb" lay-separator=">">
+        <a>平台设置</a>
+        <a>类型参数</a>
+        <a>区域管理</a>
+        <a><cite>添加省份</cite></a>
+    </span>
+        <div  style="float:right;margin-right:20px;margin-bottom: 12px;">
+            <button class="layui-btn layui-btn-primary layui-btn-sm"  onclick="addProv()"><i class="layui-icon"></i>添加省份</button>
+        </div>
+    </div>
+    <hr/>
+    <div style="padding: 15px;">
+        <form class="layui-form layui-form-pane1" id="cityForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>省份名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="p_name" lay-verify="required" required placeholder="请输入省份名称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <span class="layui-btn" id="addCity">添加</span>
+                    <a class="layui-btn" href="<?=url('setup/province')?>">返回</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="common/footer" /}
+<script>
+    layui.use(['form','layer'], function(){
+        var form = layui.form,
+            layer=layui.layer;
+        //提交要添加的数据
+        $('#addCity').click(function () {
+            $.ajax({
+                'type':"post",
+                'url':"<?=url('setup/addProvince')?>",
+                'data':$('#cityForm').serialize(),
+                'success':function (result) {
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            location.href="<?=url('setup/province')?>";
+                        });
+                    }else if(result.code == '2'){
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }else if(result.code == '3'){
+                        layer.msg(result.msg, {icon: 3, time: 3000});
+                    }
+                },
+                'error':function (error) {
+                    console.log(error);
+                }
+            })
+        });
+    });
+</script>

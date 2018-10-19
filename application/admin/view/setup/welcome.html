@@ -1,0 +1,67 @@
+{include file="common/toper" /}
+    <div class="layui-side layui-bg-black" style="top: 120px!important;">
+        <div class="layui-side-scroll">
+
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">平台设置</a>
+                    <dl class="layui-nav-child">
+                        <dd><a data-url="<?=url('user/order')?>">短信设置</a></dd>
+                        <dd><a data-url="<?=url('user/order')?>">邮箱设置</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">模板设置</a>
+                    <dl class="layui-nav-child">
+                        <dd><a data-url="<?=url('setup/temp')?>">站点模板</a></dd>
+                        <dd><a data-url="<?=url('setup/tempmt')?>">商家模板</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">平台产品</a>
+                    <dl class="layui-nav-child">
+                        <dd><a data-url="<?=url('user/wait')?>">产品列表</a></dd>
+                        <dd><a data-url="<?=url('user/wait')?>">订单列表</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">平台活动</a>
+                    <!--平台/分站发布城市活动，商家可报名，同时前端可以看到已启用的活动-->
+                    <dl class="layui-nav-child">
+                        <dd><a data-url="<?=url('activity/activity')?>">活动列表</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">专题管理</a>
+                    <!--所有站点，平台营销落地专题页-->
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">专题列表</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">友情链接</a>
+                    <!--各城市分站可自己设置友情链接，各站点独立管理-->
+                    <dl class="layui-nav-child">
+                        <dd><a data-url="<?=url('setup/friendLink')?>">链接列表</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">其他咨询</a>
+                    <!--各城市分站可自己设置友情链接，各站点独立管理-->
+                    <dl class="layui-nav-child">
+                        <dd><a data-url="<?=url('setup/suggestion')?>">投诉建议</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class='layui-body'>
+        <iframe id='option' src="<?=url('index/welcome')?>" frameborder='no' width='100%' height='99%'>
+        </iframe>
+    </div>
+<div class="layui-footer">
+    <!-- 底部固定区域 -->
+    © layui.com - 底部固定区域123
+</div>
+{include file="common/footer" /}

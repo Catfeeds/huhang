@@ -1,0 +1,141 @@
+{include file="common/toper" /}
+<div class="layui-body">
+    <div style="margin-top: 5px;margin-bottom: 3px;">
+    <span class="layui-breadcrumb" lay-separator=">">
+        <a>运营管理</a>
+        <a>内容管理</a>
+        <a><cite>问答管理</cite></a>
+    </span>
+        <div style="float:right;margin-right:20px;margin-bottom: 12px;">
+            <button class="layui-btn layui-btn-primary layui-btn-sm"  onclick="addType()"><i class="layui-icon"></i>添加回复</button>
+        </div>
+    </div>
+    <hr/>
+    <div class="layui-col-md12">
+        <div class="layui-card">
+            <div class="layui-card-header">问题名称：{$question.qa_question}</div>
+        </div>
+    </div>
+    <div class="layui-form">
+        <table lay-skin="line" class="layui-table" lay-filter="parse-table-demo" style="padding: 10px;text-align: center;border: 1px;solid-color: #28282c;text-align: left">
+            <colgroup>
+                <col width="500">
+                <col width="2060">
+                <col width="300">
+                <col width="400">
+                <col width="200">
+                <col width="500">
+                <col width="500">
+            </colgroup>
+            <thead>
+            <tr>
+                <td style="padding-left: 50px;">回复编号</td>
+                <td>回复内容</td>
+                <td>回复类型</td>
+                <td>审核状态</td>
+                <td>是否显示</td>
+                <td>操作时间</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            {volist name='answer' id='vo'}
+            <tr>
+                <td style="padding-left: 50px;">{$vo.qaa_bid}</td>
+                <td>{$vo.qaa_answer}</td>
+                <td>{$vo.qaa_type}</td>
+                <td>{$vo.qaa_status}</td>
+                <td>
+                    <input type="checkbox" value="{$vo.qaa_id}" {if $vo.qaa_isable eq 1}checked{/if} lay-filter="isShow" lay-skin="switch" lay-text="是|否">
+                </td>
+                <td>{$vo.qaa_addtime}</td>
+                <td>
+                    <button class="layui-btn layui-btn-xs" onclick="editCity({$vo.qaa_id})"><i class="layui-icon">&#xe642;</i>编辑</button>
+                    <button class="layui-btn layui-btn-danger layui-btn-xs" onclick="delCity({$vo.qaa_id})" data-type="test2"><i class="layui-icon">&#xe640;</i>删除</button>
+                </td>
+            </tr>
+            {/volist}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{include file="common/footer" /}
+<script>
+    layui.use(['table','form'], function(){
+        var table = layui.table
+            ,form = layui.form;
+        //监听指定开关
+        form.on('switch(isShow)', function(obj){
+            var change = obj.elem.checked;
+            if(change){
+                change = 1;
+            }else{
+                change = 2;
+            }
+            //状态表示将要更改成为的状态
+            var qaa_id = obj.value;
+            $.ajax({
+                type:"post",
+                url:"<?=url('question/answerStatus')?>",
+                dataType: 'json',
+                data:{
+                    "change":change,
+                    'qaa_id':qaa_id
+                },
+                success:function (data) {
+                    console.log(data);
+                    layer.msg(data.msg);
+                },
+                error:function (error) {
+                    console.log(error);
+                }
+            })
+        });
+    });
+</script>
+<script type="text/javascript">
+    function addType(){
+        window.location.href="<?=url('question/addAnswer')?>?qa_id={$question.qa_id}";
+    }
+    function editCity(qaa_id){
+        window.location.href="<?=url('question/editAnswer')?>?qaa_id="+qaa_id;
+    }
+    function delCity(qaa_id) {
+        layer.confirm('确定删除这个回复？删除后不可恢复！', {
+            btn : [ '确定', '取消' ]//按钮
+        }, function() {
+            $.ajax({
+                'type':"get",
+                'url':"<?=url('question/delAnswer')?>",
+                'data':{qaa_id:qaa_id},
+                'success':function (result) {
+                    if(result.code < 1){
+                        layer.msg(result.msg);
+                    }else {
+                        layer.msg(result.msg);
+                        layer.open({
+                            title: '信息'
+                            ,content: result.msg
+                            ,yes: function(index){
+                                layer.close(index);
+                                window.location.href='<?=url("question/index")?>';
+                            }
+                            ,cancel:function (index) {
+                                layer.close(index);
+                                window.location.href='<?=url("question/index")?>';
+                            }
+                        });
+                    }
+                },
+                'error':function () {
+                    console.log('error');
+                }
+            })
+        },function(){
+            layer.msg('您已取消该操作！',{
+                time: 2000
+            });
+        });
+    }
+</script>

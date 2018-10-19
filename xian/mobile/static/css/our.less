@@ -1,0 +1,391 @@
+@import (less, optional) "common.less";
+
+
+.banner{
+    .w;
+    .h-auto;
+    .mt(1.2rem);
+    .bg(#fff);
+    img{
+        .w;
+    }
+}
+.mobile{
+    .w;
+    .h-auto;
+    .bg(#fff);
+    padding: 0.24rem;
+    // 智能报价 
+    .quote{
+        .w;
+        .h-auto;
+        padding: 0.48rem 0.24rem;
+        border: 2px solid #e1e1e1;
+        border-radius: 0.2rem;
+        .tc;
+    }
+    .quote h3{
+        .fs(0.36rem);
+        .color(#c70000);
+    }
+    // ************************
+    .calculator{
+        .ps-r;
+        .h(1.38rem);
+        padding: 3px 4px 0;
+        border-radius: 4px;
+        .mt(0.36rem);
+        .bg(#fff);
+        background: -moz-linear-gradient(top,#d2d1d1,#fff);
+        background: -webkit-gradient(linear,top,from(#d2d1d1),to(#fff));
+        background: -webkit-linear-gradient(top,#d2d1d1,#fff);
+        background: linear-gradient(top,#d2d1d1,#fff);
+    }
+    .unit{
+        .h(0.48rem);
+        .w(0.48rem);
+        .lh(0.48rem);
+        .ps-a;
+        bottom: 0.2rem;
+        right: .4rem;
+    }
+    .num-window{
+        .h(100%);
+        .w;
+        .pr(0.72rem);
+        overflow: hidden;
+        border-radius: 0.1rem;
+        border-top: 3px solid #3d3c30;
+        border-bottom: 2px solid #6c6b60;
+        border-right: 3px solid #3d3c30;
+        border-left: 2px solid #3d3c30;
+        background-color: #d3d3cb;
+        box-shadow: 0 1px 5px 1px #ababa5 inset;
+        div{
+            .fr;
+            .w(0.483rem);
+            .h(0.801rem);
+            margin: 0.26rem 1px 0;
+            
+        }
+        img{
+            .w;
+        }
+        img:not(:frist-of-type){
+            .display(none);
+        }
+    }
+    .price-list{
+        .w(99%);
+        .h-auto;
+        border: 2px solid #d9d9d9;
+        border-top: none; 
+        .ma;
+    }
+    .price-list li{
+        .fl;
+        .w(31.333%);
+        .lh(0.72rem);
+        margin: 0.12rem 1%;
+        .fs(0.338rem);
+        .tc;
+    }
+    .price{
+        .display(inline-block);
+        .w(0.9rem);
+        .color(#c70000);
+    }
+    
+    
+}
+.form-price{
+    .w;
+    .mt(0.24rem);
+    .writebox{
+        .w;
+        .h(0.96rem);
+        .border(#d9d9d9);
+        .mt(0.24rem);
+        .pl(0.36rem);
+        border-radius: 0.14rem;
+        outline: none;
+    }
+    .xl-box{
+        .w;
+        .mt(0.24rem);
+        div{
+            .w(49%);
+            .h(0.96rem);
+            .border(#d9d9d9);
+            border-radius: 0.14rem;
+            .bg(#fff);
+            
+            .ps-r;
+            i{
+                .display;
+                .w(10px);
+                .h(10px);
+            }
+        }
+        img{
+            .w;
+        }
+        .xl-lt{
+            .fl;
+            i{
+                .ps-a;
+                .top(0.2rem);
+                .right(0.24rem);
+            }
+        }
+        .xl-rt{
+            .fr;
+            i{
+                .ps-a;
+                .top(0.2rem);
+                .right(0.24rem);
+            }
+        }
+        select{
+            .w;
+            .h(100%);
+            border: none;
+            background: none;
+            outline: none;
+            .color(#808080);
+            .pl(0.36rem);
+            .lh(0.96rem);
+        }
+        
+    }
+
+    .ys-btn{
+        .w;
+        .h(0.96rem);
+        .border(#c70000);
+        .bg(#c70000);
+        .color(#fff);
+        .fs(0.338rem);
+        border-radius: 0.14rem;
+        .mt(0.24rem);
+}
+    
+}
+
+.space-d{
+    .w;
+    .h-auto;
+    .mt(0.6rem);
+    .bg(#fff);
+    .mt(0.24rem);
+    padding: 0.36rem;
+
+    .title{
+        .fs(0.579rem);
+        .color(#000);
+        .lh(0.72rem);
+        .tc;
+    }
+    .space-con{
+        .w;
+        .h-auto;
+        .mt(0.72rem);
+    }
+    .swiper-container4{
+        .w;
+        .h-auto;
+    }
+    .swiper-slide{
+        .w;
+        .h(8rem);
+    }
+    .swiper-slide img{
+        .w;
+        opacity: .9;
+    }
+    .s-content{
+        .w;
+        .h(4.2rem);
+        .bg(rgba(199,0,0,.9));
+        .ps-a;
+        left: 0;
+        top:3.4rem;
+        .color(#fff);
+        .titles{
+            .w;
+            .h(0.72rem);
+            .lh(0.96rem);
+            .pl(1.2rem);
+        }
+        .titleimg{
+            .display(inline-block);
+            .w(0.625rem);
+            .h(0.625rem);
+            .ps-a;
+            left: 0.36rem;
+            top:0.2rem;
+            img{
+                .w;  
+            }    
+        }
+    }
+    .s-content p{
+        padding: 0.46rem 0.36rem 0.36rem;
+        .lh(0.72rem);
+        text-align: justify;
+    }
+    .space-fw{
+        .w;
+        .h-auto;
+        img{.w;}
+    }
+    // .sd-form{
+
+    // }
+}
+// 滴滴接驾********************************
+.dd-serve{
+    .w;
+    .h-auto;
+    padding: 0.36rem;
+    .bg(#fff);
+    .serve-list{
+        .w(90%);
+        .h-auto;
+        .ma;
+        li{
+            .w(20%);
+            .h(2.1rem);
+            .fl;
+            .tc;
+            .dd-triangle{
+                .mt(11%);
+                .ml(45%);
+            }
+            img{
+                .w(60%);
+            }
+            p{
+                .fs(0.338rem);
+                .color(#646464);
+            }
+            h4{
+                .fs(0.338rem);
+                .color(#646464);
+                font-weight: normal;
+            }
+        }
+    }
+}
+.dd-line{
+    .w(90%);
+    .h(1px);
+    .bg(#d9d9d9);
+    .mt(30%);
+    .ml(5%);
+}
+// 门店导航页面样式 begin
+.stores-nav{
+    padding: 0 0.36rem;
+    .city-nav{
+        .w;
+        .h-auto;
+        .mt(0.24rem);
+        padding: 0 0.24rem;
+        .ps-r;
+    }
+    .con-top{
+        padding: 1.7rem 0.36rem 0.36rem;
+        .bg(#fff);
+    }
+    .title{
+        .w(80%);
+        .h(1.06rem);
+        .lh(1.06rem);
+        .color(#fff);
+        .fs(0.36rem);
+        .bg(#c70000);
+        .pl(13%);
+        .ps-a;
+        top: 0.36rem;
+        .left(1%);
+       
+    }
+    .circle{
+        .w(1.06rem);
+        .h(1.06rem);
+        .bg(#c70000);
+        border-radius: 50%;
+        .ps-a;
+        .top(0);
+        .right(-0.503rem);
+    }
+    h3{
+        font-weight: normal;
+    }
+    p{
+        .fs(0.338rem);
+        .color(#646464);
+        .lh(0.72rem);
+        span{
+            .color(#909090)
+        }
+    }
+    .triangle{
+        // transform:rotate(-30deg);
+        // -webkit-transform:rotate(-30deg)
+        .ps-a;
+        top:0.87rem;
+        .left(-0.1%);
+    }
+    .gps-icon{
+        .display(inline-block);
+        .w(0.42rem);
+        .h(0.42rem);
+        background: url(../images/site.png) no-repeat center;
+        background-size: contain;
+        .ps-a;
+        .top(34%);
+        .left(7%);
+    }
+    .con-btm{
+        .w;
+        .h-auto;
+        .mt(1px);
+        .bg(#fff);
+    }
+    .snav-btn{
+        .display(inline-block);
+        .w(50%);
+        .bg(#fff);
+        .color(#c70000);
+        .tc;
+        .fs(0.386rem);
+        .lh(1.09rem);
+        font-weight: 600;
+    }
+    .btn-lt{
+        border-right: 1px solid #f0f0f0;
+    }
+}
+.yhq{
+    .w;
+    .h-auto;
+    padding: 0.48rem 0.36rem;
+    .bg(#fff);
+    .mt(0.24rem);
+    .ticket{
+        .mt(0);
+    }
+}
+
+.map{
+    max-width: 640px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    .w;
+    .h(100%);
+    .ma;
+    .display(none);
+}

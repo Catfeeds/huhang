@@ -1,0 +1,138 @@
+{include file="common/header" /}
+<!-- 页面主体 -->
+
+<div class="registered">
+    <div class="registered-con clearfix">
+        <div class="registered-left fl">
+            <img src="__PUBLIC__/images/login1.png" alt="">
+        </div>
+        <div class="registered-right fr">
+            <h2>管理后台注册</h2>
+            <form id="addForm" class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="text" name="mt_name" placeholder="请输入公司真实全称" lay-verify="required" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="text" name="mt_manger" placeholder="请输入联系人姓名" lay-verify="required" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="text" name="mt_email" placeholder="请输入手机或邮箱号" lay-verify="required" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="password" name="mt_password" id="pwd" placeholder="请输入密码" lay-verify="required" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="password" id="pwd1" placeholder="请再次输入密码" lay-verify="required" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-inline" style="width: 134px;">
+                        <select name="mt_p_id" lay-verify="required" lay-filter="p_id">
+                            <option value="">省份</option>
+                            {volist name="prov" id="vo"}
+                                <option value="{$vo.p_id}">{$vo.p_name}</option>
+                            {/volist}
+                        </select>
+                    </div>
+                    <div class="layui-input-inline" style="width: 134px;margin-right: 0;">
+                        <select name="mt_c_id" id="city" lay-verify="required">
+                            <option value="">城市</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="checkbox" lay-filter="encrypt" title="我已阅读并且接受《会员服务条款》" lay-skin="primary">
+                        <input type="hidden" value="" id="agree" lay-verify="requ" />
+                        <span class="layui-btn layui-btn-red layui-btn-fluid" style="margin-top: 10px;"lay-submit lay-filter="addType">注册</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- 页面主体结束 -->
+<!-- footer -->
+{include file="common/footer" /}
+{include file="common/bottom" /}
+<script>
+    layui.use(['form','jquery'] ,function(){
+        var form = layui.form,
+            $ = layui.jquery;
+        form.on('checkbox(encrypt)', function(data){
+            if(data.elem.checked){
+                $('#agree').val(1);
+            }else{
+                $('#agree').val('');
+            }
+        });
+        //自定义验证规则
+        form.verify({
+            requ: function(value){
+                if(value != 1){
+                    return '请先阅读并同意《会员服务条款》！';
+                }
+            }
+        });
+
+        //根据联动的省份id查找城市
+        form.on('select(p_id)', function(data){
+            var p_id=data.value;
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('admin/common/getCityName')?>?p_id="+p_id,
+                data: {p_id:p_id},
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    var code=data.data;
+                    $("#city").html("<option value=''>城市</option>");
+                    $.each(code, function(i, val) {
+                        var option1 = $("<option>").val(val.c_id).text(val.c_name);
+                        $("#city").append(option1);
+                        form.render('select');
+                    });
+                    $("#city").get(0).selectedIndex=0;
+                }
+            });
+        });
+        //提交要添加的数据
+        form.on('submit(addType)', function(){
+            var pwd=$("#pwd").val();
+            var pwd1=$("#pwd1").val();
+            if(pwd1 != pwd){
+                layer.msg('两次输入的密码不一致！', {icon: 2, time: 3000});
+            }else{
+                $('#addType').removeAttr('lay-filter');
+                $.ajax({
+                    type:"post",
+                    url:"<?=url('register/register')?>",
+                    data:$("#addForm").serialize(),
+                    success:function (result) {
+                        console.log(result);
+                        if(result.code == '1'){
+                            layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                                //window.location.reload();
+                            });
+                        }else{
+                            layer.msg(result.msg, {icon: 2, time: 3000});
+                        }
+                    },
+                    error:function (error) {
+                        console.log(error);
+                    }
+                })
+            }
+        });
+        $('#typeData span:first ').addClass('btn-this');
+    });
+</script>

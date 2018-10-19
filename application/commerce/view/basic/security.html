@@ -1,0 +1,91 @@
+{include file="common/toper" /}
+<div class="layui-body">
+    <div style="margin-top: 5px;margin-bottom: 3px;">
+    <span class="layui-breadcrumb" lay-separator=">">
+        <a>基础信息</a>
+        <a><cite>安全中心</cite></a>
+    </span>
+    </div>
+    <hr/>
+    <div style="padding: 15px;">
+        <form class="layui-form layui-form-pane1" id="addForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>手机号</label>
+                <div class="layui-input-block">
+                    <input type="text" name="ma_phone" id="ma_phone" value="{$security.ma_phone}" lay-verify="required|title" placeholder="请输入登录手机号" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>邮箱</label>
+                <div class="layui-input-block">
+                    <input type="text" name="ma_emails" value="{$security.ma_emails}" lay-verify="required"  placeholder="请输入登录邮箱" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>原密码</label>
+                <div class="layui-input-block">
+                    <input type="text" name="oldPwd" value="" lay-verify="pwd"  placeholder="请输入原密码" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <!--升级版本之后可显示到前端，否则显示平台热线-->
+                <label class="layui-form-label"><span style="color: red;">*</span>新密码</label>
+                <div class="layui-input-block">
+                    <input type="text" name="newPwd" value="" lay-verify="pwd"  placeholder="请输入新密码" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <!--升级版本之后可显示到前端，否则显示平台热线-->
+                <label class="layui-form-label"><span style="color: red;">*</span>确认密码</label>
+                <div class="layui-input-block">
+                    <input type="text" name="newPwd2" value="" lay-verify="pwd"  placeholder="请再次输入新密码" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <span class="layui-btn" id="addType" lay-submit lay-filter="addType">更新</span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="common/footer" /}
+<script>
+    layui.use(['form','jquery'] ,function(){
+        var form = layui.form,
+            $ = layui.jquery;
+        form.on('radio', function(data){
+            console.log(data);
+        });
+        //自定义验证规则
+        form.verify({
+            pwd: function(value){
+                if(value.length < 6){
+                    return '密码至少6位数啊！';
+                }
+            }
+        });
+        form.on('submit(addType)', function(){
+            $('#addType').removeAttr('lay-filter');
+            $.ajax({
+                'type':"post",
+                'url':"<?=url('basic/resetPwd')?>",
+                'data':$('#addForm').serialize(),
+                'success':function (result) {
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            parent.location.reload();
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 2, time: 3000},function(){
+                            parent.location.reload();
+                        });
+                    }
+                },
+                'error':function (error) {
+                    console.log(error);
+                }
+            })
+        });
+    });
+</script>

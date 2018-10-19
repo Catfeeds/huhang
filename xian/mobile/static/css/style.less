@@ -1,0 +1,432 @@
+@import (less, optional) "common.less";
+
+.banner{
+    .w;
+    .h(5.76rem);
+    .mt(1.2rem);
+}
+.swiper-container{
+    .w;
+    .h(100%);
+}
+.swiper-slide img{
+    .w;
+    .h(100%);
+}
+.coupon{
+    .w;
+    .h-auto;
+    .bg(#fff);
+    .pl;
+    .pr;
+    .pt;
+    .pb;
+}
+.cp-title{
+    .w;
+    .h(0.72rem);
+    .lh(0.72rem);
+    .fs(0.338rem);
+    .ps-r;
+    .pl(0.36rem);
+    .color(#646464);
+}
+.cp-title span{
+    .display(inline-block);
+    .w(0.1rem);
+    .h(100%);
+    .bg(#c70000);
+    border-radius: 0.05rem;
+    .ps-a;
+    .top(0);
+    .left(0);
+}
+.cp-title i{
+    .color(#c70000);
+}
+.form-top{
+    .w;
+    .mt(0.36rem);
+}
+.phone{
+    .w(70%);
+    .h(0.96rem);
+    .border;
+    border-radius: 0.14rem;
+    .pl(0.36rem);
+    outline: none;
+}
+.send-btn{
+    .w(28%);
+    .h(0.96rem);
+    .border(#c70000);
+    border-radius: 0.14rem;
+    .bg(#c70000);
+    outline: none;
+    .fr;
+    .fs(0.338rem);
+    .color(#fff);
+}
+// 页面导航
+.navbox{
+    .w;
+    .h-auto;
+    .bg(#fff);
+    .mt(0.24rem);
+    padding: 0.48rem 0 0.72rem;
+    .ps-r;
+    .nav-show{
+        .w(2.5rem);
+        .h(2.04rem);
+        .tc;
+        .fs(0.338rem);
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+    .nav_tu{
+        .display(block);
+        .w(1.5rem);
+        .h(1.5rem);
+        background-size: contain;
+        background-position: center;
+        .ma;
+    }
+    a{
+        .color(#646464);
+        .lh(0.72rem);
+    }
+    .nav-dot{
+        .ps-a;
+        .left(0);
+        .top(2.6rem);
+    }
+}
+// vr展示 begin
+.vr-show{
+    .w;
+    .h-auto;
+    padding: 0.36rem;
+    .mt(0.24rem);
+    .bg(#fff);
+    .tc;
+    video{
+        max-height: 5.22rem;
+        .w;
+        .mt(0.36rem);
+    }
+    h2{
+        .fs(0.53rem);
+        .color(#323232);
+    }
+    .title-sm{
+        .fs(0.338rem);
+        .color(#808080);
+        .lh(0.72rem);
+    }
+}
+
+// 整装定制 begin
+.equipped{
+    .w;
+    .h-auto;
+    padding: 0.36rem 0;
+    .bg(#fff);
+    .mt(0.24rem);
+    .tc;
+    z-index: -1;
+    h2{
+        .fs(0.53rem);
+        .color(#323232);
+    }
+    p{
+        .fs(0.338rem);
+        .color(#808080);
+        .lh(0.72rem);
+    }
+    .eq-list{
+        .w;
+        .h-auto;
+        padding: 0 0.36rem;
+    }
+    .eq-list li{
+        .fl;
+        .w(31%);
+        .h(0.72rem);
+        .border(#d9d9d9);
+        border-radius: 0.1rem;
+        .lh(0.72rem);
+        .mt(0.36rem);
+    }
+    .eq-list li:nth-of-type(3n-1){
+        .ml(3.5%);
+        .mr(3.5%);
+    }
+    .eq-list li a{
+        .fs(0.338rem);
+        .color(#646464)
+    }
+}
+.swiper-container2{
+    .w;
+    .h-auto;
+    .mt(0.48rem);
+}
+.wx-equipped{
+    .vr-show;
+    .serve-menu{
+        .w;
+        .h-auto;
+        li{
+            .w(23.5%);
+            .h(2.2rem);
+            .fl;
+            .border(#e6e6e6);
+            border-radius: 0.1rem;
+            .tc;
+            .mt(0.426rem);
+            .ps-r;
+        }
+        li:not(:nth-of-type(4n)){
+            .mr(2%);
+        }
+    }
+    // *******
+    .serve-list{
+        .display;
+        .w;
+        .h(100%);
+        .pt(0.36rem);
+        .fs(0.338rem);
+        .color(#646464);
+        img{
+            .w(40%);
+        }
+    }
+    .serve-norm{
+        .display;
+        .w;
+        .h(100%);
+        .bg(#c70000);
+        .color(#fff);
+        .ps-a;
+        .left(0);
+        .top(0); 
+        .fs(0.338rem);
+        .lh(1.1rem);
+        border-radius: 0.1rem;
+        .display(none);
+    }
+    .serve-menu li:hover{
+        .action;
+        .serve-norm{
+            .display;
+        }
+        .serve-list{
+            .display(none);
+        }
+    }
+// 3d翻牌
+.action{
+    animation: rotate .5s linear;
+    -webkit-animation: rotate .5s linear;
+}
+
+@keyframes rotate {
+    from{
+        transform:rotateY(0deg);
+	    -webkit-transform:rotateY(0deg)
+    }
+    to{
+        transform:rotateY(360deg);
+	    -webkit-transform:rotateY(360deg)
+    }
+}
+}
+// 工期
+.duration{
+    .vr-show;
+    .dt-plan{
+        .w;
+        .h-auto;
+        .mt(0.36rem);
+    }
+    .bz-li{
+        .fl;
+        .w(27%);
+        .h(0.72rem);
+        .border(#6a6a6a);
+        border-radius: 0.1rem;
+        .tc;
+        .lh(0.72rem);
+        .color(#646464);
+    }
+    .cur{
+        .border(#c70000);
+        .color(#c70000);
+    }
+    .dt-line{
+        .h(1px);
+        .w(5%);
+        overflow: hidden;
+        .bg(#aeaeae);
+        .mt(0.36rem);
+        .ml(2.25%);
+        .mr(2.25%);
+        border: none;
+        border-radius: 0.1rem;
+        .tc;
+        .fl;
+    }
+    .dt-flow{
+        .w;
+        .h(5.55rem);
+        .mt(0.72rem);
+        .mb(0.36rem);
+    }
+    .dt-box{
+        .w;
+        .h-auto;
+    }
+    .dt-left{
+        .w(49%);
+        .h-auto;
+        .fl;
+        .pl(1rem);
+    }
+    .dt-center{
+        .w(2%);
+        .h(5rem);
+        .fl;
+        .ps-r;
+    }
+    .dt-right{
+        .w(49%);
+        .h-auto;
+        .fr;
+        .pr(1rem)
+    }
+    .center-line{
+        .display;
+        .w(1px);
+        .h(100%);
+        .bg(#646464);
+        .ps-a;
+        .top(0.36rem);
+        .left(0);
+        .right(0);
+        .ma;
+    }
+    .center-line3{
+        .display;
+        .w(1px);
+        .h(4rem);
+        .bg(#646464);
+        .ps-a;
+        .top(0.36rem);
+        .left(0);
+        .right(0);
+        .ma;
+    }
+    .dot{
+        .display;
+        .w(0.12rem);
+        .h(0.12rem);
+        .bg(#c70000);
+        border-radius: 50%; 
+        position: absolute;
+        .left(0.03rem);
+        .ma;
+    }
+    .dt-lt{
+        .fs(0.338rem);
+        .lh(0.72rem);
+        .color(#646464);
+        .mt(0.36rem);
+    }
+    .dt-rt{
+        .w(70%);
+        .h(0.72rem);
+        .fs(0.338rem);
+        .lh(0.72rem);
+        .color(#fff);
+        .bg(#c70000);
+        .ma;
+        .mt(0.36rem);
+        .ps-r;
+        border-radius: 0.1rem;
+    }
+    .dot1{
+        .top(0.7rem);
+    }
+    .dot2{
+        .top(1.7rem);
+    }
+    .dot3{
+        .top(2.85rem);
+    }
+    .dot4{
+        .top(3.85rem);
+    }
+    .dot5{
+        .top(4.95rem);
+    }
+    .dot6{
+        .top(5.7rem);
+    }
+    .dt-box2,.dt-box3{
+        .display(none);
+    }
+}
+// 全球采集
+.global{
+    .vr-show;
+    .brand{
+        .w;
+        .h-auto;
+        li{
+            .w(20.5%);
+            .h-auto;
+            .fl;
+            .mt(0.36rem);
+        }
+        li img{
+            .w;
+        }
+        li:not(:nth-of-type(4n)){
+            .mr(6%)
+        }
+    }
+    .fa{
+        .w;
+        .h-auto;
+        .mt(0.72rem);
+        img{
+            .w;
+        }
+    }
+    
+}
+.hot{
+    .display;
+    .w(0.84rem);
+    .h(0.48rem);
+    .lh(0.48rem);
+    .bg(#c70000);
+    .color(#fff);
+    .fs(0.24rem);
+    border-radius: 0.1rem;
+    .ps-a;
+    .left(1.3rem);
+    .top(-0.24rem);
+}
+

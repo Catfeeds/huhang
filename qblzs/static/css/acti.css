@@ -1,0 +1,212 @@
+
+.acti-banner {
+	background: url(../images/at5.jpg) no-repeat center center;
+	height:600px;
+	text-align: center;
+	overflow: hidden;
+	
+}
+.w1200{
+	width: 1200px;
+	margin:0 auto;
+	position: relative;
+	height:100%;
+}
+.fl{
+	float:left
+}
+.fr{
+	float:right
+}
+.mart30 {
+	margin-top:30px;
+}
+
+.rockte {
+	position: absolute;
+	left:0;
+	bottom:58px;
+	 
+}
+
+.time-span {
+	position: absolute;
+	bottom: 138px;
+	left:50%;
+	margin-left:-136px;
+	width:272px;
+	height:33px;
+	line-height:33px;
+	background: url(../images/ac2.png);
+	display: block;
+	color:#fff;
+	font-size:18px;
+	text-align: center;
+}
+
+.mfjd-bt {
+	position: absolute;
+	bottom: 75px;
+	left:50%;
+	margin-left:-253px;
+	width:507px;
+	height:46px;
+	
+	
+}
+
+
+.acti-shih {
+	background: url(../images/at6.jpg) no-repeat center center;
+	height:1296px;
+	box-sizing: border-box;
+	padding: 0;
+	text-align: center;
+}
+
+.lq-yh {
+	height:210px !important;
+}
+.lq-yh p {
+	margin:30px 0
+}
+.lq-yh p span{
+	position: relative;
+	margin:0 10px
+	
+}
+.lq-yh p span font{
+	position: absolute;
+	right:15px;top:5px;
+	font-size:9px;
+}
+.lq-yh p span:nth-child(1) font {
+	color:#ff1048;
+	right:25px;
+}
+
+.lq-yh p span:nth-child(2) font {
+	color:#f6a63b;
+	right:20px
+}
+
+.lq-yh p span:nth-child(3) font {
+	color:#802bc7
+}
+.ge-hkl {
+	box-sizing: border-box;
+	height:570px;
+	overflow: hidden;
+}
+.ge-hkl span {
+	display: block;
+	box-sizing: border-box;
+}
+.ge-hkl span.fl{
+	 margin-left:50px;
+	 width: 600px;
+}
+.ge-hkl span.fr{
+	 margin-right:50px;
+}
+.ge-hkl span font{
+	background: #f1f1f1;
+	width:140px;
+	height:42px;
+	line-height:42px;
+	color:#e20a2d;
+	font-size:16px;
+	display: block;
+	margin-left:180px;
+	margin-top:20px;
+	transition: All 0.4s ease-in-out;
+    -webkit-transition: All 0.4s ease-in-out;
+    -moz-transition: All 0.4s ease-in-out;
+    -o-transition: All 0.4s ease-in-out; 
+}
+
+
+.acti-six {
+	background: url(../images/13.jpg) no-repeat center center;
+	height:2500px;
+	box-sizing: border-box;
+	padding: 30px 0;
+	text-align: center;
+}
+
+.acti-six p {
+	position: relative;
+	overflow: hidden;
+	height:790px;
+}
+.acti-six p span{
+	position: absolute;
+	top:0;
+	z-index: 1;
+}
+.acti-six p span font{
+	position: absolute;
+	left:50%;
+	top:390px;
+	background: #f1f1f1;
+	width:140px;
+	height:42px;
+	line-height:42px;
+	color:#e20a2d;
+	font-size:16px;
+	display: block;
+	margin-left:-70px;
+	transition: All 0.4s ease-in-out;
+    -webkit-transition: All 0.4s ease-in-out;
+    -moz-transition: All 0.4s ease-in-out;
+    -o-transition: All 0.4s ease-in-out; 
+}
+.acti-six p span font:hover {
+	
+	background: #e20b2e;
+	color:#fff;
+}
+.ge-hkl span font:hover{
+	background: #f1a153;
+	color:#fff;
+}
+
+.acti-six p span:nth-child(1){
+	left:0;
+}
+.acti-six p span:nth-child(2){
+	right:0;
+}
+.acti-six p .bot-dz{
+	position: absolute;
+	bottom:0;
+	left:0
+}
+
+
+.acti-tc form input,.acti-tc form textarea {
+	border: 1px solid #d3d3d3;
+    padding: 6px 8px;
+    width:100%;  
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+.acti-tc form label{
+	
+}
+.acti-tc {
+	padding:30px;
+	box-sizing: border-box;
+	display: none;
+}
+.acti-tc form button{
+	background: #E60012;
+    width: 100%;
+    border: none;
+    line-height: 48px;
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    border: 1px solid #E60012;
+     
+}

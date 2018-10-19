@@ -1,0 +1,218 @@
+{include file="common/header" /}
+<!-- 页面主体 -->
+<!-- 焦点图 -->
+<div class="comban">
+    <img src="__PUBLIC__/images/x-ban.png" alt="">
+</div>
+
+<!-- 面包屑 -->
+<div class="crumbs con">
+        <span class="layui-breadcrumb" lay-separator=">">
+            <a href="<?=url('index/index')?>">首页</a>
+            <a href="<?=url('news/index')?>">本地资讯</a>
+            <a>
+                <cite>{$article.art_title}详情</cite>
+            </a>
+        </span>
+</div>
+<!--  -->
+
+<!-- 页面主体 -->
+<div class="the-con con clearfix">
+    <!-- 左侧 -->
+    <div class="advisory-con-left fl">
+        <!-- 分享 -->
+        <div class="advi-share clearfix">
+            <i>分享到：</i>
+            <a href="">
+                <img src="__PUBLIC__/images/ad1.png" alt="">
+            </a>
+            <a href="">
+                <img src="__PUBLIC__/images/ad2.png" alt="">
+            </a>
+            <a href="">
+                <img src="__PUBLIC__/images/ad3.png" alt="">
+            </a>
+            <a href="">
+                <img src="__PUBLIC__/images/ad4.png" alt="">
+            </a>
+            <a href="">
+                <img src="__PUBLIC__/images/ad5.png" alt="">
+            </a>
+        </div>
+        <h1>{$article.art_title}</h1>
+        <!--  -->
+        <div class="advi-smallnav">
+                <span class="layui-breadcrumb" lay-separator="|">
+                    <em>内容来源：</em>
+                    <a href="javascript:;">www.huhang315.com</a>
+                    <em>作者：</em>
+                    <a href="javascript:;">{$article.ad_realname}</a>
+                    <em>浏览次数：</em>
+                    <a href="javascript:;">{$article.art_view}</a>
+                    <em>时间：</em>
+                    <a href="javascript:;">{$article.art_indextime}</a>
+                </span>
+                <span class="fr advi-smallnav-media">
+                     <em>媒体：</em>
+                    <a href="#">工装护航</a>
+                </span>
+        </div>
+
+        <!-- 导读 -->
+        <div class="advi-rea">
+            <p>
+                {$article.art_subtitle}
+            </p>
+        </div>
+
+        <!-- 容器 -->
+        <div class="advi-container">
+            {$article.art_content}
+        </div>
+        <!-- form -->
+        <div class="advi-form clearfix">
+            <form action="" class="layui-form fl">
+                <div class="layui-form-item">
+                    <div class="layui-input-inline" style="width: 241px;">
+                        <input type="text" placeholder="请输入项目名称" class="layui-input" lay-verify="required">
+                    </div>
+                    <div class="layui-input-inline" style="width: 147px;">
+                        <select name="cus_province" lay-verify="required" lay-filter="art_p_ids">
+                            <option value="" selected="">省份</option>
+                            {volist name="prov" id="vo"}
+                            <option value="{$vo.p_id}">{$vo.p_name}</option>
+                            {/volist}
+                        </select>
+                    </div>
+                    <div class="layui-input-inline" style="width: 147px;">
+                        <select name="cus_city" id="citys" lay-verify="required">
+                            <option value="" selected>城市</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-inline" style="width: 241px;">
+                        <input type="text" placeholder="请输入项目名称" class="layui-input" lay-verify="required">
+                    </div>
+                    <div class="layui-input-inline" >
+                        <button class="layui-btn layui-btn-red" style="width: 304px;" lay-submit>立即发布</button>
+                    </div>
+                </div>
+            </form>
+            <span class="fr" style="display: inline-block;width: 200px;">
+                    <img src="{$weChat}" alt="">
+                     <p style="text-align: center;color: #333333;margin-top: 8px;">热线：{$hotLine}</p>
+
+            </span>
+
+            <em><img src="__PUBLIC__/images/ad10.png" alt=""></em>
+        </div>
+
+
+    </div>
+    <!-- 右侧 -->
+    {include file="common/bidding" /}
+</div>
+<!--  -->
+<!-- 服务流程 -->
+
+{include file="common/serviceStep" /}
+<!-- 页面主体结束 -->
+
+<!-- 友情链接 -->
+{include file="common/friendlink" /}
+
+<!-- footer -->
+{include file="common/footer" /}
+{include file="common/bottom" /}
+<script>
+    layui.use(['form','jquery'] ,function(){
+        var form = layui.form,
+            $ = layui.jquery;
+        //根据联动的省份id查找城市
+        form.on('select(art_p_id)', function(data){
+            var p_id=data.value;
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('admin/common/getCityName')?>?p_id="+p_id,
+                data: {p_id:p_id},
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    var code=data.data;
+                    $("#city").html("<option value=''>城市</option>");
+                    $.each(code, function(i, val) {
+                        var option1 = $("<option>").val(val.c_id).text(val.c_name);
+                        $("#city").append(option1);
+                        form.render('select');
+                    });
+                    $("#city").get(0).selectedIndex=0;
+                }
+            });
+        });
+        form.on('select(art_p_ids)', function(data){
+            var p_id=data.value;
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('admin/common/getCityName')?>?p_id="+p_id,
+                data: {p_id:p_id},
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    var code=data.data;
+                    $("#citys").html("<option value=''>城市</option>");
+                    $.each(code, function(i, val) {
+                        var option1 = $("<option>").val(val.c_id).text(val.c_name);
+                        $("#citys").append(option1);
+                        form.render('select');
+                    });
+                    $("#citys").get(0).selectedIndex=0;
+                }
+            });
+        });
+        //提交要添加的数据
+        form.on('submit(addType)', function(){
+            $('#addType').removeAttr('lay-filter');
+            $.ajax({
+                type:"post",
+                url:"<?=url('index/point')?>",
+                data:$("#addForm").serialize(),
+                success:function (result) {
+                    console.log(result);
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            window.location.reload();
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }
+                },
+                error:function (error) {
+                    console.log(error);
+                }
+            })
+        });
+        $('#typeData span:first ').addClass('btn-this');
+    });
+</script>
+<script type="text/javascript" src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<script>
+    function getUrlParms(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)
+            return unescape(r[2]);
+        return null;
+    }
+    var refer=document.referrer;
+    var userIp= returnCitySN.cip;
+    var laiyuan=getUrlParms("laiyuan");
+    var chuangyi=getUrlParms("chuangyi");
+    var curUrl = window.location.href;
+    $('.laiyuan').val(laiyuan);
+    $('.chuangyi').val(chuangyi);
+    $('.userIp').val(userIp);
+    $('.curUrl').val(curUrl);
+    $('.refer').val(refer);
+</script>

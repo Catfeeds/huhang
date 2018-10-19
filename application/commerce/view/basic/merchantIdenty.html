@@ -1,0 +1,337 @@
+{include file="common/toper" /}
+<style>
+    .one-pan{
+        position: relative;
+    }
+    .one{
+        position: absolute;
+        left:300px;
+        top:0;
+    }
+    .logoPre{
+        width: 216px;
+        height: 150px;
+    }
+</style>
+<div class="layui-body">
+    <div style="margin-top: 5px;margin-bottom: 3px;">
+    <span class="layui-breadcrumb" lay-separator=">">
+        <a>基础信息</a>
+        <a><cite>商户认证</cite></a>
+    </span>
+    </div>
+    <hr/>
+    <div style="padding: 15px;">
+        <form class="layui-form layui-form-pane1" id="addForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>公司全称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="mtv_merchant_name" {if condition="$verify.mtv_is_aut eq 2"}readonly{/if} value="{$verify.mtv_merchant_name}" lay-verify="required|title" placeholder="请输入公司全称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>社会认证统一信用代码</label>
+                <div class="layui-input-block">
+                    <input type="text" name="mtv_merchant_code"  {if condition="$verify.mtv_is_aut eq 2"}readonly{/if}  value="{$verify.mtv_merchant_code}" lay-verify="required"  placeholder="请输入信用代码" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+			<div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>营业执照注册地址</label>
+                <div class="layui-input-block">
+                    <input type="text" name="mtv_merchant_address"  {if condition="$verify.mtv_is_aut eq 2"}readonly{/if}  value="{$verify.mtv_merchant_address}" lay-verify="required"  placeholder="请输入注册地址" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+			<div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>法人姓名</label>
+                <div class="layui-input-block">
+                    <input type="text" name="mtv_law_er"  {if condition="$verify.mtv_is_aut eq 2"}readonly{/if}  value="{$verify.mtv_law_er}" lay-verify="required"  placeholder="请输入法人姓名" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+			<div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>法人身份证号</label>
+                <div class="layui-input-block">
+                    <input type="text" name="mtv_low_id_card"  {if condition="$verify.mtv_is_aut eq 2"}readonly{/if}  value="{$verify.mtv_low_id_card}" lay-verify="required|identity"  placeholder="请输入身份证号" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+			<div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>联系方式</label>
+                <div class="layui-input-block">
+                    <input type="text" name="mtv_phone"  {if condition="$verify.mtv_is_aut eq 2"}readonly{/if}  value="{$verify.mtv_phone}" lay-verify="required|phone"  placeholder="请输入手机号码" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+			<div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>座机号码</label>
+                <div class="layui-input-block">
+                    <input type="text" name="mtv_tel"  {if condition="$verify.mtv_is_aut eq 2"}readonly{/if}  value="{$verify.mtv_tel}" lay-verify="required"  placeholder="请输入座机号码" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+			<div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>电子邮箱</label>
+                <div class="layui-input-block">
+                    <input type="text" name="mtv_email"  {if condition="$verify.mtv_is_aut eq 2"}readonly{/if}  value="{$verify.mtv_email}" lay-verify="required|email"  placeholder="请输入电子邮箱" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item one-pan">
+                <label class="layui-form-label"><span style="color: red;">*</span>法人身份证正面</label>
+                <div {if condition="$verify.mtv_id_card_img eq null"} class="layui-upload-drag"{/if}  {if condition="$verify.mtv_is_aut neq 2"}  id="uploadLogo" {/if} style="display:inline-block;">
+                    <image id="logoPre"
+                        {if condition="$verify.mtv_id_card_img eq null"}
+                        {else/}
+                        src="__PUBLICS__{$verify.mtv_id_card_img}"
+                        class="logoPre"
+                        {/if}
+                    >
+                        <input type="hidden" lay-verify="avatarReg1" name="mtv_id_card_img" id="mtv_id_card_img" value="{$verify.mtv_id_card_img}"/>
+                    </image>
+                {if condition="$verify.mtv_id_card_img eq null"}
+                <div id="display">
+                    <i class="layui-icon"></i>
+                    <p>请点击此处上传封面图片</p>
+                </div>
+                {/if}
+                </div>
+            </div>
+            <div class="layui-form-item one-pan">
+                <label class="layui-form-label"><span style="color: red;">*</span>法人身份证反面</label>
+                <div {if condition="$verify.mtv_id_card_imgs eq null"} class="layui-upload-drag"{/if}  {if condition="$verify.mtv_is_aut neq 2"}  id="uploadLogo1" {/if} style="display:inline-block;">
+                    <image id="logoPre1"
+                           {if condition="$verify.mtv_id_card_imgs eq null"}
+                           {else/}
+                            src="__PUBLICS__{$verify.mtv_id_card_imgs}"
+                            class="logoPre"
+                            {/if}
+                    >
+                        <input type="hidden" lay-verify="avatarReg2" name="mtv_id_card_imgs" id="mtv_id_card_imgs" value="{$verify.mtv_id_card_imgs}"/>
+                    </image>
+                {if condition="$verify.mtv_id_card_imgs eq null"}
+                <div id="display1">
+                    <i class="layui-icon"></i>
+                    <p>请点击此处上传封面图片</p>
+                </div>
+                {/if}
+                </div>
+            </div> 
+			<div class="layui-form-item one-pan">
+                <label class="layui-form-label"><span style="color: red;">*</span>营业执照扫描件</label>
+                <div {if condition="$verify.mtv_licence_img eq null"} class="layui-upload-drag"{/if}  {if condition="$verify.mtv_is_aut neq 2"}  id="uploadLogo2" {/if} style="display:inline-block;">
+                    <image id="logoPre2"
+                           {if condition="$verify.mtv_licence_img eq null"}
+                           {else/}
+                            src="__PUBLICS__{$verify.mtv_licence_img}"
+                            class="logoPre"
+                            {/if}
+                    >
+                        <input type="hidden" lay-verify="avatarReg3" name="mtv_licence_img" id="mtv_licence_img" value="{$verify.mtv_licence_img}"/>
+                    </image>
+                {if condition="$verify.mtv_licence_img eq null"}
+                <div id="display2">
+                    <i class="layui-icon"></i>
+                    <p>请点击此处上传封面图片</p>
+                </div>
+                {/if}
+                </div>
+            </div>
+            <div class="layui-form-item one-pan">
+                <label class="layui-form-label"><span style="color: red;">*</span>公户开户许可证</label>
+                <div {if condition="$verify.mtv_permit_img eq null"} class="layui-upload-drag"{/if}  {if condition="$verify.mtv_is_aut neq 2"}  id="uploadLogo3" {/if} style="display:inline-block;">
+                    <image id="logoPre3"
+                           {if condition="$verify.mtv_permit_img eq null"}
+                           {else/}
+                            src="__PUBLICS__{$verify.mtv_permit_img}"
+                            class="logoPre"
+                            {/if}
+                    >
+                        <input type="hidden" lay-verify="avatarReg4" name="mtv_permit_img" id="mtv_permit_img" value="{$verify.mtv_permit_img}"/>
+                    </image>
+                {if condition="$verify.mtv_permit_img eq null"}
+                <div id="display3">
+                    <i class="layui-icon"></i>
+                    <p>请点击此处上传封面图片</p>
+                </div>
+                {/if}
+            </div>
+            </div>
+            {if condition="$verify.mtv_is_aut neq 2"}
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <span class="layui-btn" id="addType" lay-submit lay-filter="addType">更新</span>
+                    </div>
+                </div>
+            {/if}
+        </form>
+    </div>
+</div>
+{include file="common/footer" /}
+<script>
+    layui.use(['form','upload','jquery','upload'] ,function(){
+        var form = layui.form,
+            upload = layui.upload,
+            $ = layui.jquery;
+        form.on('radio', function(data){
+            console.log(data);
+        });
+        //身份证正面
+        upload.render({
+            elem: '#uploadLogo'
+            ,url: '{:url("designer/upload")}'
+            ,size:600 //限制文件大小，单位 KB
+            ,ext: 'jpg|png|gif'
+            ,accept: 'images' //限制文件大小，单位 KB
+            ,before: function(input){
+                loading = layer.load(2, {
+                    shade: [0.2,'#000']
+                });
+            }
+            ,done: function(res){
+                $('#logoPre').removeAttr('src');
+                $('#mtv_id_card_img').val('');
+                console.log(res);
+                layer.close(loading);
+                $('#mtv_id_card_img').val(res.path);
+                $('#uploadLogo').removeClass('layui-upload-drag');
+                $('#logoPre').css('width','216px');
+                $('#logoPre').css('height','150px');
+                $('#logoPre').attr('src',"__PUBLICS__"+res.path);
+                $('#display').hide();
+                layer.msg(res.msg, {icon: 1, time: 1000});
+            }
+            ,error: function(res){
+                layer.msg(res.msg, {icon: 2, time: 1000});
+            }
+        });
+        //身份证反面
+        upload.render({
+            elem: '#uploadLogo1'
+            ,url: '{:url("designer/upload")}'
+            ,size:600 //限制文件大小，单位 KB
+            ,ext: 'jpg|png|gif'
+            ,accept: 'images' //限制文件大小，单位 KB
+            ,before: function(input){
+                loading = layer.load(2, {
+                    shade: [0.2,'#000']
+                });
+            }
+            ,done: function(res){
+                $('#logoPre1').removeAttr('src');
+                $('#mtv_id_card_imgs').val('');
+                console.log(res);
+                layer.close(loading);
+                $('#mtv_id_card_imgs').val(res.path);
+                $('#uploadLogo1').removeClass('layui-upload-drag');
+                $('#logoPre1').css('width','216px');
+                $('#logoPre1').css('height','150px');
+                $('#logoPre1').attr('src',"__PUBLICS__"+res.path);
+                $('#display1').hide();
+                layer.msg(res.msg, {icon: 1, time: 1000});
+            }
+            ,error: function(res){
+                layer.msg(res.msg, {icon: 2, time: 1000});
+            }
+        });
+
+        //营业执照扫描件
+        upload.render({
+            elem: '#uploadLogo2'
+            ,url: '{:url("designer/upload")}'
+            ,size:600 //限制文件大小，单位 KB
+            ,ext: 'jpg|png|gif'
+            ,accept: 'images' //限制文件大小，单位 KB
+            ,before: function(input){
+                loading = layer.load(2, {
+                    shade: [0.2,'#000']
+                });
+            }
+            ,done: function(res){
+                $('#logoPre2').removeAttr('src');
+                $('#mtv_licence_img').val('');
+                console.log(res);
+                layer.close(loading);
+                $('#mtv_licence_img').val(res.path);
+                $('#uploadLogo2').removeClass('layui-upload-drag');
+                $('#logoPre2').css('width','216px');
+                $('#logoPre2').css('height','150px');
+                $('#logoPre2').attr('src',"__PUBLICS__"+res.path);
+                $('#display2').hide();
+                layer.msg(res.msg, {icon: 1, time: 1000});
+            }
+            ,error: function(res){
+                layer.msg(res.msg, {icon: 2, time: 1000});
+            }
+        });
+
+        //公户开户许可证
+        upload.render({
+            elem: '#uploadLogo3'
+            ,url: '{:url("designer/upload")}'
+            ,size:600 //限制文件大小，单位 KB
+            ,ext: 'jpg|png|gif'
+            ,accept: 'images' //限制文件大小，单位 KB
+            ,before: function(input){
+                loading = layer.load(2, {
+                    shade: [0.2,'#000']
+                });
+            }
+            ,done: function(res){
+                $('#logoPre3').removeAttr('src');
+                $('#mtv_permit_img').val('');
+                console.log(res);
+                layer.close(loading);
+                $('#mtv_permit_img').val(res.path);
+                $('#uploadLogo3').removeClass('layui-upload-drag');
+                $('#logoPre3').css('width','216px');
+                $('#logoPre3').css('height','150px');
+                $('#logoPre3').attr('src',"__PUBLICS__"+res.path);
+                $('#display3').hide();
+                layer.msg(res.msg, {icon: 1, time: 1000});
+            }
+            ,error: function(res){
+                layer.msg(res.msg, {icon: 2, time: 1000});
+            }
+        });
+        //自定义验证规则
+        form.verify({
+            title: function(value){
+                if(value.length < 2){
+                    return '至少得2个字符啊';
+                }
+            }
+            ,avatarReg1:function (value) {
+                if(value.length <= 0){
+                    return '请上传身份证正面';
+                }
+            },avatarReg2:function (value) {
+                if(value.length <= 0){
+                    return '请上传身份证反面';
+                }
+            },avatarReg3:function (value) {
+                if(value.length <= 0){
+                    return '请上传营业执照扫描件';
+                }
+            },avatarReg4:function (value) {
+                if(value.length <= 0){
+                    return '请上传公户开户许可证';
+                }
+            }
+        });
+        form.on('submit(addType)', function(){
+            $('#addType').removeAttr('lay-filter');
+            $.ajax({
+                'type':"post",
+                'url':"<?=url('basic/merchantIdenty')?>",
+                'data':$('#addForm').serialize(),
+                'success':function (result) {
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            location.href="<?=url('basic/merchantIdenty')?>";
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }
+                },
+                'error':function (error) {
+                    console.log(error);
+                }
+            })
+        });
+    });
+</script>

@@ -1,0 +1,290 @@
+{include file="common/header" /}
+<style>
+    .one-pan{
+        position: relative;
+    }
+    .one{
+        position: absolute;
+        left:300px;
+        top:0;
+    }
+</style>
+<div class="layui-body" style="margin-top: 60px">
+    <div style="margin-top: 5px;margin-bottom: 3px;">
+    <span class="layui-breadcrumb" lay-separator=">">
+        <a>运营管理</a>
+        <a>广告管理</a>
+        <a href="<?=url('platform/banner')?>">站点广告</a>
+        <a><cite>添加广告</cite></a>
+    </span>
+        <div style="float:right;margin-right:20px;margin-bottom: 12px;">
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="<?=url('platform/banner')?>">
+                <i class="layui-icon layui-icon-return"></i>
+                返回列表
+            </a>
+        </div>
+    </div>
+    <hr/>
+    <div style="padding: 15px;">
+        <form class="layui-form layui-form-pane1" id="addForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>基础信息</label>
+                <div class="layui-input-inline">
+                    <select name="ba_p_id" lay-verify="required" lay-filter="art_p_id">
+                        <option value="">请选择省份</option>
+                        {volist name='prov' id='vo'}
+                        <option value="{$vo.p_id}">{$vo.p_name}</option>
+                        {/volist}
+                    </select>
+                </div>
+                <div class="layui-input-inline">
+                    <select name="ba_c_id" lay-verify="required" id="art_c_id" lay-filter="art_c_id">
+                        <option value="">请选择城市</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>广告主题</label>
+                <div class="layui-input-block">
+                    <input type="text" name="ba_title" lay-verify="required|title" placeholder="请输入广告主题" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item one-pan">
+                <label class="layui-form-label"><span style="color: red;">*</span>PC端图片</label>
+                <div class="layui-upload-drag" id="uploadLogo" style="display:inline-block;">
+                    <image id="logoPre">
+                        <input type="hidden" lay-verify="imgReg" name="pc_img" id="pc_img" value=""/>
+                    </image>
+                    <div id="display">
+                        <i class="layui-icon"></i>
+                        <p>请点击此处上传封面图片</p>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">图片链接</label>
+                <div class="layui-input-block">
+                    <input type="text" name="ba_url" lay-verify="urlTest" placeholder="请输入PC端图片跳转链接" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item one-pan">
+                <label class="layui-form-label"><span style="color: red;">*</span>移动端图片</label>
+                <div class="layui-upload-drag" id="uploadLogo1" style="display:inline-block;">
+                    <image id="logoPre1">
+                        <input type="hidden" lay-verify="imgReg1" name="ba_img" id="ba_img" value=""/>
+                    </image>
+                    <div id="display1">
+                        <i class="layui-icon"></i>
+                        <p>请点击此处上传封面图片</p>
+                    </div>
+                </div>
+                <div class="one">
+                    <div class="layui-form-mid layui-word-aux" style="margin-left: 39px; ">图片要求，最大800KB，支持JPG/JEPG/PNG格式</div>
+                    <div class="layui-form-item">
+                        <textarea name="ba_alt" style="resize:none;width: 1315px;height: 115px; margin-left:39px;"  placeholder="图片描述，建议不超过15个字（等同图片ALT属性）" class="layui-textarea"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">图片链接</label>
+                <div class="layui-input-block">
+                    <input type="text" name="ba_url1"  lay-verify="urlTest1" placeholder="请输入移动端图片跳转链接" autocomplete="off" class="layui-input">
+                    <input type="hidden" name="ba_type" value="1" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">广告排序</label>
+                <div class="layui-input-inline">
+                    <select name="ba_order" lay-verify="required" lay-filter="aihao">
+                        <option value="">请选择排列顺序</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div class="layui-form-mid layui-word-aux">数字越大越靠前，默认排序为时间倒序！</div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <span class="layui-btn" id="addType" lay-submit lay-filter="addType">添加</span>
+                    <a class="layui-btn layui-btn-primary" href="<?=url('platform/banner')?>">返回</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="common/footer" /}
+<script>
+    layui.use(['form','upload','jquery','upload','layedit'] ,function(){
+        var form = layui.form,
+            upload = layui.upload,
+            layedit = layui.layedit,
+            $ = layui.jquery;
+        form.on('radio', function(data){
+            console.log(data);
+        });
+        upload.render({
+            elem: '#uploadLogo'
+            ,url: '{:url("platform/uploads")}'
+            ,size:1024
+            ,ext: 'jpg|png|gif'
+            ,accept: 'images'
+            ,before: function(input){
+                loading = layer.load(2, {
+                    shade: [0.2,'#000']
+                });
+            }
+            ,done: function(res){
+                $('#logoPre').removeAttr('src');
+                $('#pc_img').val('');
+                console.log(res);
+                layer.close(loading);
+                $('#pc_img').val(res.path);
+                $('#uploadLogo').removeClass('layui-upload-drag');
+                $('#logoPre').css('width','216px');
+                $('#logoPre').css('height','150px');
+                $('#logoPre').attr('src',"__PUBLICS__"+res.path);
+                $('#display').hide();
+                layer.msg(res.msg, {icon: 1, time: 1000});
+            }
+            ,error: function(res){
+                layer.msg(res.msg, {icon: 2, time: 1000});
+            }
+        });
+        //移动端
+        upload.render({
+            elem: '#uploadLogo1'
+            ,url: '{:url("platform/uploads")}'
+            ,size:1024
+            ,ext: 'jpg|png|gif'
+            ,accept: 'images'
+            ,before: function(input){
+                loading = layer.load(2, {
+                    shade: [0.2,'#000']
+                });
+            }
+            ,done: function(res){
+                $('#logoPre1').removeAttr('src');
+                $('#ba_img').val('');
+                console.log(res);
+                layer.close(loading);
+                $('#ba_img').val(res.path);
+                $('#uploadLogo1').removeClass('layui-upload-drag');
+                $('#logoPre1').css('width','216px');
+                $('#logoPre1').css('height','150px');
+                $('#logoPre1').attr('src',"__PUBLICS__"+res.path);
+                $('#display1').hide();
+                layer.msg(res.msg, {icon: 1, time: 1000});
+            }
+            ,error: function(res){
+                layer.msg(res.msg, {icon: 2, time: 1000});
+            }
+        });
+        //根据联动的省份id查找城市
+        form.on('select(art_p_id)', function(data){
+            var p_id=data.value;
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('common/getCityName')?>?p_id="+p_id,
+                data: {p_id:p_id},
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    var code=data.data;
+                    $("#art_c_id").html("<option value=''>请选择城市</option>");
+                    $("#art_m_id").html("<option value=''>请选择或搜索商户</option>");
+                    $.each(code, function(i, val) {
+                        var option1 = $("<option>").val(val.c_id).text(val.c_name);
+                        $("#art_c_id").append(option1);
+                        form.render('select');
+                    });
+                    $("#art_c_id").get(0).selectedIndex=0;
+                }
+            });
+        });
+        //根据城市的id去查找商户
+        form.on('select(art_c_id)', function(data){
+            var c_id=data.value;
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('common/getMerchantName')?>?b_id="+c_id,
+                data: {c_id:c_id},
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    var code=data.data;
+                    $("#art_m_id").html("<option value=''>请选择或搜索商户</option>");
+                    $.each(code, function(i, val) {
+                        var option1 = $("<option>").val(val.mt_id).text(val.mt_short_name);
+                        $("#art_m_id").append(option1);
+                        form.render('select');
+                    });
+                    $("#art_m_id").get(0).selectedIndex=0;
+                }
+            });
+        });
+        //提交要添加的数据
+        //自定义验证规则
+        form.verify({
+            title: function(value){
+                if(value.length < 2){
+                    return '标题至少得2个字符啊';
+                }
+            }
+            ,imgReg:function (value) {
+                if(value.length <= 0){
+                    return '请上传PC端广告图！';
+                }
+            },imgReg1:function (value) {
+                if(value.length <= 0){
+                    return '请上传移动端广告图！';
+                }
+            }
+            ,urlTest:function(value){
+                if(value.length >0 ){
+                    var Expression=/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+                    if(Expression.test(value)){
+                    }else{
+                        return "请输入PC端图片正确的跳转链接！";
+                    }
+                }else{
+                }
+            },urlTest1:function(value){
+                if(value.length >0 ){
+                    var Expression=/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+                    if(Expression.test(value)){
+                    }else{
+                        return "请输入移动端图片正确的跳转链接！";
+                    }
+                }else{
+                }
+            }
+        });
+
+
+        form.on('submit(addType)', function(){
+            $('#addType').removeAttr('lay-filter');
+            $.ajax({
+                'type':"post",
+                'url':"<?=url('platform/addBanner')?>",
+                'data':$('#addForm').serialize(),
+                'success':function (result) {
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            location.href="<?=url('platform/banner')?>";
+                        });
+                    }else if(result.code == '2'){
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }else if(result.code == '3'){
+                        layer.msg(result.msg, {icon: 3, time: 3000});
+                    }
+                },
+                'error':function (error) {
+                    console.log(error);
+                }
+            })
+        });
+    });
+</script>

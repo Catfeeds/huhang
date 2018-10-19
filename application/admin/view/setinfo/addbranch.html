@@ -1,0 +1,187 @@
+{include file="common/header" /}
+<div class="layui-body" style="margin-top: 60px">
+    <div style="margin-top: 5px;margin-bottom: 3px;">
+    <span class="layui-breadcrumb" lay-separator=">">
+       <a>系统配置</a>
+        <a>站点管理</a>
+        <a href="<?=url('setinfo/branch')?>">站点列表</a>
+        <a><cite>开通分站</cite></a>
+    </span>
+        <div style="float:right;margin-right:20px;margin-bottom: 12px;">
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="<?=url('setinfo/branch')?>">
+                <i class="layui-icon layui-icon-return"></i>
+                返回列表
+            </a>
+        </div>
+    </div>
+    <hr/>
+    <div style="padding: 15px;">
+        <form class="layui-form layui-form-pane1" id="addForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label">新开分站</label>
+                <div class="layui-input-inline">
+                    <select name="b_province" id="b_province" lay-verify="required" lay-filter="des_p_id">
+                        <option value="">请选择省份</option>
+                        {volist name='prov' id='vo'}
+                        <option value="{$vo.p_id}">{$vo.p_name}</option>
+                        {/volist}
+                    </select>
+                </div>
+                <div class="layui-input-inline">
+                    <select name="b_city" id="cityName" lay-verify="required" lay-filter="myselect2">
+                        <option value="">请选择市</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>站点名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="b_name" id="b_name" lay-verify="required" placeholder="请输入站点名称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>域名前缀</label>
+                <div class="layui-input-block">
+                    <input type="text" name="b_website" id="b_website" lay-verify="required" placeholder="请输入站点域名前缀" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>前端模板</label>
+                <div class="layui-input-block">
+                    {volist name="templet" id="tem"}
+                        <input type="radio" name="b_templet" lay-filter="b_templet" value="{$tem.tem_id}" title="{$tem.tem_name}">
+                    {/volist}
+                    <input type="hidden" id="b_templet" value=""/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">详细地址</label>
+                <div class="layui-input-block">
+                    <input type="text" name="b_address" id="b_address" lay-verify="required|s_value" placeholder="请输入详细地址" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">地理坐标</label>
+                <div class="layui-input-block">
+                    <input type="text" name="b_location" id="b_location" lay-verify="required|b_location" required placeholder="请输入地理坐标" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">站点电话</label>
+                <div class="layui-input-block">
+                    <input type="text" name="b_tel" id="b_tel" lay-verify="required|b_location" required placeholder="请输入地理坐标" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">负责人姓名</label>
+                <div class="layui-input-block">
+                    <input type="text" name="b_manger" id="b_manger" lay-verify="required|b_location" required placeholder="请输入负责人姓名" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">负责人电话</label>
+                <div class="layui-input-block">
+                    <input type="text" name="b_manger_phone" id="b_manger_phone" lay-verify="required|b_location" required placeholder="请输入电话号码" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">负责人邮箱</label>
+                <div class="layui-input-block">
+                    <input type="text" name="b_manger_email" id="b_manger_email" lay-verify="required|b_location" required placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>站点简介</label>
+                <div class="layui-input-block">
+                    <textarea id="demo" placeholder="请输入站点简介" lay-verify="content" name="b_description" style="display: none;"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <span class="layui-btn" id="addBtn">添加</span>
+                    <a class="layui-btn layui-btn-primary" href="<?=url('setinfo/branch')?>">返回</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="common/footer" /}
+<script>
+    layui.use(['form','upload','jquery','layedit'] ,function(){
+        var form = layui.form,
+            $ = layui.jquery,
+            layedit = layui.layedit;
+        //编辑器图片上传接口
+        var index = layedit.build('demo');
+        layedit.set({
+            uploadImage: {
+                url: '/admin/setinfo/editUpload' //接口url
+                ,type: 'post', //默认post
+                success:function(res){
+                    console.log(res);
+                },
+                error:function (res) {
+                    console.log(res);
+                }
+            }
+        });
+        form.on('radio(b_templet)', function(data){
+            $('#b_templet').val(data.value);
+        });
+        form.on('select(des_p_id)', function(data){
+            var p_id=data.value;
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('common/getCityName')?>?p_id="+p_id,
+                data: {p_id:p_id},
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    var code=data.data;
+                    $("#cityName").html("<option value=''>请选择城市</option>");
+                    $.each(code, function(i, val) {
+                        var option1 = $("<option>").val(val.c_id).text(val.c_name);
+                        $("#cityName").append(option1);
+                        form.render('select');
+                    });
+                    $("#cityName").get(0).selectedIndex=0;
+                }
+            });
+        });
+        //提交要添加的数据
+        $('#addBtn').click(function () {
+            var content = layedit.getContent(index);
+            var b_manger_email=$('#b_manger_email').val();
+            var b_manger_phone=$('#b_manger_phone').val();
+            var b_manger=$('#b_manger').val();
+            var b_location=$('#b_location').val();
+            var b_address=$('#b_address').val();
+            var b_name=$('#b_name').val();
+            var b_website=$('#b_website').val();
+            var b_tel=$('#b_tel').val();
+            var b_templet=$('#b_templet').val();
+            var b_province=$('#b_province').val();
+            var b_city=$('#cityName').val();
+            $.ajax({
+                'type':"post",
+                'url':"<?=url('setinfo/addBranch')?>",
+                'data':{'b_description':content,'b_manger_email':b_manger_email,'b_manger_phone':b_manger_phone,'b_manger':b_manger,'b_location':b_location,'b_address':b_address,'b_name':b_name,'b_templet':b_templet,'b_website':b_website,'b_tel':b_tel,'b_province':b_province,'b_city':b_city},
+                'success':function (result) {
+                    console.log(result);
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            location.href="<?=url('setinfo/branch')?>";
+                        });
+                    }else if(result.code == '2'){
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }else if(result.code == '3'){
+                        layer.msg(result.msg, {icon: 3, time: 3000});
+                    }
+                },
+                'error':function (error) {
+                    console.log(error);
+                }
+            })
+        });
+    });
+</script>

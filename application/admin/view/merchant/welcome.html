@@ -1,0 +1,26 @@
+{include file="common/toper" /}
+    <div class="layui-side layui-bg-black" style="top: 120px!important;">
+        <div class="layui-side-scroll">
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">会员列表</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">装修公司</a></dd>
+                        <!--初步实现上传设计师功能，后面所有东西正常运营后再做自主注册入驻-->
+                        <dd><a href="javascript:;">设计会员-列表</a></dd>
+                        <dd><a href="javascript:;">建材商家</a></dd>
+                        <dd><a href="javascript:;">普通用户</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class='layui-body'>
+        <iframe id='option' src="<?=url('index/welcome')?>" frameborder='no' width='100%' height='99%'>
+        </iframe>
+    </div>
+<div class="layui-footer">
+    <!-- 底部固定区域 -->
+    © layui.com - 底部固定区域123
+</div>
+{include file="common/footer" /}

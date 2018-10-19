@@ -1,0 +1,80 @@
+{include file="common/toper" /}
+<style>
+    .one-pan{
+        position: relative;
+    }
+    .one{
+        position: absolute;
+        left:300px;
+        top:0;
+    }
+</style>
+<div class="layui-body">
+    <div style="margin-top: 5px;margin-bottom: 3px;">
+    <span class="layui-breadcrumb" lay-separator=">">
+        <a>基础信息</a>
+        <a><cite>接单设置</cite></a>
+    </span>
+    </div>
+    <hr/>
+    <div style="padding: 15px;">
+        <form class="layui-form layui-form-pane1" id="addForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label">承接面积（多选）</label>
+                 <div class="layui-input-block">
+                    {volist name="space"  id="sp"}
+                    <input type="checkbox" class="mt_recive_area" {volist name='area_list' id='item'}{if $item eq $sp.sp_id}checked{/if}{/volist}  name="mt_recive_area[{$sp.sp_id}]" lay-skin="primary" title="{$sp.sp_name}">
+                    {/volist}
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">装修类型（多选）</label>
+                <div class="layui-input-block">
+                    {volist name="typeData"  id="style"}
+                    <input type="checkbox" class="mt_recive_type" {volist name='type_list' id='items'}{if $items eq $style.type_id}checked{/if}{/volist}  lay-verify="des_tanlent" name="mt_recive_type[{$style.type_id}]" lay-skin="primary" title="{$style.type_name}">
+                    {/volist}
+                </div>
+            </div>
+			<div class="layui-form-item">
+                <label class="layui-form-label">服务类型（多选）</label>
+                 <div class="layui-input-block">
+                    {volist name="service"  id="ser"}
+                    <input type="checkbox" class="mt_service_type" {volist name='service_list' id='vo'}{if $vo eq $ser.st_id}checked{/if}{/volist}  lay-verify="des_tanlent" name="mt_service_type[{$ser.st_id}]" lay-skin="primary" title="{$ser.st_name}">
+                    {/volist}
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <span class="layui-btn" id="addType" lay-submit lay-filter="addType">更新</span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="common/footer" /}
+<script>
+    layui.use(['form','jquery'] ,function(){
+        var form = layui.form,
+            $ = layui.jquery;
+        form.on('submit(addType)', function(){
+            $('#addType').removeAttr('lay-filter');
+            $.ajax({
+                'type':"post",
+                'url':"<?=url('basic/reciveSet')?>",
+                'data':$('#addForm').serialize(),
+                'success':function (result) {
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            location.href="<?=url('basic/reciveSet')?>";
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }
+                },
+                'error':function (error) {
+                    console.log(error);
+                }
+            })
+        });
+    });
+</script>

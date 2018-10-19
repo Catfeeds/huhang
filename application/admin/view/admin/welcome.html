@@ -1,0 +1,58 @@
+{include file="common/toper" /}
+    <div class="layui-side layui-bg-black" style="top: 120px!important;">
+        <div class="layui-side-scroll">
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">平台员工</a>
+                    <dl class="layui-nav-child">
+                        <!--公司客服审核所有客户，将其转化为订单-->
+                        <dd><a data-url="javascript:;">客服部</a></dd>
+                        <!--分配所有平台客户给商家，商家会员管理可操作-->
+                        <dd><a data-url="javascript:;">商务部</a></dd>
+                        <dd><a data-url="javascript:;">编辑部</a></dd>
+                        <dd><a data-url="<?=url('manager/index')?>">分站站长</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">外联员工-</a>
+                    <!--三级分销关系发展团队，发展团队有奖励；团队中每个人都可以录入客户成交后也会给奖励；每层以3的倍增满了后还会给奖励；倍增的人录得客户满了后也会给奖励；（在客户表那边只显示客户基本信息和录客户的人，和录客户的人，分销会员关系在这里做，每个会员下发展满5层时额外奖励人民币某万元；每个会员下面5层每人最少成交3户圆满可拿人民币某百万元-->
+                    <dl class="layui-nav-child">
+                        <dd><a data-url="javascript:;">合伙人-</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">合作企业-</a>
+                    <!--管理与员工利益关系-->
+                    <dl class="layui-nav-child">
+                        <dd><a data-url="javascript:;">合伙企业-</a></dd>
+                    <!--</dl>-->
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">商户对接</a>
+                    <!--装饰公司的管理员，这张表要给装饰公司用-->
+                    <dl class="layui-nav-child">
+                        <!--合作商户注册信息中人员列表-->
+                        <dd><a data-url="javascript:;">商户人员</a></dd>
+                        <!--意向企业人员提交的表单-->
+                        <dd><a data-url="javascript:;">意向企业</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">会员列表</a>
+                    <dl class="layui-nav-child">
+                        <dd><a data-url="<?=url('merchant/merchant')?>">装修公司</a></dd>
+                        <!--初步实现上传设计师功能，后面所有东西正常运营后再做自主注册入驻-->
+                        <dd><a data-url="<?=url('admin/designer')?>">设计会员-列表</a></dd>
+                        <dd><a data-url="javascript:;">建材商家-</a></dd>
+                        <dd><a data-url="javascript:;">普通用户-</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class='layui-body'>
+        <iframe id='option' src="<?=url('index/welcome')?>" frameborder='no' width='100%' height='99%'>
+        </iframe>
+    </div>
+{include file="common/footer" /}

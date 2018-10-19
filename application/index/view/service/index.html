@@ -1,0 +1,420 @@
+{include file="common/header" /}
+<!-- 页面主体 -->
+<div class="service-ban">
+    <div class="con">
+        <a href="#aaaa">发布项目需求</a>
+    </div>
+</div>
+<!-- 四重服务 -->
+<div class="service-fuwu con" >
+    <h3 class="release-title">
+        <em>四重服务保障</em>
+        为您保驾护航
+    </h3>
+    <ul class="clearfix" style="display: inline-block;">
+        <li>
+                <span class="color-1">
+                    <img src="__PUBLIC__/images/ser1.png" alt="">
+                </span>
+            <h3>投诉保障</h3>
+            <p>{$hotLine}
+                <br> 专线投诉
+            </p>
+        </li>
+        <li>
+                <span class="color-2">
+                    <img src="__PUBLIC__/images/ser2.png" alt="">
+                </span>
+            <h3>对比保障</h3>
+            <p>4家装修公司
+                <br> 公开竞争
+            </p>
+        </li>
+        <li>
+                <span class="color-3">
+                    <img src="__PUBLIC__/images/ser3.png" alt="">
+                </span>
+            <h3>设计保障</h3>
+            <p>
+                4家设计方案，不满意
+                <br> 可重复修改
+            </p>
+        </li>
+        <li>
+                <span class="color-4">
+                    <img src="__PUBLIC__/images/ser4.png" alt="">
+                </span>
+            <h3>信用保障</h3>
+            <p>不达标准商家
+                <br> 坚决不准入驻
+            </p>
+        </li>
+    </ul>
+</div>
+
+<!-- 本地装修公司 -->
+<div class="service-bendi">
+    <div class="service-bendi-con con">
+        <h3 class="release-title">
+            本地优秀
+            <em>装修公司</em>
+        </h3>
+        <ul class="clearfix">
+            {if condition="$merLogo neq null"}
+            {volist name="merLogo" id="mer" }
+            <li>
+                    <span>
+                        <img src="{$mer.mt_logo}" alt="">
+                    </span>
+                <div>{$mer.mt_hotline}</div>
+            </li>
+            {/volist}
+            {else/}
+            <li>暂无信息</li>
+            {/if}
+        </ul>
+    </div>
+</div>
+
+<!-- 本地优秀案例 -->
+<div class="service-demo con">
+    <h3 class="release-title">
+        本地优秀
+        <em>项目案例</em>
+    </h3>
+    <ul class="clearfix">
+        {if condition="$superCase neq null"}
+            {volist name="superCase" id="case"}
+                <li>
+                    <a href="<?=url('example/details')?>?case_id={$case.case_id}">
+                        <img src="{$case.case_img}" alt="{$case.case_img_alt}">
+                    </a>
+                </li>
+            {/volist}
+        {else/}
+            <li>暂无信息</li>
+        {/if}
+    </ul>
+</div>
+
+<!-- 平台九大 -->
+<div class="service-jiuda" id="aaaa">
+    <div class="service-jiuda-con con">
+        <h3 class="release-title">
+            平台九大
+            <em>品牌保障</em>
+        </h3>
+        <ul class="clearfix">
+            <li>
+                    <span class="color-1">
+                        <img src="__PUBLIC__/images/ser9.png" alt="">
+                    </span>
+                <p>在线预约</p>
+            </li>
+            <li>
+                    <span class="color-2">
+                        <img src="__PUBLIC__/images/ser10.png" alt="">
+                    </span>
+                <p>在线预约</p>
+            </li>
+            <li>
+                    <span class="color-3">
+                        <img src="__PUBLIC__/images/ser11.png" alt="">
+                    </span>
+                <p>在线预约</p>
+            </li>
+            <li>
+                    <span class="color-4">
+                        <img src="__PUBLIC__/images/ser12.png" alt="">
+                    </span>
+                <p>在线预约</p>
+            </li>
+
+            <li>
+                    <span class="jcolor1">
+                        <img src="__PUBLIC__/images/ser9.png" alt="">
+                    </span>
+                <p>在线预约</p>
+            </li>
+            <li>
+                    <span class="jcolor3">
+                        <img src="__PUBLIC__/images/ser10.png" alt="">
+                    </span>
+                <p>在线预约</p>
+            </li>
+            <li>
+                    <span class="jcolor3">
+                        <img src="__PUBLIC__/images/ser11.png" alt="">
+                    </span>
+                <p>在线预约</p>
+            </li>
+            <li>
+                    <span class="jcolor4">
+                        <img src="__PUBLIC__/images/ser12.png" alt="">
+                    </span>
+                <p>在线预约</p>
+            </li>
+            <li>
+                    <span class="jcolor5">
+                        <img src="__PUBLIC__/images/ser12.png" alt="">
+                    </span>
+                <p>在线预约</p>
+            </li>
+        </ul>
+        <!-- 表单 -->
+        <div class="service-jiuda-form"  >
+            <form id="addForm" class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <select name="cus_type" lay-verify="required">
+                            <option value="">请选择您的项目类型</option>
+                            {volist name="typeData" id="type"}
+                            <option id="{$type.type_id}">{$type.type_name}</option>
+                            {/volist}
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-inline" style="width: 205px;">
+                        <select name="cus_provid" lay-verify="required" lay-filter="art_p_id">
+                            <option value="" selected="">省份</option>
+                            {volist name="prov" id="vo"}
+                            <option value="{$vo.p_id}">{$vo.p_name}</option>
+                            {/volist}
+                        </select>
+                    </div>
+                    <div class="layui-input-inline" style="width: 205px; margin-right: 0;">
+                        <select name="cus_cityid" id="city" lay-verify="required">
+                            <option value="" selected>城市</option>
+                        </select>
+                    </div>
+                </div>
+                <input name='cus_position' type='hidden' value='服务保障预约'>
+                <input type=hidden name=cus_from class=laiyuan>
+                <input type=hidden name=cus_origin class=chuangyi>
+                <input type=hidden name=cus_ip class=userIp>
+                <input type=hidden name=cus_link class=curUrl>
+                <input type=hidden name=refer class=refer>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="text" name="cus_area" placeholder="请输入您的房屋面积" lay-verify="required" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="text" name="cus_phone" placeholder="请输入您的手机号码" lay-verify="phone" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <span class="layui-btn layui-btn-red" style="width: 100%;" lay-submit lay-filter="addType" id="addType">发布招标</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<!-- 4套设计方案全面PK -->
+<div class="release-shig" style="background: #fff;">
+    <div class="release-shi-con con">
+        <h3 class="release-title">
+            他们刚刚
+            <em>免费获取</em>
+            了装修报价
+        </h3>
+        <table class="layui-table" lay-skin="nob">
+            <colgroup>
+                <col width="16.5%">
+                <col width="16.5%">
+                <col width="16.5%">
+                <col width="16.5%">
+                <col width="16.5%">
+                <col width="16.5%">
+            </colgroup>
+            <thead>
+            <tr>
+                <th>项目编号</th>
+                <th>项目类型</th>
+                <th>城市</th>
+                <th>建筑面积</th>
+                <th>装修当次</th>
+                <th>发布时间</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>123456</td>
+                <td>办公装修</td>
+                <td>西安</td>
+                <td>1562米²</td>
+                <td>中档装修</td>
+                <td>2018-06-23 14:07:08</td>
+            </tr>
+            <tr>
+                <td>123456</td>
+                <td>办公装修</td>
+                <td>西安</td>
+                <td>1562米²</td>
+                <td>中档装修</td>
+                <td>2018-06-23 14:07:08</td>
+            </tr>
+            <tr>
+                <td>123456</td>
+                <td>办公装修</td>
+                <td>西安</td>
+                <td>1562米²</td>
+                <td>中档装修</td>
+                <td>2018-06-23 14:07:08</td>
+            </tr>
+            <tr>
+                <td>123456</td>
+                <td>办公装修</td>
+                <td>西安</td>
+                <td>1562米²</td>
+                <td>中档装修</td>
+                <td>2018-06-23 14:07:08</td>
+            </tr>
+            <tr>
+                <td>123456</td>
+                <td>办公装修</td>
+                <td>西安</td>
+                <td>1562米²</td>
+                <td>中档装修</td>
+                <td>2018-06-23 14:07:08</td>
+            </tr>
+            <tr>
+                <td>123456</td>
+                <td>办公装修</td>
+                <td>西安</td>
+                <td>1562米²</td>
+                <td>中档装修</td>
+                <td>2018-06-23 14:07:08</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- 让您放心 -->
+<div class="service-fangxin">
+    <div class="service-fangxin-con con">
+        <h2>让您真正放心的装修行业招标服务平台</h2>
+        <ul class="clearfix">
+            <li>
+                <span>入驻装修公司</span>
+                <p>25,780
+                    <i>家</i>
+                </p>
+            </li>
+            <li>
+                <span>招标金额超过</span>
+                <p>40,533,780
+                    <i>元</i>
+                </p>
+            </li>
+            <li>
+                <span>服务项目超过</span>
+                <p>405,780
+                    <i>个</i>
+                </p>F
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- 页面主体结束 -->
+<!-- footer -->
+{include file="common/bottom" /}
+<script>
+    layui.use(['form','jquery'] ,function(){
+        var form = layui.form,
+            $ = layui.jquery;
+        //根据联动的省份id查找城市
+        form.on('select(art_p_id)', function(data){
+            var p_id=data.value;
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('admin/common/getCityName')?>?p_id="+p_id,
+                data: {p_id:p_id},
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    var code=data.data;
+                    $("#city").html("<option value=''>城市</option>");
+                    $.each(code, function(i, val) {
+                        var option1 = $("<option>").val(val.c_id).text(val.c_name);
+                        $("#city").append(option1);
+                        form.render('select');
+                    });
+                    $("#city").get(0).selectedIndex=0;
+                }
+            });
+        });
+        form.on('select(art_p_ids)', function(data){
+            var p_id=data.value;
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('admin/common/getCityName')?>?p_id="+p_id,
+                data: {p_id:p_id},
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    var code=data.data;
+                    $("#citys").html("<option value=''>城市</option>");
+                    $.each(code, function(i, val) {
+                        var option1 = $("<option>").val(val.c_id).text(val.c_name);
+                        $("#citys").append(option1);
+                        form.render('select');
+                    });
+                    $("#citys").get(0).selectedIndex=0;
+                }
+            });
+        });
+        //提交要添加的数据
+        form.on('submit(addType)', function(){
+            $('#addType').removeAttr('lay-filter');
+            $.ajax({
+                type:"post",
+                url:"<?=url('index/point')?>",
+                data:$("#addForm").serialize(),
+                success:function (result) {
+                    console.log(result);
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            window.location.reload();
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }
+                },
+                error:function (error) {
+                    console.log(error);
+                }
+            })
+        });
+        $('#typeData span:first ').addClass('btn-this');
+    });
+</script>
+<script type="text/javascript" src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<script>
+    function getUrlParms(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)
+            return unescape(r[2]);
+        return null;
+    }
+    var refer=document.referrer;
+    var userIp= returnCitySN.cip;
+    var laiyuan=getUrlParms("laiyuan");
+    var chuangyi=getUrlParms("chuangyi");
+    var curUrl = window.location.href;
+    $('.laiyuan').val(laiyuan);
+    $('.chuangyi').val(chuangyi);
+    $('.userIp').val(userIp);
+    $('.curUrl').val(curUrl);
+    $('.refer').val(refer);
+</script>

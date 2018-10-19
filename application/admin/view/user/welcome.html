@@ -1,0 +1,56 @@
+{include file="common/toper" /}
+    <div class="layui-side layui-bg-black" style="top: 120px!important;">
+        <div class="layui-side-scroll">
+
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">推广管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a data-url="<?=url('user/order')?>">预约客户</a></dd>
+                        <!--网站上预约过来的客户-->
+                        <dd><a data-url="<?=url('user/join')?>">合作客户-</a></dd>
+                        <!--地产商或者合作企业录进来的客户，需要给奖励-->
+                        <dd><a data-url="<?=url('user/channel')?>">渠道客户-</a></dd>
+                        <!--三级分销关系发展团队，发展团队有奖励，团队中每个人都可以录入客户成交后也会给奖励，每层以3的倍增满了后还会给奖励，倍增的人录得客户满了后也会给奖励，（在这里只呈现他们录来的客户，和录客户的人，分销会员关系在外联员工里面做-->
+                        <dd><a data-url="<?=url('user/back')?>">回收站</a></dd>
+                    </dl>
+                </li>
+                <!--<li class="layui-nav-item">-->
+                    <!--<a href="javascript:;">客户管理</a>-->
+                    <!--<dl class="layui-nav-child">-->
+                        <!--&lt;!&ndash;所有客户分配客服中转站&ndash;&gt;-->
+                        <!--<dd><a data-url="<?=url('user/order')?>">我的客户池</a></dd>-->
+                        <!--<dd><a data-url="<?=url('user/order')?>">公海池</a></dd>-->
+                        <!--<dd><a data-url="<?=url('user/order')?>">回收站</a></dd>-->
+                    <!--</dl>-->
+                <!--</li>-->
+                <li class="layui-nav-item">
+                    <a href="javascript:;">订单管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a data-url="<?=url('user/wait')?>">待分配项目</a></dd>
+                        <dd><a data-url="<?=url('user/unconfirm')?>">已分配项目</a></dd>
+                        <dd><a data-url="<?=url('user/signed')?>">已签约项目</a></dd>
+                        <dd><a data-url="<?=url('user/invalid')?>">已失效</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">相关统计</a>
+                    <dl class="layui-nav-child">
+                        <dd><a data-url="<?=url('user/query')?>">协同办公</a></dd>
+                        <dd><a data-url="<?=url('user/query')?>">分单查询</a></dd>
+                        <dd><a data-url="<?=url('user/query')?>">客户查询</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class='layui-body'>
+        <iframe id='option' src="<?=url('index/welcome')?>" frameborder='no' width='100%' height='99%'>
+        </iframe>
+    </div>
+<div class="layui-footer">
+    <!-- 底部固定区域 -->
+    © layui.com - 底部固定区域123
+</div>
+{include file="common/footer" /}

@@ -1,0 +1,81 @@
+{include file="common/header" /}
+<div class="layui-body" style="margin-top: 60px">
+    <div style="margin-top: 5px;margin-bottom: 3px;">
+    <span class="layui-breadcrumb" lay-separator=">">
+        <a>系统设置</a>
+        <a>常用参数</a>
+        <a href="<?=url('userstatus/index')?>">客户状态</a>
+        <a><cite>添加状态</cite></a>
+    </span>
+        <div style="float:right;margin-right:20px;margin-bottom: 12px;">
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="<?=url('userstatus/index')?>">
+                <i class="layui-icon layui-icon-return"></i>
+                返回列表
+            </a>
+        </div>
+    </div>
+    <hr/>
+    <div style="padding: 15px;">
+        <form class="layui-form layui-form-pane1" id="addForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>
+                    状态名称
+                </label>
+                <div class="layui-input-block">
+                    <input type="text" name="us_name" lay-verify="required" placeholder='请输入状态名称' autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label"><span style="color: red;">*</span>
+                    状态简介
+                </label>
+                <div class="layui-input-block">
+                    <textarea placeholder="请输入状态简介"name="us_remarks" lay-verify="required" class="layui-textarea"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item" pane>
+                <label class="layui-form-label">是否可用</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="us_isable" value="1" title="是" checked>
+                    <input type="radio" name="us_isable" value="2" title="否">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <span class="layui-btn" id="addType">添加</span>
+                    <a class="layui-btn layui-btn-primary" href="<?=url('userstatus/index')?>">返回</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="common/footer" /}
+<script>
+    layui.use(['form','jquery'] ,function(){
+        var form = layui.form,
+            $ = layui.jquery;
+        form.on('radio', function(data){
+            console.log(data);
+        });
+        //提交要添加的数据
+        $('#addType').click(function () {
+            $.ajax({
+                'type':"post",
+                'url':"<?=url('userstatus/addStatus')?>",
+                'data':$('#addForm').serialize(),
+                'success':function (result) {
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            location.href="<?=url('userstatus/index')?>";
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 3, time: 3000});
+                    }
+                },
+                'error':function (error) {
+                    console.log(error);
+                }
+            })
+        });
+    });
+</script>

@@ -1,0 +1,203 @@
+{include file="common/toper" /}
+<style>
+    .one-pan{
+        position: relative;
+    }
+    .one{
+        position: absolute;
+        left:300px;
+        top:0;
+    }
+    .logoPre{
+        width: 216px;
+        height: 150px;
+    }
+</style>
+<div class="layui-body">
+    <div style="margin-top: 5px;margin-bottom: 3px;">
+    <span class="layui-breadcrumb" lay-separator=">">
+        <a>基础信息</a>
+        <a><cite>管理员认证</cite></a>
+    </span>
+    </div>
+    <hr/>
+    <div style="padding: 15px;">
+        <form class="layui-form layui-form-pane1" id="addForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>姓名</label>
+                <div class="layui-input-block">
+                    <input type="text" name="mtm_manager" value="{$verify.mtm_manager}" {if condition="$verify.mtm_is_identy eq 2"}readonly{/if} lay-verify="required|title" placeholder="请输入管理员姓名" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>身份证号</label>
+                <div class="layui-input-block">
+                    <input type="text" name="mtm_id_card"  {if condition="$verify.mtm_is_identy eq 2"}readonly{/if}   value="{$verify.mtm_id_card}" lay-verify="required"  placeholder="请输入身份证号" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+			<div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>手机号码</label>
+                <div class="layui-input-block">
+                    <input type="text" name="mtm_phone"  {if condition="$verify.mtm_is_identy eq 2"}readonly{/if}  value="{$verify.mtm_phone}" lay-verify="required"  placeholder="请输入手机号码" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+			<div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>电子邮箱</label>
+                <div class="layui-input-block">
+                    <input type="text" name="mtm_emails"  {if condition="$verify.mtm_is_identy eq 2"}readonly{/if}  value="{$verify.mtm_emails}" lay-verify="required"  placeholder="请输入电子邮箱" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item one-pan">
+                <label class="layui-form-label"><span style="color: red;">*</span>身份证正面</label>
+                <div {if condition="$verify.mtm_id_img eq null"} class="layui-upload-drag"{/if}  {if condition="$verify.mtm_is_identy neq 2"} id="uploadLogo" {/if} style="display:inline-block;">
+                    <image id="logoPre"
+                         {if condition="$verify.mtm_id_img eq null"}
+                         {else/}
+                        src="__PUBLICS__{$verify.mtm_id_img}"
+                        class="logoPre"
+                        {/if}
+                    >
+                        <input type="hidden" lay-verify="avatarReg" name="mtm_id_img" id="mtm_id_img" value="{$verify.mtm_id_img}"/>
+                    </image>
+                {if condition="$verify.mtm_id_img eq null"}
+                <div id="display1">
+                    <i class="layui-icon"></i>
+                    <p>请点击此处上传封面图片</p>
+                </div>
+                {/if}
+                </div>
+            </div>
+            <div class="layui-form-item one-pan">
+                <label class="layui-form-label"><span style="color: red;">*</span>身份证反面</label>
+                <div {if condition="$verify.mtm_id_imgs eq null"} class="layui-upload-drag"{/if} {if condition="$verify.mtm_is_identy neq 2"} id="uploadLogo1" {/if} style="display:inline-block;">
+                    <image id="logoPre1"
+                     {if condition="$verify.mtm_id_imgs eq null"}
+                     {else/}
+                    src="__PUBLICS__{$verify.mtm_id_imgs}"
+                    class="logoPre"
+                    {/if}
+                    >
+                        <input type="hidden" lay-verify="imgReg" name="mtm_id_imgs" id="mtm_id_imgs" value="{$verify.mtm_id_imgs}"/>
+                    </image>
+                    {if condition="$verify.mtm_id_img eq null"}
+                    <div id="display1">
+                        <i class="layui-icon"></i>
+                        <p>请点击此处上传封面图片</p>
+                    </div>
+                    {/if}
+                </div>
+            </div>
+            {if condition="$verify.mtm_is_identy neq 2"}
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <span class="layui-btn" id="addType" lay-submit lay-filter="addType">更新</span>
+                    </div>
+                </div>
+            {/if}
+        </form>
+    </div>
+</div>
+{include file="common/footer" /}
+<script>
+    layui.use(['form','upload','jquery'] ,function(){
+        var form = layui.form,
+            upload = layui.upload,
+            $ = layui.jquery;
+        //正方形图像上传
+        upload.render({
+            elem: '#uploadLogo'
+            ,url: '{:url("designer/upload")}'
+            ,size:600 //限制文件大小，单位 KB
+            ,ext: 'jpg|png|gif'
+            ,accept: 'images' //限制文件大小，单位 KB
+            ,before: function(input){
+                loading = layer.load(2, {
+                    shade: [0.2,'#000']
+                });
+            }
+            ,done: function(res){
+                $('#logoPre').removeAttr('src');
+                $('#mtm_id_img').val('');
+                console.log(res);
+                layer.close(loading);
+                $('#mtm_id_img').val(res.path);
+                $('#uploadLogo').removeClass('layui-upload-drag');
+                $('#logoPre').css('width','216px');
+                $('#logoPre').css('height','150px');
+                $('#logoPre').attr('src',"__PUBLICS__"+res.path);
+                $('#display').hide();
+                layer.msg(res.msg, {icon: 1, time: 1000});
+            }
+            ,error: function(res){
+                layer.msg(res.msg, {icon: 2, time: 1000});
+            }
+        });
+        //长方形图像上传
+        upload.render({
+            elem: '#uploadLogo1'
+            ,url: '{:url("designer/upload")}'
+            ,size:600 //限制文件大小，单位 KB
+            ,ext: 'jpg|png|gif'
+            ,accept: 'images' //限制文件大小，单位 KB
+            ,before: function(input){
+                loading = layer.load(2, {
+                    shade: [0.2,'#000']
+                });
+            }
+            ,done: function(res){
+                $('#logoPre1').removeAttr('src');
+                $('#mtm_id_imgs').val('');
+                console.log(res);
+                layer.close(loading);
+                $('#mtm_id_imgs').val(res.path);
+                $('#uploadLogo1').removeClass('layui-upload-drag');
+                $('#logoPre1').css('width','216px');
+                $('#logoPre1').css('height','150px');
+                $('#logoPre1').attr('src',"__PUBLICS__"+res.path);
+                $('#display1').hide();
+                layer.msg(res.msg, {icon: 1, time: 1000});
+            }
+            ,error: function(res){
+                layer.msg(res.msg, {icon: 2, time: 1000});
+            }
+        });
+        //自定义验证规则
+        form.verify({
+            title: function(value){
+                if(value.length < 2){
+                    return '至少得2个字符啊';
+                }
+            }
+            ,imgReg:function (value) {
+                if(value.length <= 0){
+                    return '请上传身份证反面图片';
+                }
+            }
+            ,avatarReg:function (value) {
+                if(value.length <= 0){
+                    return '请上传份证正面图片';
+                }
+            }
+        });
+        form.on('submit(addType)', function(){
+            $('#addType').removeAttr('lay-filter');
+            $.ajax({
+                'type':"post",
+                'url':"<?=url('basic/mangerIdenty')?>",
+                'data':$('#addForm').serialize(),
+                'success':function (result) {
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            location.href="<?=url('basic/mangerIdenty')?>";
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }
+                },
+                'error':function (error) {
+                    console.log(error);
+                }
+            })
+        });
+    });
+</script>

@@ -1,0 +1,118 @@
+/*
+ * @Author: caolei 
+ * @Date: 2018-06-06 14:45:15 
+ * @Last Modified by: caolei
+ * @Last Modified time: 2018-06-14 16:29:32
+ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+}
+html,
+body {
+  width: 100%;
+}
+body {
+  color: #555;
+  font-size: 14px;
+  font-family: "Microsoft YaHei";
+}
+a {
+  color: #555;
+}
+a,
+a:hover {
+  text-decoration: none;
+}
+input,
+textarea,
+select,
+button {
+  font: 14px Verdana, Helvetica, Arial, sans-serif;
+  outline: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  font-size: 100%;
+}
+em,
+i {
+  font-style: normal;
+}
+ul li,
+ol li {
+  list-style: none;
+}
+.cur {
+  cursor: pointer;
+}
+.clearfix:after,
+.clearfix:before {
+  content: "";
+  display: block;
+  height: 0;
+  clear: both;
+}
+.clearfix {
+  *zoom: 1;
+}
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
+}
+.con {
+  width: 1200px;
+  margin: 0 auto;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.none {
+  display: none;
+}
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #808080;
+  opacity: 1;
+}
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #808080;
+  opacity: 1;
+}
+input:-ms-input-placeholder {
+  color: #808080;
+  opacity: 1;
+}
+input::-webkit-input-placeholder {
+  color: #808080;
+  opacity: 1;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.layui-btn-red {
+  background-color: #E9131B!important;
+}
+.text-red {
+  color: #E9131B;
+}

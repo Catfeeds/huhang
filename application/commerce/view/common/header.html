@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>公装护航商户端后台管理系统</title>
+    <link rel="stylesheet" href="__LAY__/css/layui.css">
+    <style>
+        .nav-item{
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin" >
+    <div class="layui-header" style="border-bottom: 2px solid #009688;">
+        <div class="layui-logo">{$merInfo.mt_short_name}后台管理</div>
+        <ul class="layui-nav layui-layout-left">
+            <div style="line-height: 60px;">
+                <span>欢迎您，{$merInfo.mt_name}-{$merInfo.mt_manger} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IP：{$ipInfo.region}-{$ipInfo.city}&nbsp;{$ipInfo.ip}</span>
+            </div>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item nav-item"><a style="padding-left: 0px !important;font-size: smaller"  href="<?=url('merchant/index/indexs')?>?mt_id={$merInfo.mt_id}" target="_blank">打开首页</a></li>
+            <li class="layui-nav-item nav-item"><a style="padding-left: 0px !important;font-size: smaller"  href="<?=url('login/loginOut')?>">退出登录</a></li>
+        </ul>
+    </div>

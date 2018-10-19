@@ -1,0 +1,100 @@
+{include file="common/top" /}
+<section id="n_banner" style="background:url(__SUPER__/statics/images/banner_n.jpg) center top no-repeat;">
+    <div class="box" aos="fade-up" aos-duration="2000">
+        <h2>case</h2>
+        <h1>项目案例</h1>
+    </div>
+</section>
+
+<!--================= end banner =================-->
+
+<!--============================content============================= -->
+<section id="n_main_box">
+    <section id="n_up_box">
+        <div class="main_box">
+            <div id="n_nav">
+
+                <a class="on" href="<?=url('index/example')?>"><strong>项目案例</strong></a>
+
+            </div>
+            <div id="position"> <span>当前位置：</span><a href="<?=url('index/index')?>?mt_id={$merchant.mt_id}">首页</a> <i> &gt; </i>
+                <a href="<?=url('index/example')?>" >项目案例 </a> <i> &gt; </i> <em>酒店类项目</em>        </div>
+        </div>
+    </section>
+    <section id="n_un_box">
+        <div class="n_content ">
+            <article class="n_article">
+                <div class="ar_title main_box">
+                    <h1>{$example.case_title}</h1>
+                    <h2><span>项目简介：{$example.case_remarks}</span></h2>
+                </div>
+                <script type="text/javascript" src="__SUPER__/statics/js/j_photel.js" ></script>
+                <div id="n_show_case" class="main_box">
+                    <div class="j_Photo" id="pic_list6">
+                        <div class="big_box big_box6">
+                            <ul>
+                                {volist name="example.case_img" id="items"}
+                                <li><img src="{$items}" alt="2#1F-标单02-C1" ></li>
+                                {/volist}
+                                {volist name="example.case_img" id="items"}
+                                <li><img src="{$items}" alt="2#1F-标单02-C1" ></li>
+                                {/volist}
+                            </ul>
+                        </div>
+                        <div class="small_box">
+                            <span class="btn left_btn left_btn6"><img src="__SUPER__/statics/images/prev.png" tppabs="http://www.xahuanyue.com/statics/huanyue/images/prev.png" /></span>
+                            <div class="small_list small_list6">
+                                <ul>
+                                    {volist name="example.case_img" id="items"}
+                                    <li><img src="{$items}">
+                                        <div class="bun_bg"></div>
+                                    </li>
+                                    {/volist}
+                                    {volist name="example.case_img" id="items"}
+                                    <li><img src="{$items}">
+                                        <div class="bun_bg"></div>
+                                    </li>
+                                    {/volist}
+                                </ul>
+                            </div>
+                            <span class="btn right_btn right_btn6"><img src="__SUPER__/statics/images/next.png"/></span></div>
+                    </div>
+
+                    <div class="clear"></div>
+                </div>
+                <script>
+                    $("#pic_list6").thumbnailImg({large_elem: ".big_box6",small_elem: ".small_list6",left_btn: ".left_btn6",right_btn: ".right_btn6"});
+                </script>
+                <article class="ar_article main_box" style="margin-top: 50px; min-height: 1px;">
+
+                </article>
+
+                <div class="clear"></div>
+                <section id="ar_fot">
+                    <div class="main_box">
+                        <h1 class="fl"><span>上一篇：</span>
+                            {if condition="$preArt.case_id neq 0"}
+                            <a href="<?=url('index/detail')?>?case_id={$preArt.case_id}" >项目名称：{$preArt.case_title}</a>
+                            {else/}
+                            没有了
+                            {/if}
+                        </h1>
+                        <h1 class="fr"><span>下一篇：</span>
+                            {if condition="$nextArt.case_id neq 0"}
+                            <a href="<?=url('index/detail')?>?case_id={$nextArt.case_id}" >项目名称：{$nextArt.case_title}</a>
+                            {else/}
+                            没有了
+                            {/if}
+                        </h1>
+                        <div class="clear"></div>
+                    </div>
+                </section>
+
+            </article>
+
+
+        </div>
+    </section>
+</section>
+<!--============================footer============================= -->
+{include file="common/footer" /}

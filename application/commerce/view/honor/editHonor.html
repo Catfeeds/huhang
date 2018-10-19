@@ -1,0 +1,151 @@
+{include file="common/toper" /}
+<style>
+    .one-pan{
+        position: relative;
+    }
+    .one{
+        position: absolute;
+        left:300px;
+        top:0;
+    }
+    .logoPre{
+        width: 216px;
+        height: 150px;
+    }
+    .casePre{
+        display:none;
+    }
+</style>
+<div class="layui-body">
+    <div style="margin-top: 5px;margin-bottom: 3px;">
+    <span class="layui-breadcrumb" lay-separator=">">
+        <a>荣誉资质</a>
+        <a href="<?=url('honor/index')?>">资质列表</a>
+        <a><cite>修改资质</cite></a>
+    </span>
+        <div style="float:right;margin-right:20px;margin-bottom: 12px;">
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="<?=url('honor/index')?>">
+                <i class="layui-icon layui-icon-return"></i>
+                返回列表
+            </a>
+        </div>
+    </div>
+    <hr/>
+    <div style="padding: 15px;">
+        <form class="layui-form layui-form-pane1" id="addForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>资质名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="h_name" value="{$honor.h_name}" lay-verify="required|title" placeholder="请输入资质名称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item one-pan">
+                <label class="layui-form-label"><span style="color: red;">*</span>资质图片</label>
+                <div {if condition="$honor.h_img eq null"}class="layui-upload-drag"{/if} id="uploadLogo1" style="display:inline-block;">
+                <image
+                        {if condition="$honor.h_img eq null"}
+                        {else/}
+                src="__PUBLICS__{$honor.h_img}"
+                class="logoPre"
+                {/if}
+                id="logoPre">
+                <input type="hidden" lay-verify="imgReg" name="h_img" id="h_img" value="{$honor.h_img}"/>
+                </image>
+                <div {if condition="$honor.h_img eq null"} {else/}class="casePre" {/if} id="casePre1" >
+                <i class="layui-icon"></i>
+                <p>请点击此处上传封面图片</p>
+            </div>
+    </div>
+    <div class="one">
+        <div class="layui-form-mid layui-word-aux" style="margin-left: 39px; ">图片要求：1200*800px，最大1024KB，支持JPG/JEPG/PNG格式。   </div>
+        <div class="layui-form-item">
+            <textarea name="h_img_alt" style="resize:none;width: 1315px;height: 115px; margin-left:39px;"  placeholder="图片描述，建议不超过15个字（等同图片ALT属性）" class="layui-textarea">{$honor.h_img_alt}</textarea>
+        </div>
+    </div>
+</div>
+<div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">资质介绍</label>
+    <div class="layui-input-block">
+        <textarea name="h_remarks" placeholder="请输入资质介绍" class="layui-textarea">{$honor.h_remarks}</textarea>
+    </div>
+</div>
+<div class="layui-form-item">
+    <div class="layui-input-block">
+        <span class="layui-btn" id="addType" lay-submit lay-filter="addType">修改</span>
+        <a class="layui-btn layui-btn-primary" href="<?=url('honor/index')?>">返回</a>
+    </div>
+</div>
+</form>
+</div>
+</div>
+{include file="common/footer" /}
+<script>
+    layui.use(['form','upload','jquery','upload'] ,function(){
+        var form = layui.form,
+            upload = layui.upload,
+            $ = layui.jquery;
+        //图片上传
+        upload.render({
+            elem: '#uploadLogo1'
+            ,url: '{:url("honor/upload")}'
+            ,size:600 //限制文件大小，单位 KB
+            ,ext: 'jpg|png|gif'
+            ,accept: 'images' //限制文件大小，单位 KB
+            ,before: function(input){
+                loading = layer.load(2, {
+                    shade: [0.2,'#000']
+                });
+            }
+            ,done: function(res){
+                $('#logoPre').removeAttr('src');
+                $('#h_img').val('');
+                console.log(res);
+                layer.close(loading);
+                $('#h_img').val(res.path);
+                $('#uploadLogo1').removeClass('layui-upload-drag');
+                $('#logoPre').css('width','216px');
+                $('#logoPre').css('height','150px');
+                $('#logoPre').attr('src',"__PUBLICS__"+res.path);
+                $('#display').hide();
+                layer.msg(res.msg, {icon: 1, time: 1000});
+            }
+            ,error: function(res){
+                layer.msg(res.msg, {icon: 2, time: 1000});
+            }
+        });
+        //自定义验证规则
+        form.verify({
+            title: function(value){
+                if(value.length < 2){
+                    return '至少得2个字符啊';
+                }
+            }
+            ,imgReg:function (value) {
+                if(value.length <= 0){
+                    return '请上传资质面图';
+                }
+            }
+        });
+        //提交要添加的数据
+        form.on('submit(addType)', function(){
+            $('#addType').removeAttr('lay-filter');
+            $.ajax({
+                'type':"post",
+                'url':"<?=url('honor/editHonor')?>?h_id={$honor.h_id}",
+                'data':$('#addForm').serialize(),
+                'success':function (result) {
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            location.href="<?=url('honor/index')?>";
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }
+                },
+                'error':function (error) {
+                    console.log(error);
+                }
+            })
+        });
+    });
+</script>

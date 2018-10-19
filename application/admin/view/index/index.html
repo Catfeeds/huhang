@@ -1,0 +1,50 @@
+{include file="common/toper" /}
+    <div class="layui-side layui-bg-black" style="top: 120px!important;">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <!--<ul class="layui-nav layui-nav-tree"  lay-filter="test">-->
+                <!--<li class="layui-nav-item layui-nav-itemed">-->
+                    <!--<a class="" href="javascript:;">所有商品</a>-->
+                    <!--<dl class="layui-nav-child">-->
+                        <!--<dd><a data-url="<?=url('index/list1')?>">列表一</a></dd>-->
+                        <!--<dd><a data-url="<?=url('index/hello')?>">列表二</a></dd>-->
+                        <!--<dd><a data-url="javascript:;">列表三</a></dd>-->
+                        <!--<dd><a href="">超链接</a></dd>-->
+                    <!--</dl>-->
+                <!--</li>-->
+                <!--<li class="layui-nav-item">-->
+                    <!--<a href="javascript:;">解决方案</a>-->
+                    <!--<dl class="layui-nav-child">-->
+                        <!--<dd><a href="javascript:;">列表一</a></dd>-->
+                        <!--<dd><a href="javascript:;">列表二</a></dd>-->
+                        <!--<dd><a href="">超链接</a></dd>-->
+                    <!--</dl>-->
+                <!--</li>-->
+                <!--<li class="layui-nav-item"><a href="">云市场</a></li>-->
+                <!--<li class="layui-nav-item"><a href="">发布商品</a></li>-->
+            <!--</ul>-->
+        </div>
+    </div>
+    <div class='layui-body'>
+        <iframe id='option' src="<?=url('index/welcome')?>" frameborder='no' width='100%' height='99%'>
+        </iframe>
+    </div>
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © layui.com - 底部固定区域123
+    </div>
+</div>
+<script src="__LAY__/layui.js"></script>
+<script>
+    //JavaScript代码区域
+    layui.use(['element','jquery','layer'], function(){
+        var element = layui.element,
+            $ = layui.jquery;
+        element.on('nav(test)',function(elem){
+            var $url = $(elem).eq(0).attr('data-url');
+            $("#option").attr('src',$url)
+        })
+    });
+</script>
+</body>
+</html>

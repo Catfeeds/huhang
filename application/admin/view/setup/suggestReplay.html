@@ -1,0 +1,39 @@
+{include file="common/header" /}
+<!-- 弹出层 -->
+<div id="layer-one">
+    <form class="layui-form" id="caseForm">
+        <div class="layui-form-item">
+            <label class="layui-form-label">投诉类型</label>
+            <div class="layui-input-inline">
+                <input type="text" value="{$suggest.sg_type}" readonly class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">投诉IP</label>
+            <div class="layui-input-inline">
+                <input type="text" value="{$suggest.sg_ip}" readonly class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">投诉时间</label>
+            <div class="layui-input-inline">
+                <input type="text" value="{$suggest.sg_addtime}" readonly class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">投诉人电话</label>
+            <div class="layui-input-inline">
+                <input type="text" value="{$suggest.sg_link}" readonly class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">
+                投诉内容
+            </label>
+            <div class="layui-input-block">
+                <textarea class="layui-textarea" readonly>{$suggest.sg_content}</textarea>
+            </div>
+        </div>
+    </form>
+</div>
+{include file="common/footer" /}

@@ -1,0 +1,150 @@
+{include file="common/header" /}
+<!-- 页面主体 -->
+<!-- 焦点图 -->
+<div class="comban">
+    <img src="__PUBLIC__/images/x-ban.png" alt="">
+    <div class="comban-con clearfix">
+        <div>
+
+            {if isset($case.type_case[0]['case_id'])}
+            href="<?=url('example/details')?>?case_id={$case.type_case[0]['case_id']}"
+            {/if}
+
+            <input class="fl"  {if isset($keys)} value="{$keys}"{/if} id="keywords" type="text" placeholder="请输入您要搜索的案例类型/案例名">
+            <span id="search" class="layui-btn fr layui-btn-danger layui-icon layui-icon-search"></span>
+        </div>
+        <p>
+            {volist name="typeData" id="type" offset="0" length='4'}
+            <a href="<?=url('example/index')?>?case_type={$type.type_id}">{$type.type_name}</a>
+            {/volist}
+        </p>
+    </div>
+</div>
+
+<!-- 面包屑 -->
+<div class="crumbs con">
+        <span class="layui-breadcrumb" lay-separator=">">
+            <a href="<?=url('index/index')?>">首页</a>
+            <a>
+                <cite>项目案例</cite>
+            </a>
+        </span>
+</div>
+
+<!-- 分类筛选 -->
+<div class="porject-filter clearfix con">
+    <div class="filter-left fl">
+        <p>
+            <i>
+                <img src="__PUBLIC__/images/x-icon.png" alt="">装修空间
+            </i>
+        </p>
+        <p>
+            <i>
+                <img src="__PUBLIC__/images/x-icon1.png" alt="">空间大小
+            </i>
+        </p>
+    </div>
+    <div class="filter-right fl">
+        <ul>
+            <li>
+                <span class="filter-this">全部</span>
+                {volist name="typeData" id="type"}
+                    <a href="<?=url('example/details')?>">{$type.type_name}</a>
+                {/volist}
+            </li>
+            <li>
+                <span>全部</span>
+                {volist name="space" id="vo"}
+                <a href="<?=url('example/details')?>">{$vo.sp_name}</a>
+                {/volist}
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- 列表展示 -->
+<div class="Display-lists con">
+    <ul class="clearfix">
+        {volist name="example" id="exam"}
+        <li>
+            <a href="<?=url('example/details')?>?case_id={$exam.case_id}">
+                <i>
+                    <img src="{$exam.case_img}" alt="{$exam.case_img_alt}">
+                </i>
+                <div>
+                    <h3>{$exam.case_title}</h3>
+                    <p class="clearfix">
+                        <span class="fl">预算：{$exam.case_price}万</span>
+                        <span class="fr">面积：{$exam.case_area}平</span>
+                    </p>
+                </div>
+            </a>
+        </li>
+        {/volist}
+    </ul>
+</div>
+
+<!-- 分页 -->
+<div class="paging con">
+    <div class="paging-con">
+        <p>
+            <a href="javascript:;" style="width: 46px;">首页</a>
+            <a href="javascript:;">
+                <i class="layui-icon layui-icon-left"></i>
+            </a>
+            <a class="paging-this" href="javascript:;">1</a>
+            <a href="javascript:;">2</a>
+            <a href="javascript:;">3</a>
+            <a href="javascript:;">4</a>
+            <a href="javascript:;">5</a>
+            <a href="javascript:;">
+                <i class="layui-icon layui-icon-right"></i>
+            </a>
+            <a href="javascript:;" style="width: 46px;">尾页</a>
+            <span>
+                    到第
+                    <input type="text" value="1">页
+                    <button class="layui-btn fr layui-btn-primary layui-btn-sm">确认</button>
+                </span>
+        </p>
+    </div>
+</div>
+<!-- 服务流程 -->
+
+{include file="common/serviceStep" /}
+
+<!-- 页面主体结束 -->
+<!-- 友情链接 -->
+{include file="common/friendlink" /}
+<!-- footer -->
+{include file="common/footer" /}
+{include file="common/bottom" /}
+<script>
+    $('#search').click(function (){
+        var keywords=$('#keywords').val();
+        //去掉前后空格
+        var keys=keywords.replace(/(^\s*)|(\s*$)/g, "");
+        if(keys.length <=0){
+            layer.msg('请输入关键词进行搜索！', {icon: 2, time: 2000});
+        }else{
+            location.href="<?=url('example/index')?>?keys="+keys;
+            // $.ajax({
+            //     'type':"post",
+            //     'url':"<?=url('example/index')?>",
+            //     'data':{'keys':keys},
+            //     'success':function (result) {
+            //         console.log(result);
+            //         if(result.code == '1'){
+            //            location.href="<?=url('example/index')?>";
+            //         }else{
+            //             layer.msg(result.msg, {icon: 2, time: 3000});
+            //         }
+            //     },
+            //     'error':function (error) {
+            //         console.log(error);
+            //     }
+            // })
+        }
+    });
+</script>

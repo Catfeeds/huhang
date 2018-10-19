@@ -1,0 +1,149 @@
+{include file="common/header" /}
+<!--banner-->
+{include file="common/banner" /}
+<!-- 招标板块 -->
+<div class="Bidding con clearfix">
+    <!-- 右 -->
+    <div class="comm-right fr">
+        <!-- 面包屑 -->
+        <div class="bread">
+            <em>您的位置：</em>
+            <span class="layui-breadcrumb" lay-separator=">">
+                    <a href="<?=url('index/index')?>?mt_id={$mt_id}">{$merName}</a>
+                    <a>
+                        <cite>装修案例</cite>
+                    </a>
+                </span>
+        </div>
+        <div class="decoration-con">
+            <ul class="clearfix">
+                {if condition="$caseData neq null"}
+                {volist name="caseData" id="case"}
+                <li>
+                    <span>
+                        <a href="<?=url('example/details')?>?case_id={$case.case_id}">
+                            <img src="{$case.case_img}" alt="{$case.case_img_alt}">
+                        </a>
+                    </span>
+                    <div>
+                        <h4>{$case.case_title}</h4>
+                        <p class="clearfix">
+                            <i class="fl">预算：{$case.case_price}万</i>
+                            <i class="fr">面积：{$case.case_area}㎡</i>
+                        </p>
+                    </div>
+                </li>
+                {/volist}
+                {else/}
+                <li>暂无信息</li>
+                {/if}
+            </ul>
+        </div>
+        <!-- 分页 -->
+        <div class="paging" style="margin: 30px auto 40px;">
+            <div class="paging-con">
+                <p>
+                    <a href="javascript:;" style="width: 46px;">首页</a>
+                    <a href="javascript:;">
+                        <i class="layui-icon layui-icon-left"></i>
+                    </a>
+                    <a class="paging-this" href="javascript:;">1</a>
+                    <a href="javascript:;">2</a>
+                    <a href="javascript:;">3</a>
+                    <a href="javascript:;">4</a>
+                    <a href="javascript:;">5</a>
+                    <a href="javascript:;">
+                        <i class="layui-icon layui-icon-right"></i>
+                    </a>
+                    <a href="javascript:;" style="width: 46px;">尾页</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- 左 -->
+    <!-- 招标预约框-->
+    {include file="common/bidding" /}
+</div>
+
+
+
+<!-- 服务流程 -->
+
+{include file="common/serviceStep" /}
+<!-- 页面主体结束 -->
+
+<!-- 友情链接 -->
+{include file="common/friendlink" /}
+
+<!-- footer -->
+{include file="common/footer" /}
+{include file="common/bottom" /}
+<script>
+    layui.use(['form','jquery'] ,function(){
+        var form = layui.form,
+            $ = layui.jquery;
+        //根据联动的省份id查找城市
+        form.on('select(art_p_id)', function(data){
+            var p_id=data.value;
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('admin/common/getCityName')?>?p_id="+p_id,
+                data: {p_id:p_id},
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    var code=data.data;
+                    $("#city").html("<option value=''>城市</option>");
+                    $.each(code, function(i, val) {
+                        var option1 = $("<option>").val(val.c_id).text(val.c_name);
+                        $("#city").append(option1);
+                        form.render('select');
+                    });
+                    $("#city").get(0).selectedIndex=0;
+                }
+            });
+        });
+        //提交要添加的数据
+        form.on('submit(addTypes)', function(){
+            $('#addTypes').removeAttr('lay-filter');
+            $.ajax({
+                type:"post",
+                url:"<?=url('index/point')?>",
+                data:$("#addForm").serialize(),
+                success:function (result) {
+                    console.log(result);
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            window.location.reload();
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }
+                },
+                error:function (error) {
+                    console.log(error);
+                }
+            })
+        });
+    });
+</script>
+<script type="text/javascript" src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<script>
+    function getUrlParms(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)
+            return unescape(r[2]);
+        return null;
+    }
+    var refer=document.referrer;
+    var userIp= returnCitySN.cip;
+    var laiyuan=getUrlParms("laiyuan");
+    var chuangyi=getUrlParms("chuangyi");
+    var curUrl = window.location.href;
+    $('.laiyuan').val(laiyuan);
+    $('.chuangyi').val(chuangyi);
+    $('.userIp').val(userIp);
+    $('.curUrl').val(curUrl);
+    $('.refer').val(refer);
+</script>

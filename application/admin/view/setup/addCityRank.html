@@ -1,0 +1,100 @@
+{include file="common/header" /}
+<div class="layui-body" style="margin-top: 60px">
+    <div style="margin-top: 5px;margin-bottom: 3px;">
+    <span class="layui-breadcrumb" lay-separator=">">
+        <a>平台设置</a>
+        <a>类型参数</a>
+        <a href="<?=url('setup/rankCity')?>">城市等级</a>
+        <a><cite>添加等级</cite></a>
+    </span>
+        <div style="float:right;margin-right:20px;margin-bottom: 12px;">
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="<?=url('setup/rankCity')?>">
+                <i class="layui-icon layui-icon-return"></i>
+                返回列表
+            </a>
+        </div>
+    </div>
+    <hr/>
+    <div style="padding: 15px;">
+        <form class="layui-form layui-form-pane1">
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>城市等级</label>
+                <div class="layui-input-block">
+                    <input type="text" name="cr_name" id="cr_name" lay-verify="required" placeholder="请输入城市等级" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label"><span style="color: red;">*</span>
+                    等级简介
+                </label>
+                <div class="layui-input-block">
+                    <textarea placeholder="请输入等级简介" id="cr_remarks" name="cr_remarks" lay-verify="required" class="layui-textarea"></textarea>
+                </div>
+            </div>
+            {volist name="quality" id="qua"}
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>{$qua.type_name}</label>
+                <input type="hidden" class="c_q_id" name="c_q_id" value="{$qua.type_id}"/>
+                <div class="layui-input-inline">
+                    <input type="text" style="width: 300px;"  name="c_q_price" lay-verify="required" placeholder="请输入平米单价,单位：（元）" autocomplete="off" class="layui-input c_q_price">
+                </div>
+            </div>
+            {/volist}
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <span class="layui-btn" id="saveInfo" >添加</span>
+                    <a class="layui-btn" href="<?=url('setup/rankCity')?>">返回</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="common/footer" /}
+<script>
+    layui.use(['form','jquery'] ,function(){
+        var form = layui.form,
+            $ = layui.jquery;
+        form.on('radio', function(data){
+            console.log(data);
+        });
+        //提交要添加的数据
+        $('#saveInfo').click(function () {
+            //品质id
+            var ids = "";
+            var q_id=document.getElementsByClassName('c_q_id');
+            for(var i=0;i<q_id.length;i++){
+                ids+=q_id.item(i).value;
+                ids+=",";
+            }
+            //品质单价
+            var prices = "";
+            var price=document.getElementsByClassName('c_q_price');
+            for(var i=0;i<price.length;i++){
+                prices+=price.item(i).value;
+                prices+=",";
+            }
+            var cr_name=$('#cr_name').val();
+            var cr_remarks=$('#cr_remarks').val();
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('setup/addCityRank')?>",
+                data: {ids:ids,prices:prices,cr_remarks:cr_remarks,cr_name:cr_name},
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    console.log(data.code);
+                    if(data.code == 1){
+                        layer.alert('添加成功！', {
+                            icon: 1,
+                            skin: 'layer-ext-moon',
+                            time: 2000,
+                            end: function(){
+                                window.location.href='<?=url("setup/rankCity")?>';
+                            }
+                        });
+                    }
+                }
+            });
+        });
+    });
+</script>

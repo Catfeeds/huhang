@@ -1,0 +1,67 @@
+{include file="common/toper" /}
+<div class="layui-body">
+    <div style="margin-top: 5px;margin-bottom: 3px;">
+    <span class="layui-breadcrumb" lay-separator=">">
+        <a>运营管理</a>
+        <a>内容管理</a>
+        <a href="<?=url('question/index')?>">问答管理</a>
+        <a><cite>修改回复</cite></a>
+    </span>
+        <div style="float:right;margin-right:20px;margin-bottom: 12px;">
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="<?=url('question/index')?>">
+                <i class="layui-icon layui-icon-return"></i>
+                返回列表
+            </a>
+        </div>
+    </div>
+    <hr/>
+    <div style="padding: 15px;">
+        <form class="layui-form layui-form-pane1" id="addForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>问题名称</label>
+                <div class="layui-input-block">
+                    <input type="text" value="{$question.qa_question}" readonly lay-verify="required|title" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label"><span style="color: red;">*</span>回复内容</label>
+                <div class="layui-input-block">
+                    <textarea placeholder="请输入回复内容" lay-verify="required" name="qaa_answer" class="layui-textarea">{$answer.qaa_answer}</textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <span class="layui-btn" id="addType">修改</span>
+                    <a class="layui-btn layui-btn-primary" href="<?=url('question/index')?>">返回</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="common/footer" /}
+<script>
+    layui.use(['form','jquery'] ,function(){
+        var form = layui.form,
+            $ = layui.jquery;
+        //提交要添加的数据
+        $('#addType').click(function () {
+            $.ajax({
+                'type':"post",
+                'url':"<?=url('question/editAnswer')?>?qaa_id={$answer.qaa_id}",
+                'data':$('#addForm').serialize(),
+                'success':function (result) {
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            location.href="<?=url('question/index')?>";
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }
+                },
+                'error':function (error) {
+                    console.log(error);
+                }
+            })
+        });
+    });
+</script>

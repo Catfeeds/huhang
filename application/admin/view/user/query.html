@@ -1,0 +1,90 @@
+{include file="common/header" /}
+<link rel="stylesheet" href="__ADMIN__/pcb/pick-pcc.css"/>
+<div class="layui-body"  style="margin-top: 60px">
+    <div style="margin-top: 5px;margin-bottom: 3px;">
+    <span class="layui-breadcrumb" lay-separator=">">
+        <a>客户管理</a>
+        <a>分单统计</a>
+        <a><cite>分单查询</cite></a>
+    </span>
+    </div>
+    <hr/>
+    <section class="panel panel-padding" style="padding-top: 10px;">
+        <form class="layui-form layui-form-pane1">
+            <div class="layui-form-item  demoTable">
+                <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <select name="case_admin" >
+                            <option>请选择省份</option>
+                            <option value="1">陕西</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <select name="case_admin" >
+                            <option>请选择城市</option>
+                            <option value="1">西安</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <input type="text" name="keywords" id="keywords"  placeholder="请输入商家名称" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <input type="text" name="cus_opptime" readonly class="layui-input" id="cus_opptime" placeholder="请选择操作日期范围">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <span class="layui-btn" data-type="reload">查询</span>
+                        <a href="<?=url('user/order')?>" class="layui-btn layui-btn-warm">刷新</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+    <table>
+        <tr>
+            <td>订单编号</td>
+            <td>客户姓名</td>
+            <td>客户电话</td>
+            <td>项目类型</td>
+            <td>公司名称</td>
+            <td>场地面积</td>
+            <td>预约时间</td>
+            <td>派单时间</td>
+            <td>签约状态</td>
+            <td>对接商务</td>
+        </tr>
+    </table>
+</div>
+{include file="common/footer" /}
+<script type="text/javascript" src="__ADMIN__/pcb/pick-pcc.js"></script>
+<script type="text/javascript">
+    $(".pick-area1").pickArea({
+        "format":"province/city/county", //格式
+        "width":"270",
+    });
+    layui.use(['form','laypage','layer','laydate'], function(){
+        var form = layui.form,
+            laypage = layui.laypage,
+            laydate = layui.laydate,
+            layer = layui.layer; //独立版的layer无需执行这一句
+        laydate.render({
+            elem: '#cus_opptime'
+            ,range: true
+        });
+
+        //监听指定开关
+        form.on('switch(switchTest)', function(data){
+            layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
+                offset: '6px'
+            });
+            layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+        });
+    });
+</script>

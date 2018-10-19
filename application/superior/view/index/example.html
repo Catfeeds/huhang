@@ -1,0 +1,70 @@
+{include file="common/top" /}
+<section id="n_banner" style="background:url(__SUPER__/statics/images/banner_n.jpg) center top no-repeat;">
+    <div class="box" aos="fade-up" aos-duration="2000">
+        <h2>case</h2>
+        <h1>项目案例</h1>
+    </div>
+</section>
+
+<!--================= end banner =================-->
+
+<!--============================content============================= -->
+<section id="n_main_box">
+    <section id="n_up_box">
+        <div class="main_box">
+            <div id="n_nav">
+
+                <a class="on" href="<?=url('index/index')?>"><strong>项目案例</strong></a>
+
+            </div>
+            <div id="position"> <span>当前位置：</span><a href="<?=url('index/index')?>?mt_id={$merchant.mt_id}">首页</a> <i> &gt; </i>
+                <a href="<?=url('index/example')?>" >项目案例 </a> <i> &gt; </i> <em>酒店类项目</em>        </div>
+        </div>
+    </section>
+    <section id="n_un_box" class="main_box">
+        <section id="nav_case">
+            <a href="javascript:void(0)" class="bnt prev">&lt;</a>
+            <a href="javascript:void(0)" class="bnt next">&gt;</a>
+            <!--<div class="bd">-->
+                <!--<ul>-->
+                    <!--<li  class="on" >-->
+                        <!--<a href="<?=url('index/example')?>">-->
+                            <!--<h1><strong>酒店类项目</strong>-->
+                                <!--<span>Hotel class</span></h1></a>-->
+                    <!--</li>-->
+                    <!--<li ><a href="<?=url('index/example')?>"-->
+                    <!--&gt;<h1><strong>地产类项目</strong><span>Property category</span></h1></a></li>-->
+                    <!--<li ><a href="<?=url('index/example')?>"-->
+                    <!--&gt;<h1><strong>商业综合体类项目</strong><span>Commercial complex</span></h1></a></li>-->
+                    <!--<li ><a href="<?=url('index/example')?>"-->
+                    <!--&gt;<h1><strong>商业会所类项目</strong><span>Chamber of commerce</span></h1></a></li>-->
+                    <!--<li ><a href="<?=url('index/example')?>"-->
+                    <!--&gt;<h1><strong>5A写字楼办公类项目</strong><span>5A office building</span></h1></a></li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <div class="clear"></div>
+        </section>
+        <div class="n_content main_box">
+            <section  id="n_case" >
+                <ul>
+                    {volist name="caseInfo" id="case"}
+                    <li  aos="fade-up" aos-duration="3000">
+                        <a href="<?=url('index/detail')?>?case_id={$case.case_id}">
+                            <div class="pic_box"><img  src="{$case.case_img}" alt="{$case.case_title}" /><div class="icon_more"></div></div>
+                            <h1><strong>项目名称：{$case.case_title}</strong></h1>
+                        </a>
+                    </li>
+                    {/volist}
+                    <div class="clear"></div>
+                </ul>
+            </section>
+            <!--<div class="page">-->
+                <!--<div class="box">-->
+                    <!--<a class="on">1</a><a href="index.php-c=category&id=6&page=2.htm" tppabs="http://www.xahuanyue.com/index.php?c=category&id=6&page=2" data-ci-pagination-page="2" rel="start">2</a><a href="index.php-c=category&id=6&page=2.htm" tppabs="http://www.xahuanyue.com/index.php?c=category&id=6&page=2" data-ci-pagination-page="2" rel="next"><font>&gt;&gt;</font></a>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+    </section>
+</section>
+<!--============================footer============================= -->
+{include file="common/footer" /}

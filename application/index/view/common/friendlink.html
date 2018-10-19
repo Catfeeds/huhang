@@ -1,0 +1,22 @@
+<div class="Links con">
+    <h3>
+        <img src="__PUBLIC__/images/lianjie.png" alt=""> 公装护航网-友情链接
+    </h3>
+    <ul>
+        <li>
+            {volist name="friend" id="vo" offset="0" length='8'}
+                <a href="{$vo.fl_url}" target="_blank">{$vo.fl_name}</a>
+            {/volist}
+        </li>
+        <li>
+            {volist name="friend" id="vo" offset="8" length='8'}
+                <a href="{$vo.fl_url}" target="_blank">{$vo.fl_name}</a>
+            {/volist}
+        </li>
+        <li>
+            {volist name="friend" id="vo" offset="16" length='8'}
+                <a href="{$vo.fl_url}" target="_blank">{$vo.fl_name}</a>
+            {/volist}
+        </li>
+    </ul>
+</div>

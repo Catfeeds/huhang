@@ -1,0 +1,161 @@
+{include file="common/toper" /}
+<div class="layui-body">
+    <div style="margin-top: 5px;margin-bottom: 3px;">
+    <span class="layui-breadcrumb" lay-separator=">">
+        <a>人才招聘</a>
+        <a href="<?=url('recruit/index')?>">招聘列表</a>
+        <a><cite>发布岗位</cite></a>
+    </span>
+        <div style="float:right;margin-right:20px;margin-bottom: 12px;">
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="<?=url('recruit/index')?>">
+                <i class="layui-icon layui-icon-return"></i>
+                返回列表
+            </a>
+        </div>
+    </div>
+    <hr/>
+    <div style="padding: 15px;">
+        <form class="layui-form layui-form-pane1" id="addForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>岗位名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="wt_name" lay-verify="required|title" placeholder="请输入岗位名称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>
+                    薪资待遇
+                </label>
+                <div class="layui-input-inline" style="width: 100px;">
+                    <input type="text" name="wt_min" lay-verify="required"  autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid">-</div>
+                <div class="layui-input-inline" style="width: 100px;">
+                    <input type="text" name="wt_max" lay-verify="required"  autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid">单位：（元）</div>
+                <div class="layui-form-mid layui-word-aux">请填写请填写薪资待遇（如：2000-4000 表示面积大于等于2000，小于4000）</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>招聘人数</label>
+                <div class="layui-input-block">
+                    <input type="text" name="wt_num" lay-verify="required" placeholder="请输入招聘人数" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>截止日期</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="wt_deadline" lay-verify="requiredDate" id="wt_deadline" readonly placeholder="请选择截止日期" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">岗位职责</label>
+                <div class="layui-input-block">
+                    <textarea id="demo" placeholder="请输入岗位职责" class="layui-textarea"></textarea>
+                    <textarea style="display: none" name="wt_duty" id="content" lay-verify="content" placeholder="请输入岗位职责" class="layui-textarea"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">任职要求</label>
+                <div class="layui-input-block">
+                    <textarea id="demo1" placeholder="请输入岗位职责" class="layui-textarea"></textarea>
+                    <textarea style="display: none" name="wt_skills" lay-verify="content1" id="content1" placeholder="请输入岗位职责" class="layui-textarea"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <span class="layui-btn" id="addType" lay-submit lay-filter="addType">添加</span>
+                    <a class="layui-btn layui-btn-primary" href="<?=url('recruit/index')?>">返回</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="common/footer" /}
+<script>
+    layui.use(['form','upload','jquery','laydate','layedit'] ,function(){
+        var form = layui.form,
+            laydate = layui.laydate,
+            layedit = layui.layedit,
+            $ = layui.jquery;
+        form.on('radio', function(data){
+            console.log(data);
+        });
+        laydate.render({
+            elem: '#wt_deadline'
+            ,min: 0
+        });
+        var index=layedit.build('demo', {
+            tool: [
+                'strong'
+                ,'italic'
+                ,'underline'
+                ,'del'
+                ,'|'
+                ,'left'
+                ,'center'
+                ,'right'
+            ]
+        });
+        var index1=layedit.build('demo1', {
+            tool: [
+                'strong'
+                ,'italic'
+                ,'underline'
+                ,'del'
+                ,'|'
+                ,'left'
+                ,'center'
+                ,'right'
+            ]
+        });
+        form.verify({
+            title: function(value){
+                if(value.length < 2){
+                    return '至少得2个字符啊';
+                }
+            }
+            ,requiredDate:function (value) {
+                if(value.length <= 0){
+                    return '请选择截止日期';
+                }
+            }
+            ,content: function(value){
+                var cont=layedit.getContent(index); //获取编辑器内容
+                if(cont.length <= 0){
+                    return '请输入岗位职责！';
+                }
+            }
+            ,content1: function(value){
+                var cont=layedit.getContent(index1); //获取编辑器内容
+                if(cont.length <= 0){
+                    return '请输入任职要求！';
+                }
+            }
+        });
+        form.on('submit(addType)', function(){
+            $('#addType').removeAttr('lay-filter');
+            $('#content').html(layedit.getContent(index));
+            $('#content1').html(layedit.getContent(index1));
+            $.ajax({
+                'type':"post",
+                'url':"<?=url('recruit/addWanted')?>",
+                'data':$('#addForm').serialize(),
+                'success':function (result) {
+                    console.log(result);
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            location.href="<?=url('recruit/index')?>";
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }
+                },
+                'error':function (error) {
+                    console.log(error);
+                }
+            })
+        });
+    });
+</script>

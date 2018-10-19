@@ -1,0 +1,237 @@
+{include file="common/header" /}
+<!-- 页面主体 -->
+<!-- 焦点图 -->
+<div class="comban">
+    <img src="__PUBLIC__/images/x-ban.png" alt="">
+    <div class="comban-con clearfix">
+        <div>
+            <input class="fl" type="text" placeholder="请输入您要搜索的类型">
+            <button class="layui-btn fr layui-btn-danger layui-icon layui-icon-search"></button>
+        </div>
+        <p>
+            {volist name="typeData" id="type" offset="0" length='4'}
+            <a href="<?=url('example/index')?>?case_type={$type.type_id}">{$type.type_name}</a>
+            {/volist}
+        </p>
+    </div>
+</div>
+
+<!-- 面包屑 -->
+<div class="crumbs con">
+        <span class="layui-breadcrumb" lay-separator=">">
+            <a href="<?=url('index/index')?>">首页</a>
+            <a href="<?=url('example/index')?>">项目案例</a>
+            <a>
+                <cite>{$case.case_title}</cite>
+            </a>
+        </span>
+</div>
+
+<!-- 轮播  -->
+<div class="project-show-con con clearfix">
+    <div class="project-show-left fl">
+        <div class="top">
+            <div class="swiper-container gallery-top">
+                <div class="swiper-wrapper">
+                    {volist name="case.case_img" id='item'}
+                        {if condition='$item neq null'}
+                            <div class="swiper-slide">
+                                <img src="{$item}" alt="">
+                            </div>
+                        {/if}
+                    {/volist}
+                </div>
+                <!-- Add Arrows -->
+                <div class="swiper-button-next swiper-button-white"></div>
+                <div class="swiper-button-prev swiper-button-white"></div>
+            </div>
+
+        </div>
+        <div class="media">
+            <div class="swiper-container gallery-thumbs">
+                <div class="swiper-wrapper">
+                    {volist name="case.case_img" id='item'}
+                    {if condition='$item neq null'}
+                    <div class="swiper-slide">
+                        <img src="{$item}" alt="">
+                    </div>
+                    {/if}
+                    {/volist}
+                </div>
+            </div>
+        </div>
+        <div class="bto">
+            <p>
+                {$case.case_remarks}
+            </p>
+        </div>
+    </div>
+    <div class="project-show-right fr">
+            <span>
+                <img src="__PUBLIC__/images/x-adv1.png" alt="">
+            </span>
+        <!-- 委托招标 -->
+        <div class="delegate">
+            <h3>委托招标</h3>
+            <form id="addForm" class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <select name="cus_type" lay-verify="required">
+                            <option value="" selected>请选择您的招标类型</option>
+                            {volist name="typeData" id="type"}
+                                <option value="{$type.type_id}">{$type.type_name}</option>
+                            {/volist}
+                        </select>
+                    </div>
+                </div>
+                <input name='cus_position' type='hidden' value='平台端首页'>
+                <input type=hidden name=cus_from class=laiyuan>
+                <input type=hidden name=cus_origin class=chuangyi>
+                <input type=hidden name=cus_ip class=userIp>
+                <input type=hidden name=cus_link class=curUrl>
+                <input type=hidden name=refer class=refer>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="text" name="cus_area" class="layui-input" placeholder="请输入您的装修面积" lay-verify="required">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-inline">
+                        <select name="cus_provid" lay-verify="required" lay-filter="art_p_id">
+                            <option value="" selected>省份</option>
+                            {volist name="prov" id="vo"}
+                                <option value="{$vo.p_id}">{$vo.p_name}</option>
+                            {/volist}
+                        </select>
+                    </div>
+                    <div class="layui-input-inline">
+                        <select name="cus_cityid" id="city" lay-verify="required">
+                            <option value="" selected>城市</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="text" name="cus_name" class="layui-input" placeholder="请输入您的称呼" lay-verify="required">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="text" name="cus_phone"  class="layui-input" placeholder="请输入您的手机号" lay-verify="phone">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block" style="text-align: center">
+                        <span lay-submit lay-filter="addType" id="addType" style="width: 100%" class="layui-btn layui-icon layui-icon-form layui-btn-red layui-btn-fluid"> 免费设计报价</span>
+                    </div>
+                </div>
+            </form>
+            <p>已有
+                <em>{$allOrder}</em>人预约服务</p>
+        </div>
+        <!-- 上传者 -->
+        <div class="Uploadend-by">
+            <p>上传者：{$case.case_m_id}</p>
+            <p>尺寸：1200 * 800 像素</p>
+            <p>上传时间：{$case.case_updatetime}</p>
+            <p>作品描述：{$case.case_remarks}</p>
+        </div>
+    </div>
+</div>
+<!-- 页面主体结束 -->
+{include file="common/serviceStep" /}
+<!-- 友情链接 -->
+{include file="common/friendlink" /}
+{include file="common/footer" /}
+{include file="common/bottom" /}
+<script>
+    var galleryTop = new Swiper('.gallery-top', {
+        spaceBetween: 10,
+        loop: true,
+        loopedSlides: 5, //looped slides should be the same
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    var galleryThumbs = new Swiper('.gallery-thumbs', {
+        spaceBetween: 10,
+        slidesPerView: 5,
+        touchRatio: 0.2,
+        loop: true,
+        loopedSlides: 5, //looped slides should be the same
+        slideToClickedSlide: true,
+    });
+    galleryTop.controller.control = galleryThumbs;
+    galleryThumbs.controller.control = galleryTop;
+</script>
+<script>
+    layui.use(['form','jquery'] ,function(){
+        var form = layui.form,
+            $ = layui.jquery;
+        //根据联动的省份id查找城市
+        form.on('select(art_p_id)', function(data){
+            var p_id=data.value;
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('admin/common/getCityName')?>?p_id="+p_id,
+                data: {p_id:p_id},
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    var code=data.data;
+                    $("#city").html("<option value=''>城市</option>");
+                    $.each(code, function(i, val) {
+                        var option1 = $("<option>").val(val.c_id).text(val.c_name);
+                        $("#city").append(option1);
+                        form.render('select');
+                    });
+                    $("#city").get(0).selectedIndex=0;
+                }
+            });
+        });
+        //提交要添加的数据
+        form.on('submit(addType)', function(){
+            $('#addType').removeAttr('lay-filter');
+            $.ajax({
+                type:"post",
+                url:"<?=url('index/point')?>",
+                data:$("#addForm").serialize(),
+                success:function (result) {
+                    console.log(result);
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            window.location.reload();
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }
+                },
+                error:function (error) {
+                    console.log(error);
+                }
+            })
+        });
+        $('#typeData span:first ').addClass('btn-this');
+    });
+</script>
+<script type="text/javascript" src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<script>
+    function getUrlParms(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)
+            return unescape(r[2]);
+        return null;
+    }
+    var refer=document.referrer;
+    var userIp= returnCitySN.cip;
+    var laiyuan=getUrlParms("laiyuan");
+    var chuangyi=getUrlParms("chuangyi");
+    var curUrl = window.location.href;
+    $('.laiyuan').val(laiyuan);
+    $('.chuangyi').val(chuangyi);
+    $('.userIp').val(userIp);
+    $('.curUrl').val(curUrl);
+    $('.refer').val(refer);
+</script>

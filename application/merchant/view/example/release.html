@@ -1,0 +1,267 @@
+{include file="common/header" /}
+<!--banner-->
+{include file="common/banner" /}
+<!-- 招标板块 -->
+<div class="Bidding con clearfix">
+    <!-- 右 -->
+    <div class="comm-right fr">
+        <!-- 面包屑 -->
+        <div class="bread">
+            <em>您的位置：</em>
+            <span class="layui-breadcrumb" lay-separator=">">
+                    <a href="<?=url('index/index')?>?mt_id={$mt_id}">{$merName}</a>
+                    <a>
+                        <cite>发布项目</cite>
+                    </a>
+                </span>
+        </div>
+
+        <!-- 发布主体 -->
+        <div class="release-container">
+            <div class="release-item">
+                <ul id="typeData">
+                    {volist name="proType" id="type"}
+                    <li>
+                            <span data-value="{$type.type_id}">
+                                <img src="{$type.type_img}" alt="">
+                            </span>
+                        <p>{$type.type_name}</p>
+                    </li>
+                    {/volist}
+                </ul>
+            </div>
+            <div class="release-form">
+                <form id="orderForm" class="layui-form">
+                    <input type="hidden" value="" name="cus_type" id="cus_type"/>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">
+                            <i>*</i>您的称呼：
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="cus_name" class="layui-input" placeholder="请输入您的称呼" lay-verify="required">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">如：王先生</div>
+                        <label class="layui-form-label" style="margin-left: 36px;">
+                            <i>*</i>空间大小：
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="cus_area" class="layui-input" placeholder="请输入您的空间面积" lay-verify="required">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">平方米</div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">
+                            <i>*</i>联系方式：
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="cus_phone" class="layui-input" placeholder="请输入您的称呼" lay-verify="phone">
+                        </div>
+                        <input name='cus_position' type='hidden' value='平台端首页'>
+                        <input type=hidden name=cus_from class=laiyuan>
+                        <input type=hidden name=cus_origin class=chuangyi>
+                        <input type=hidden name=cus_ip class=userIp>
+                        <input type=hidden name=cus_link class=curUrl>
+                        <input type=hidden name=refer class=refer>
+                        <label class="layui-form-label" style="margin-left: 116px;">
+                            <i>*</i>所在区域：
+                        </label>
+                        <div class="layui-input-inline" style="width: 94px;">
+                            <select name="cus_provid" lay-verify="required" lay-filter="art_p_ids">
+                                <option value="" selected="">省份</option>
+                                {volist name="prov" id="vo"}
+                                <option value="{$vo.p_id}">{$vo.p_name}</option>
+                                {/volist}
+                            </select>
+                        </div>
+                        <div class="layui-input-inline" style="width: 94px;">
+                            <select name="cus_cityid" id="city1" lay-verify="required">
+                                <option value="" selected>城市</option>
+                            </select>
+                        </div>
+                    </div>
+                    <span class="release-form-element"></span>
+                    <h2>您还可以选择
+                        <em>3家</em> 装饰公司一起为您服务！</h2>
+                    <div class="layui-form-item release-checked">
+                        <div class="layui-input-block">
+                            {volist name="merchant" id="vo" offset="0" length='3'}
+                            <input type="checkbox" name="" title="{$vo.mt_name}" lay-skin="primary">
+                            {/volist}
+                        </div>
+                    </div>
+                    <div class="layui-form-item release-checked">
+                        <div class="layui-input-block">
+                            {volist name="merchant" id="vo" offset="3" length='3'}
+                            <input type="checkbox" name="" title="{$vo.mt_name}" lay-skin="primary">
+                            {/volist}
+                        </div>
+                    </div>
+                    <div class="layui-form-item release-checked">
+                        <div class="layui-input-block">
+                            {volist name="merchant" id="vo" offset="6" length='3'}
+                            <input type="checkbox" name="" title="{$vo.mt_name}" lay-skin="primary">
+                            {/volist}
+                        </div>
+                    </div>
+                    <div class="layui-form-item release-checked">
+                        <div class="layui-input-block">
+                            {volist name="merchant" id="vo" offset="9" length='3'}
+                            <input type="checkbox" name="" title="{$vo.mt_name}" lay-skin="primary">
+                            {/volist}
+                        </div>
+                    </div>
+
+                    <!-- 我对其他公司不了解请公装护航网为我推荐合适的公司 -->
+                    <div class="layui-form-item Do-not">
+                        <div class="layui-input-block">
+                            <input type="checkbox" lay-filter="huhang" class="huhang" name="" title="我对其他公司不了解请公装护航网为我推荐合适的公司" lay-skin="primary">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block" style="margin-left: 0;text-align: center !important;">
+                            <span class="layui-btn layui-btn-red" lay-submit lay-filter="addOrder" id="addOrder" style="width: 250px;
+                                margin-bottom: 60px;text-align: center !important;">
+                                <i>
+                                    <img src="__MERCH__/images/c.png" alt="" style="margin-top: -3px; margin-right: 5px;">
+                                </i>
+                                填写完毕 发布项目
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- 左 -->
+    <!-- 招标预约框-->
+    {include file="common/bidding" /}
+</div>
+<!-- 服务流程 -->
+
+{include file="common/serviceStep" /}
+<!-- 页面主体结束 -->
+
+<!-- 友情链接 -->
+{include file="common/friendlink" /}
+
+<!-- footer -->
+{include file="common/footer" /}
+{include file="common/bottom" /}
+<script>
+    layui.use(['form','jquery'] ,function(){
+        var form = layui.form,
+            $ = layui.jquery;
+        //根据联动的省份id查找城市
+        form.on('select(art_p_id)', function(data){
+            var p_id=data.value;
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('admin/common/getCityName')?>?p_id="+p_id,
+                data: {p_id:p_id},
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    var code=data.data;
+                    $("#city").html("<option value=''>城市</option>");
+                    $.each(code, function(i, val) {
+                        var option1 = $("<option>").val(val.c_id).text(val.c_name);
+                        $("#city").append(option1);
+                        form.render('select');
+                    });
+                    $("#city").get(0).selectedIndex=0;
+                }
+            });
+        });
+        form.on('select(art_p_ids)', function(data){
+            var p_id=data.value;
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('admin/common/getCityName')?>?p_id="+p_id,
+                data: {p_id:p_id},
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    var code=data.data;
+                    $("#city1").html("<option value=''>城市</option>");
+                    $.each(code, function(i, val) {
+                        var option1 = $("<option>").val(val.c_id).text(val.c_name);
+                        $("#city1").append(option1);
+                        form.render('select');
+                    });
+                    $("#city1").get(0).selectedIndex=0;
+                }
+            });
+        });
+        //提交要添加的数据
+        form.on('submit(addTypes)', function(){
+            $('#addTypes').removeAttr('lay-filter');
+            $.ajax({
+                type:"post",
+                url:"<?=url('index/point')?>",
+                data:$("#addForm").serialize(),
+                success:function (result) {
+                    console.log(result);
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            window.location.reload();
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }
+                },
+                error:function (error) {
+                    console.log(error);
+                }
+            })
+        });
+        //提交要添加的数据
+        form.on('submit(addOrder)', function(){
+            $('#addOrder').removeAttr('lay-filter');
+            var type_id=$('.checkeds').attr('data-value');
+            //已获取到项目类型的id。2018/8/13 10:10
+            $('#cus_type').val(type_id);
+            $.ajax({
+                type:"post",
+                url:"<?=url('index/point')?>",
+                data:$("#orderForm").serialize(),
+                success:function (result) {
+                    console.log(result);
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            window.location.reload();
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }
+                },
+                error:function (error) {
+                    console.log(error);
+                }
+            })
+        });
+
+        $('#typeData span:first').css('border','1px solid #E9131B');
+        $('#typeData span:first').addClass('checkeds');
+        $('#typeData p:first').css('color','#E9131B');
+    });
+</script>
+<script type="text/javascript" src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<script>
+    function getUrlParms(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)
+            return unescape(r[2]);
+        return null;
+    }
+    var refer=document.referrer;
+    var userIp= returnCitySN.cip;
+    var laiyuan=getUrlParms("laiyuan");
+    var chuangyi=getUrlParms("chuangyi");
+    var curUrl = window.location.href;
+    $('.laiyuan').val(laiyuan);
+    $('.chuangyi').val(chuangyi);
+    $('.userIp').val(userIp);
+    $('.curUrl').val(curUrl);
+    $('.refer').val(refer);
+</script>

@@ -1,0 +1,65 @@
+{include file="common/header" /}
+<div class="layui-body" style="margin-top: 60px">
+    <div style="margin-top: 5px;margin-bottom: 3px;">
+    <span class="layui-breadcrumb" lay-separator=">">
+        <a>平台设置</a>
+        <a>类型参数</a>
+        <a>区域管理</a>
+        <a><cite>修改省份</cite></a>
+    </span>
+        <div style="float:right;margin-right:20px;margin-bottom: 12px;">
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="<?=url('setup/province')?>">
+                <i class="layui-icon layui-icon-return"></i>
+                返回列表
+            </a>
+        </div>
+    </div>
+    <hr/>
+    <div style="padding: 15px;">
+        <form class="layui-form layui-form-pane1" id="provForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>品质名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="p_name" value="{$prov.p_name}" lay-verify="required" required placeholder="请输入品质名称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <span class="layui-btn" id="editProv">修改</span>
+                    <a class="layui-btn" href="<?=url('setup/province')?>">返回</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="common/footer" /}
+<script>
+    layui.use(['form','layer'], function(){
+        var form = layui.form,
+            layer = layui.layer;
+        form.on('radio', function(data){
+            console.log(data);
+        });
+        $('#editProv').click(function () {
+            $.ajax({
+                'type':"post",
+                'url':"<?=url('setup/editProvince')?>?p_id={$prov.p_id}",
+                'data':$('#provForm').serialize(),
+                'success':function (result) {
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            location.href="<?=url('setup/province')?>";
+                        });
+                    }else if(result.code == '2'){
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }else if(result.code == '3'){
+                        layer.msg(result.msg, {icon: 3, time: 3000});
+                    }
+                },
+                'error':function (error) {
+                    console.log(error);
+                }
+            })
+        });
+    });
+</script>

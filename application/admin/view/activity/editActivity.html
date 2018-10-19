@@ -1,0 +1,272 @@
+{include file="common/header" /}
+<style>
+    .one-pan{
+        position: relative;
+    }
+    .one{
+        position: absolute;
+        left:300px;
+        top:0;
+    }
+    .logoPre{
+        width: 216px;
+        height: 150px;
+    }
+    .casePre{
+        display:none;
+    }
+</style>
+<div class="layui-body" style="margin-top: 60px">
+    <div style="margin-top: 5px;margin-bottom: 3px;">
+    <span class="layui-breadcrumb" lay-separator=">">
+        <a>平台设置</a>
+        <a>平台活动</a>
+        <a href="<?=url('activity/activity')?>">活动列表</a>
+        <a><cite>修改活动</cite></a>
+    </span>
+        <div style="float:right;margin-right:20px;margin-bottom: 12px;">
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="<?=url('activity/activity')?>">
+                <i class="layui-icon layui-icon-return"></i>
+                返回列表
+            </a>
+        </div>
+    </div>
+    <hr/>
+    <div style="padding: 15px;">
+        <form class="layui-form layui-form-pane1" id="addForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>基础信息</label>
+                <div class="layui-input-inline">
+                    <select name="act_p_id" lay-verify="required" lay-filter="art_p_id">
+                        <option value="">请选择省份</option>
+                        {volist name='prov' id='vo'}
+                        <option value="{$vo.p_id}" {if condition="$activity.act_p_id eq $vo.p_id"}selected{/if}>{$vo.p_name}</option>
+                        {/volist}
+                    </select>
+                </div>
+                <div class="layui-input-inline">
+                    <select name="act_c_id" lay-verify="required" id="art_c_id" lay-filter="art_c_id">
+                        <option value="">请选择城市</option>
+                        {volist name='city' id='vo'}
+                        <option value="{$vo.c_id}" {if condition="$vo.c_id eq $activity.act_c_id"}selected{/if}>{$vo.c_name}</option>
+                        {/volist}
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>活动主题</label>
+                <div class="layui-input-block">
+                    <input type="text" name="act_title" value="{$activity.act_title}" lay-verify="required|title" placeholder="请输入活动主题" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>活动地址</label>
+                <div class="layui-input-block">
+                    <input type="text" name="act_address" value="{$activity.act_address}" lay-verify="required|title" placeholder="请输入活动地址" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>活动日期</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="act_time" id="act_time" readonly value="{$activity.act_time}" lay-verify="required" placeholder="请选择活动日期" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item one-pan">
+                <label class="layui-form-label"><span style="color: red;">*</span>活动封面图</label>
+                <div {if condition="$activity.act_img eq null"} class="layui-upload-drag" {/if} id="uploadLogo" >
+                <image  id="casePre"
+                        {if condition="$activity.act_img eq null"}
+                        {else/}
+                src="__PUBLICS__{$activity.act_img}"
+                class="logoPre"
+                {/if}
+                >
+                <input type="hidden" lay-verify="imgReg"  name="act_img" id="act_img" value="{$activity.act_img}"/>
+                </image>
+                <div {if condition="$activity.act_img eq null"} {else/}class="casePre" {/if} id="casePre11" >
+                <i class="layui-icon"></i>
+                <p>请点击此处上传封面图片</p>
+            </div>
+    </div>
+    <div class="one">
+        <div class="layui-form-mid layui-word-aux" style="margin-left: 39px; ">图片要求：1200*800px，最大1024KB，支持JPG/JEPG/PNG格式。</div>
+        <div class="layui-form-item">
+            <textarea name="act_img_alt" style="resize:none;width: 1315px;height: 115px; margin-left:39px;"  placeholder="图片描述，建议不超过15个字（等同图片ALT属性）" class="layui-textarea">{$activity.act_img_alt}</textarea>
+        </div>
+    </div>
+</div>
+<div class="layui-form-item layui-form-text">
+                <label class="layui-form-label"><span style="color: red;">*</span>活动内容</label>
+                <div class="layui-input-block">
+                    <textarea id="demo" placeholder="请输入活动内容" lay-verify="content" class="layui-textarea">{$activity.act_content}</textarea>
+                    <textarea name="act_content" id="content" style="display: none;" lay-verify="content" class="layui-textarea">{$activity.act_content}</textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">活动外链</label>
+                <div class="layui-input-block">
+                    <input type="text" name="act_url" value="{$activity.act_url}" lay-verify="urlText" placeholder="请输入活动外链" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <span class="layui-btn" id="addType" lay-submit lay-filter="addType">修改</span>
+                    <a class="layui-btn layui-btn-primary" href="<?=url('activity/activity')?>">返回</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="common/footer" /}
+<script>
+    layui.use(['form','upload','jquery','upload','layedit','laydate'] ,function(){
+        var form = layui.form,
+            upload = layui.upload,
+            laydate = layui.laydate,
+            layedit = layui.layedit,
+            $ = layui.jquery;
+        form.on('radio', function(data){
+            console.log(data);
+        });
+        laydate.render({
+            elem: '#act_time'
+            ,range: '~'
+        });
+        layedit.set({
+            uploadImage: {
+                url: '/admin/platform/editUpload' //接口url
+                ,type: 'post', //默认post
+                success:function(res){
+                    console.log(res);
+                },
+                error:function (res) {
+                    console.log(res);
+                }
+            }
+        });
+        var index = layedit.build('demo');
+        //图片上传
+        upload.render({
+            elem: '#uploadLogo'
+            ,url: '{:url("activity/upload")}'
+            ,size:600 //限制文件大小，单位 KB
+            ,ext: 'jpg|png|gif'
+            ,accept: 'images' //限制文件大小，单位 KB
+            ,before: function(input){
+                loading = layer.load(2, {
+                    shade: [0.2,'#000']
+                });
+            }
+            ,done: function(res){
+                $('#casePre').removeAttr('src');
+                $('#act_img').val('');
+                console.log(res);
+                layer.close(loading);
+                $('#act_img').val(res.path);
+                $('#uploadLogo').removeClass('layui-upload-drag');
+                $('#casePre').css('width','216px');
+                $('#casePre').css('height','150px');
+                $('#casePre').attr('src',"__PUBLICS__"+res.path);
+                $('#display').hide();
+                layer.msg(res.msg, {icon: 1, time: 1000});
+            }
+            ,error: function(res){
+                layer.msg(res.msg, {icon: 2, time: 1000});
+            }
+        });
+        //根据联动的省份id查找城市
+        form.on('select(art_p_id)', function(data){
+            var p_id=data.value;
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('common/getCityName')?>?p_id="+p_id,
+                data: {p_id:p_id},
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    var code=data.data;
+                    $("#art_c_id").html("<option value=''>请选择城市</option>");
+                    $("#art_m_id").html("<option value=''>请选择或搜索商户</option>");
+                    $.each(code, function(i, val) {
+                        var option1 = $("<option>").val(val.c_id).text(val.c_name);
+                        $("#art_c_id").append(option1);
+                        form.render('select');
+                    });
+                    $("#art_c_id").get(0).selectedIndex=0;
+                }
+            });
+        });
+        //根据城市的id去查找商户
+        form.on('select(art_c_id)', function(data){
+            var c_id=data.value;
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('common/getMerchantName')?>?b_id="+c_id,
+                data: {c_id:c_id},
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    var code=data.data;
+                    $("#art_m_id").html("<option value=''>请选择或搜索商户</option>");
+                    $.each(code, function(i, val) {
+                        var option1 = $("<option>").val(val.mt_id).text(val.mt_short_name);
+                        $("#art_m_id").append(option1);
+                        form.render('select');
+                    });
+                    $("#art_m_id").get(0).selectedIndex=0;
+                }
+            });
+        });
+        //自定义验证规则
+        form.verify({
+            title: function(value){
+                if(value.length < 2){
+                    return '至少得2个字符啊';
+                }
+            }
+            ,imgReg:function (value) {
+                if(value.length <= 0){
+                    return '请上传活动封面图';
+                }
+            }
+            ,content: function(value){
+                var cont=layedit.getContent(index); //获取编辑器内容
+                if(cont.length <= 0){
+                    return '请输入活动内容！';
+                }
+            }
+            ,urlTest:function(value){
+                if(value.length >0 ){
+                    var Expression=/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+                    if(Expression.test(value)){
+                    }else{
+                        return "请输入正确的链接！";
+                    }
+                }else{
+                }
+            }
+        });
+        //提交要添加的数据
+        form.on('submit(addType)', function(){
+            $('#addType').removeAttr('lay-filter');
+            $('#content').html(layedit.getContent(index));
+            $.ajax({
+                'type':"post",
+                'url':"<?=url('activity/editActivity')?>?act_id={$activity.act_id}",
+                'data':$('#addForm').serialize(),
+                'success':function (result) {
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            location.href="<?=url('activity/activity')?>";
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }
+                },
+                'error':function (error) {
+                    console.log(error);
+                }
+            })
+        });
+    });
+</script>

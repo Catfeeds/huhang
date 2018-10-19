@@ -1,0 +1,1580 @@
+@import 'common.less';
+/**/
+/* 通用顶部 */  
+body{
+    background: #fefefe;
+}
+.layui-breadcrumb a:hover{
+    color:#E9131B!important;
+}
+.layui-form-select dl dd.layui-this{
+    background-color: #f2f2f2;
+    color: #333;
+}
+// 顶部
+.in-top-bg{
+    width: 100%;
+    height: 36px;
+    color: #333;
+    line-height: 36px;
+    background: #F5F5F5;
+    .layui-breadcrumb a{
+        color: #333!important;
+    }
+    .layui-breadcrumb a:hover{
+        color:#E9131B!important;
+    }
+    .left{
+        i{
+            display: inline-block;
+            margin-right: 10px;
+            margin-top: -1px;
+        }
+        span{
+            display: inline-block;
+            margin-left: 3px;
+            .cur;
+        }
+    }
+    .right{
+        em{
+            display: inline-block;
+            margin-left: 20px;
+            i{
+                display: inline-block;
+                margin-right: 5px;
+                margin-top: -2px;
+            }
+        }
+    }
+}
+
+
+// logo
+#header-logo-bg{
+    width: 100%;
+    background: #ffffff;
+}
+.header-logo{
+    height: 82px;
+    line-height: 82px;
+    .header-logo-right{
+        font-size: 12px;
+        width: 200px;
+        position: relative;
+        padding: 0 30px;
+        height: 32px;
+        margin-top: 26px;
+        line-height: 32px;
+        border-radius: 16px;
+        color: #ffffff;
+        i{
+            margin-left: 8px;
+            margin-top: 1px;
+            margin-right: 3px;
+        }
+        em{
+            color: #ffffff;
+        }
+    }
+}
+
+
+// nav 
+.nav-bg{
+    height: 40px;
+    background: #000000;
+    color: #ffffff;
+    ul > li {
+        width: 150px;
+        text-align: center;
+        line-height: 40px;
+        .pull-left;
+        margin-top: -5px;
+        cursor: pointer;
+        &:hover{
+            background: #E9131B;
+        }
+        a{
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            color: #fff;
+        }
+    }
+}
+.layui-carousel img{
+    height: 484px;
+}
+.ban-form{
+    h2{
+        text-align: center;
+        margin-bottom: 18px;
+        font-size: 22px;
+        color: #333333;
+    }
+    position: absolute;
+    left: 360px;
+    top: 33px;
+    z-index: 9999;
+    width: 330px;
+    height: 400px;
+    background: #ffffff;
+    padding: 22px 25px;
+    .layui-input-block{
+        margin-left: 0;
+    }
+    .layui-form-item {
+        .layui-input-inline{
+            width: 135px;
+            &:last-child{
+                margin-right: 0;
+            }
+        }
+    }
+    .layui-form-select dl dd.layui-this{
+        background: #eee;
+    }
+    p{
+      text-align: center;
+    }
+    button{
+        background: url(../images/c.png) no-repeat 58px center;
+    }
+}
+
+
+.drop-down-container{
+    text-align: center;
+     position: relative;
+     line-height: 35px!important;
+     cursor: pointer;
+     width: 82px;
+     border-left: 1px solid transparent;
+     border-right: 1px solid transparent;
+     border-bottom: 1px solid transparent;
+     a:hover{
+         color: #E9131B;
+     }
+     .drop-down-item{
+         background: #ffffff;
+         height: 106px;
+         display: none;
+         position: absolute;
+         left: -1px;
+         width: 82px;
+         border-left: 1px solid #ddd;
+         border-right: 1px solid #ddd;
+         border-bottom: 1px solid #ddd;
+         z-index: 999999;
+     }
+ }
+ 
+
+
+// 办公空间
+.office-tab-btn {
+   background: #fffbfb;
+   height: 40px;
+   line-height: 40px;
+   margin: 18px 0 0; 
+   border: 1px solid #DEDEDE;
+   border-bottom: 1px solid transparent;
+    a{
+       display: inline-block;
+       font-size: 12px;
+       margin-right: 20px;
+    }
+    span{
+       display: inline-block;
+       width: 125px;
+       .c;
+       .cur;
+       .fl;
+       border-right: 1px solid transparent;
+       border-left: 1px solid transparent;
+    }
+    .btn-this{
+        background: #ffffff;
+        border-top: 2px solid #E9131B;
+        color: #E9131B;
+        height: 40px;
+        margin-top: -1px;
+        margin-left: -1px;
+        border-right: 1px solid #DEDEDE;
+        border-left: 1px solid #DEDEDE;
+    }
+   
+}
+.office-tab-contain{
+    border: 1px solid #ddd;
+}
+.office-tab-contain li{
+    display: none;
+    padding: 10px 10px 0;
+    &:first-child{
+        display: block;
+    }
+    .left{
+        width: 584px;
+        overflow: hidden;
+        &:hover {
+            img{
+                transform: scale(1.1);
+            }
+            .left-item{
+                display: inline;
+            }
+        }
+        img{
+            width: 584px;
+            height: 442px;
+            transition: .5s;
+        }
+        position: relative;
+        .left-item{
+            height: 85px;
+            background: rgba(0,0,0,.3);
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: 0 auto;
+            color: #ffffff;
+            padding-top: 10px;
+            padding-left: 30px;
+            display: none;
+            transition: .5s;
+            h3{
+                font-size: 18px;
+            }
+            p{
+                font-size: 12px;
+                margin-top: 10px;
+            }
+        }
+    }
+    .right{
+        margin-left: 9px;
+        width: 582px;
+        span{
+            display: inline-block;
+            overflow: hidden;
+            position: relative;
+            .fl;
+            margin-bottom: 12px;
+            margin-right: 10px;
+            &:nth-of-type(2n){
+                margin-right: 0;
+            }
+            &:hover{
+                img{
+                    transform: scale(1.1);
+                }
+                .left-item{
+                    display: inline;
+                }
+            } 
+            img{
+                width: 285px;
+                height: 215px;
+                transition: .5s;
+            }
+
+
+        }
+        .left-item{
+            display: none;
+            height: 60px;
+            color: #ffffff;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: 0 auto;
+            background: rgba(0,0,0,.3);
+            padding-left: 13px;
+            padding-top: 10px;
+            h3{
+                font-size: 16px;
+            }
+            p{
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+.com-lists{
+    margin-top: 20px;
+    > div{
+        width: 594px;
+        border: 1px solid #DEDEDE;
+        h3{
+            height: 40px;
+            line-height: 40px;
+            background: #fffbfb;
+            border-bottom: 1px solid #DEDEDE;
+            padding: 0px 15px;
+        }
+        ul{
+            background: #ffffff;
+            padding: 20px 15px 0;
+            li{
+                margin-bottom: 12px;
+                border-bottom: 1px dashed #ddd;
+                padding-bottom: 15px;
+                &:last-child{
+                    border-bottom: 1px solid transparent;
+                }
+                a{
+                    color: #666666;
+                    &:hover{
+                        color: #E9131B;
+                    }
+                }
+                .left{
+                    width: 405px;
+                    margin-right: 35px;
+                    h4 a{
+                        font-size: 16px;
+                        color: #333333;
+                        display: inline-block;
+                        margin-bottom: 10px;
+                    }
+                    p{
+                        color: #999999;
+                        overflow : hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                    }
+                }
+                .right{
+                    width: 118px;
+                    height: 79px;
+                }
+            }
+        }
+    }
+}
+
+
+
+// 招标模版
+.bidding-left {
+    width: 900px;
+    .layui-table td{
+        padding: 19px 15px;
+    }
+    .layui-table thead tr{
+        background-color: #fffbfb;
+    }
+    .layui-table tbody tr:hover{
+        background-color: #fffbfb;
+    }
+    .layui-table td, .layui-table th{
+        font-size: 16px;
+    }
+    td{
+        text-align: left;
+        span{
+            display: block;
+            font-size: 12px;
+            color: #999;
+        }
+        button{
+            width: 100px;
+            height: 26px;
+            font-size: 12px;
+            line-height: 26px;
+            margin-top: 5px;
+            background-color: #999;
+        }
+        h3{
+            color: #555555;
+            font-weight: 600;
+        }
+    }
+}
+.bidding-right{
+    width: 280px;
+    margin-top: 10px;
+    > span img{
+        width: 280px;
+        height: 190px;
+    }
+    .top{
+        border: 1px solid #DEDEDE;
+        ul{
+            padding: 0 25px;
+        }
+        li{
+            padding: 18px 0;
+            border-bottom: 1px dashed #DEDEDE;
+            em{
+                display: inline-block;
+                margin-right: 10px;
+                img{
+                    width: 40px;
+                }
+            }
+            div{
+                h4{
+                    font-size: 16px;
+                    color: #333333;
+                    margin-bottom: 4px;
+                }
+            }
+            &:last-child{
+                border-bottom:none;
+            }
+        }
+        > div{
+            height: 108px;
+            background: #eee;
+            padding: 17px;
+            font-size: 12px;
+            border-top: 1px solid #DEDEDE;
+            p{
+                font-size: 14px;
+                color: #333333;
+            }
+            i{
+                display: inline-block;
+                margin-top: 8px;
+                color: #666666;
+                overflow: hidden;
+                text-overflow:ellipsis;
+                white-space: nowrap;
+                em{
+                    display: inline-block;
+                    width: 3px;
+                    height: 3px;
+                    border-radius: 50%;
+                    background: #535353;
+                    .fl;
+                    margin-top: 7px;
+                    margin-right:5px;
+                   
+                }
+            }
+        }
+    }
+    // 下
+    .bto{
+        margin-top: 20px;
+        border: 1px solid #DEDEDE;
+        h3{
+            height: 40px;
+            line-height: 40px;
+            background: #fffbfb;
+            padding: 0px 10px;
+            font-size: 16px;
+            color: #333333;
+            i{
+                display: inline-block;
+                margin-right: 5px;
+            }
+            a{
+                color: #666666;
+                font-size: 14px;
+                &:hover {
+                    color: #777;
+                }
+            }
+        }
+        ul {
+            padding: 0px 16px;
+        }
+        ul li{
+            padding: 15px 0 13px;
+            border-bottom: 1px dashed #DEDEDE;
+            margin-bottom: 13px;
+           
+            div {
+                margin-bottom: 10px;
+                span{
+                    width: 216px;
+                    overflow : hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                }
+                a{
+                    display: inline-block;
+                    width: 216px;
+                }
+                img{
+                    width: 24px;
+                    height: 24px;
+                }
+            } 
+        }
+
+        .bto-btn{
+            text-align: center;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            a{
+                width: 100px;
+                height: 26px;
+                line-height: 26px;
+            }
+        }
+    }
+}
+
+// 友情链接
+.Links{
+    border: 1px solid #DEDEDE;
+    margin-top: 20px;
+    h3{
+        height: 36px;
+        line-height: 36px;
+        background: #fffbfb;
+        border-bottom: 1px solid #DEDEDE;
+        padding: 0px 10px;
+        font-size: 16px;
+    }
+    ul{
+        background: #ffffff;
+        padding: 18px 35px;
+        li{
+            margin-bottom: 10px;
+            &:last-child{
+                margin-bottom: 0;
+            }
+            a{
+                display: inline-block;
+                margin-right: 76px;
+                &:hover{
+                    color: #FF5722;
+                }
+                &:last-child{
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}
+
+
+// 尾部
+.footer{
+    height: 156px;
+    margin-top: 20px;
+    background: #313131;
+    color: #ffffff;
+    padding-top: 27px;
+    .footer-left{
+        ul{
+            border-right: 1px solid #7D7D7D;
+        }
+        li{
+            margin-right: 85px;
+            .fl;
+        }
+        h3{
+            margin-bottom: 10px;
+        }
+        a{
+            display: block;
+            color: #999999;
+            font-size: 12px;
+            margin-bottom: 7px;
+            &:hover{
+                color: #ddd;
+            }
+        }
+    }
+    .footer-mider{
+        padding: 0px 101px;
+        border-right: 1px solid #7D7D7D;
+        div{
+            display: inline-block;
+            &:last-child{
+                margin-left: 30px;
+            }
+            img{
+                width: 66px;
+                height: 66px;
+            }
+            em{
+                display: block; 
+                text-align: center;
+                margin-top: 10px;
+            }
+           
+        }
+    }
+    .footer-right{
+        margin-left: 91px;
+        p{
+            margin-bottom: 15px;
+        }
+        img{
+            margin-right: 5px;
+        }
+    }
+}
+
+.Step{
+    height: 105px;
+    background: #000;
+    padding-top: 18px;
+    .c;
+    .Step-con{
+        .layui-breadcrumb a{
+            color: #999999!important;
+           
+        }
+        p{
+            color: #999999;
+            margin-top: 5px;
+            a{
+                display: inline-block;
+                margin-right: 5px;
+            }
+            a:hover{
+                color: #999!important;
+            }
+        }
+    }
+}
+
+
+// 面包屑
+.crumbs{
+    margin: 12px auto;
+}
+
+// 项目案例页面
+.comban{
+    position: relative;
+    img{
+        width: 100%;  
+    }
+    .comban-con{
+        position: absolute;
+        display: inline-block;
+        width: 327px;
+        top:103px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        div{
+            background: #ffffff;
+            border-radius: 2px;
+            height: 38px;
+            margin-bottom: 10px;
+            input{
+                width: 277px;
+                border: none;
+                height: 38px;
+                padding-left: 10px;
+            }
+          
+        }
+        p {
+            
+            padding: 0px 5px;
+            a{
+                color: #ffffff;
+                display: inline-block;
+                margin-right: 26px;
+                &:hover{
+                    color: #ff6600
+                }
+                &:last-child{
+                    margin-right: 0;
+                }
+            }
+        }
+      
+      
+    }
+}
+// 分类筛选
+.porject-filter{
+    height: 88px;
+    background: #ffffff;
+    border: 1px solid #DEDEDE;
+    .filter-left{
+        width: 122px;
+        text-align: center;
+        border-right: 1px solid #DEDEDE;
+        p{
+            height: 44px;
+            line-height: 44px;
+            img{
+                margin-right: 5px;
+            }
+            &:first-child{
+                border-bottom: 1px solid #DEDEDE;
+            }
+        }
+    }
+    .filter-right{
+        .filter-this{
+            background: #ff6600;
+        }
+        li{
+            height: 44px;
+            line-height: 44px;
+            padding-left: 20px;
+            span{
+                display: inline-block;
+                width: 38px;
+                height: 28px;
+                background: #999999;
+                text-align: center;
+                line-height: 28px;
+                color: #ffffff;
+                border-radius: 2px;
+                margin-right: 27px;
+                .cur;
+            }
+            a{
+                display: inline-block;
+                margin-right: 27px;
+            }
+        }
+    }
+}
+
+
+.Display-lists{
+    margin: 20px auto 0;
+    li{
+        width: 291px;
+        border: 1px solid #DEDEDE;
+        .fl;
+        margin-right: 11px;
+        margin-bottom: 12px;
+        i{
+            display: inline-block;
+            overflow: hidden;
+            img{
+                width: 100%;
+                height: 289px;
+                transition: .5s;
+            }
+        }
+       
+        div{
+            width: 100%;
+            background: #fff;
+            padding: 10px 8px;
+            h3{
+                margin-bottom: 10px;
+                color: #333333;
+            }
+            p span{
+                color: #666666;
+            }
+        }
+        &:nth-of-type(4n){
+            margin-right: 0;
+        }
+        &:hover {
+            box-shadow: 3px 3px 10px rgba(0,0,0,.3);
+            img{
+                transform: scale(1.1)
+            }
+        }
+    }
+}
+
+.paging{
+    text-align: center;
+    .paging-con{
+        .layui-btn-primary:hover{
+            border-color:#E9131B;
+        }
+        .layui-btn-sm{
+    
+            height: 32px;
+            line-height: 32px;
+        }
+        display: inline-block;
+        
+        p{
+            display: inline-block;
+            a{
+                display: inline-block;
+                width: 32px;
+                height: 32px;
+                line-height: 32px;
+                text-align: center;
+                margin-right: 10px;
+                background: #ffffff;
+                border: 1px solid #DEDEDE;
+                
+            }
+            span{
+                input{
+                    width: 32px;
+                    height: 32px;
+                    border: 1px solid #ddd;
+                    text-align: center;
+                    color: #999999;
+                    margin: 0 5px;
+                }
+                button{
+                    margin-top: 2px;
+                    margin-left: 10px;
+                }
+            }
+        }
+        .paging-this{
+            background: #E9131B;
+            color: #ffffff;
+            border: 1px solid #E9131B;
+        }
+    }
+}
+
+.step-nav{
+    height: 180px;
+    margin-top: 20px;
+    background: #ffffff;
+    border: 1px solid #DEDEDE;
+    padding: 34px 45px;
+    li{
+        .fl;
+        margin-right: 48px;
+        display: inline-block;
+        p{
+            margin-top: 12px;
+            text-align: center;
+        }
+        &:last-child{
+            margin-right: 0;
+        }
+    }
+}
+.layer-hide{
+    display: none;
+}
+
+// 通用弹出层
+.com-layer .layui-layer-title{
+    background: #ffffff!important;
+    border-bottom: none!important;
+    color: #E9131B;
+    font-weight: 600;
+    padding: 0 80px 0 26px;
+}
+.com-layer{
+    .com-layer-item{
+        padding: 0 42px;
+        h2{
+            font-size: 22px;
+            color: #333333;
+            text-align: center;
+            margin-bottom: 31px;
+        }
+        .cmo-layer-left{
+            width: 256px;
+            height: 138px;
+            padding-top: 20px;
+            border-right: 1px dashed #dedede;
+            margin-right: 31px;
+            p{
+                width: 225px;
+                font-size: 14px;
+                color: #333333;
+                text-indent: 2em;
+                line-height: 24px;
+            }
+            a.layui-btn{
+                margin: 60px auto 0;
+            }
+        }
+        .cmo-layer-right{
+            width: 250px;
+            .layui-input-block{
+                margin-left: 0;
+            }
+        }
+        .layui-btn{
+            width: 156px;
+            display:block;
+            margin: 33px auto 0;
+        }
+    }
+}
+
+.Boutique{
+    border: 1px solid #dedede;
+    margin: 10px 0 0;
+    h3{
+        padding-left: 14px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 16px;
+        background-color: #fffbfb;
+        color: #333333;
+        border-bottom: 1px solid #dedede;
+    }
+    .Boutique-container{
+        padding: 20px 0 20px 20px;
+        border-bottom: 1px dashed #DEDEDE;
+        span {
+            display: inline-block;
+            margin-right: 21px;
+            img{
+                margin-top: 5px;
+            }
+        }
+        p{
+            font-size: 16px;
+        }
+        &:last-child{
+            border-bottom: none;
+        }
+        &:hover{
+            background-color: #fffbfb;
+        }
+    }
+}
+
+.Boutique-footer {
+    padding: 23px 16px;
+    background: #FFFBFB;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    h2{
+        font-size: 16px;
+        color: #333333;
+    }
+    p{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    h2,p{
+        margin-bottom: 10px;
+    }
+}
+
+
+.comm-left-one{
+    padding: 12px 13px;
+    border: 1px solid #d2d2d2;
+    .layui-input-block{
+        margin-left: 0;
+    }
+    p{
+        margin: 15px 0 20px;
+        text-align: center;
+    }
+}
+.comm-contact{
+    border: 1px solid #d2d2d2;
+    border-top:none;
+    h2{
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+        background: #FFFBFB;
+        border-bottom: 1px solid #d2d2d2;
+        margin-bottom: 20px;
+    }
+    p{
+        padding-right: 10px;
+        margin-bottom: 14px;
+        em{
+            display: inline-block;
+            width: 80px;
+            text-align: right;
+            .fl
+        }
+        span{
+            .fr;
+            display: inline-block;
+            width:180px;
+        }
+    }
+}
+
+
+.comm-right{
+    width: 900px;
+    margin-top: 10px;
+}
+
+
+// 面包屑
+.bread{
+    background: #FFFBFB;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #DEDEDE;
+    padding-left: 15px;
+    em{
+        color: #999999;
+    }
+}
+
+.honor-container{
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    padding: 14px 17px;
+    li{
+        .fl;
+        margin-bottom: 15px;
+        margin-right: 7px;
+        position: relative;
+        i{
+            display: inline-block;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            width: 80px;
+            height: 30px;
+            cursor: pointer;
+            line-height: 30px;
+            text-align: center;
+            color: #ffffff;
+            background: rgba(0,0,0,.4);
+            border-radius: 80px;
+        }
+        &:nth-of-type(3n){
+            margin-right: 0;
+        }
+        img{
+            width: 282px;
+            height: 195px;
+        }
+        p{
+            text-align: center;
+            margin-top: 11px;
+            display: block;
+        }
+    }
+}
+
+// 发布
+.release-item {
+    padding-left: 30px;
+    ul{
+        display: inline-block;
+        margin: 39px 0 69px;
+    }
+    li{
+        margin-right: 40px;
+        .fl;
+        &:last-child{
+            margin-right: 0;
+        }
+        span{
+            display: inline-block;
+            width: 74px;
+            height: 74px;
+            text-align: center;
+            line-height: 70px;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+        }
+        img{
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+        }
+        p{
+            color: #666;
+            margin-top: 10px;
+            text-align: center;
+        }
+        &:hover{
+            span{
+                border: 1px solid #E9131B;
+            }
+            p{
+                color: #E9131B;
+            }
+        }
+    }
+    
+}
+.comm-banner{
+    img{
+        width: 100%;
+    }
+}
+.release-item{
+    border: 1px solid #ddd;
+    border-top: none;
+    border-bottom: none;
+}
+.release-form{
+    border: 1px solid #ddd;
+    border-top: none;
+    text-align: center;
+    .layui-form-label{
+        width: 120px;
+        i{
+            color: #ff3535;
+        }
+    }
+    .layui-input-inline{
+        width: 200px;
+    }
+    .release-form-element{
+        display:block;
+        width: 95%;
+        height: 1px;
+        border-top: 1px dashed #ddd;
+        margin: 40px auto 33px;
+    }
+    h2{
+        font-size: 16px;
+        color: #333333;
+        margin-bottom: 27px;
+        em{
+            display: inline-block;
+            margin: 0 5px;
+            color: #E9131B;
+            font-size: 24px;
+        }
+    }
+    .release-checked .layui-input-block{
+        text-align: center;
+        margin-left: 0;
+        .layui-form-checkbox[lay-skin=primary]{
+            margin-right: 40px;
+        }
+        .layui-form-checkbox[lay-skin=primary]:hover i{
+            border-color: #E9131B;
+        }
+        .layui-form-checked[lay-skin=primary] i{
+            background-color: #E9131B;
+            border-color: #E9131B;
+        }
+    }
+}
+
+.Do-not{
+    width: 510px;
+    height: 40px;
+    border-radius: 80px;
+    background: #F5F5F5;
+    padding: 0;
+    margin: 30px auto 33px;
+    text-align: center;
+    .layui-input-block{
+        margin-left: 0;
+        display: inline-block;
+        height: 40px;
+        line-height: 40px;
+    }
+    .layui-form-checkbox[lay-skin=primary]:hover i{
+        border-color: #E9131B;
+    }
+    .layui-form-checked[lay-skin=primary] i{
+        background-color: #E9131B;
+        border-color: #E9131B;
+    }
+
+}
+.layui-form-item .layui-form-checkbox[lay-skin=primary]{
+    margin-top: 0px;
+}
+
+.profile-con{
+    padding: 18px 15px;
+    border: 1px solid #ddd;
+    border-top:  none;
+    h2{
+        font-size: 16px;
+        color: #333333;
+        height: 24px;
+        line-height: 24px;
+        border-left: 2px solid #E9131B;
+        padding-left: 5px;
+    }
+    p{
+        text-indent:2em;
+        margin: 16px 18px;
+    }
+    span{
+        display: block;
+        text-align: center;
+    }
+     img{
+        width: 740px;
+    }
+}
+
+// 公司动态
+.advisory-content{
+    border: 1px solid #ddd;
+    border-top: none;
+    border-bottom: none;
+    li {
+        padding: 21px 31px;
+        border-bottom: 1px solid #ddd;
+        &:hover{
+            background: #FFFBFB;
+        }
+        span img{
+            width: 140px;
+            height: 140px;
+        }
+        div{
+            width: 672px;
+            margin-left: 24px;
+            h3{
+                font-size: 18px;
+                margin-bottom: 10px;
+                a{
+                    color: #333333;
+                }
+                small{
+                    font-size: 16px;
+                }
+            }
+            p{
+                height: 62px;
+                margin-bottom: 10px;
+                overflow : hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+            }
+            em{
+                display:block;
+                height: 19px;
+                line-height: 19px;
+                vertical-align: middle;
+                color: #666666;
+                a{
+                    display: inline-block;
+                    height: 19px;
+                    line-height: 19px;
+                    margin-top: 5px;
+                    color: #999999;
+                }
+                i{
+                    display: inline-block;
+                    margin-right: 28px;
+                }
+            }
+        }
+
+    }
+}
+
+// 公司动态 详情
+.advisory-con-left{
+    width: 900px;
+    border: 1px solid #ddd;
+    padding: 16px 25px;
+    border-top: none;
+    .advi-share{
+       text-align: right;
+       i{
+           display: inline-block;
+           margin-right: 14px;
+       }
+        a{
+            .fr;
+            display: inline-block;
+            margin-right: 7px;
+        }
+    }
+
+    h1{
+        text-align: center;
+        font-size: 24px;
+        color: #e9131b;
+    }
+   
+    .advi-smallnav{
+        text-align: center;
+        margin: 15px 0 23px 0;
+    }
+    .advi-rea{
+        padding: 26px 24px 32px 39px;
+        background: #fafafa url(../images/ad6.png) no-repeat left top;
+        border: 1px solid #F5F5F5;
+        text-indent:2em;
+
+    }
+    .advi-container{
+        p{
+            line-height: 26px;
+            color: #333333;
+            margin: 18px 0;
+        }
+        span{
+            display: block;
+            text-align: center;
+            margin: 18px;
+        }
+        img{
+            width: 746px;
+        }
+    }
+    .advi-form{
+        form{
+            border: 1px solid #ddd;
+            padding: 24px;
+        }
+        span img{
+            width: 200px;
+            height: 200px;
+
+        }
+        em img{
+            width: 615px;
+        }
+    }
+}
+
+.decoration-con{
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-top: none;
+    li{
+        width: 282px;
+        margin-right: 11px;
+        margin-bottom: 12px;
+        &:nth-of-type(3n){
+            margin-right: 0;
+        }
+        &:hover img{
+            transform: scale(1.05)
+        }
+        span{
+            display: inline-block;
+            width: 282px;
+            height: 248px;
+            overflow: hidden;
+        }
+        .fl;
+        img{
+            width: 282px;
+            height: 248px;
+            transition: .5s;
+        }
+        div{
+            border: 1px solid #ddd;
+            width: 282px;
+            padding: 8px;
+            margin-top: -4px;
+            h4{
+                font-size: #333333;
+            }
+            p{
+                margin-top: 5px;
+                color: #666;
+            }
+        }
+    }
+}
+
+
+// 案例详情
+.project-show-left{
+    width: 900px;
+    >div{
+        background: #ffffff;
+    }
+    .top{
+        padding: 17px 22px;
+        border: 1px solid #DEDEDE;
+        border-top: none;
+        .swiper-container {
+            width: 100%;
+            height: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+      
+      
+        .gallery-top .swiper-slide > img{
+            width: 100%;
+            height: 446px;
+        }
+        .swiper-slide {
+            background-size: cover;
+            background-position: center;
+        }
+        .gallery-top {
+            height: 80%;
+            width: 100%;
+        }
+          .gallery-thumbs {
+            height: 20%;
+            box-sizing: border-box;
+            padding: 10px 0;
+          }
+          .gallery-thumbs .swiper-slide-active {
+            opacity: 1;
+          }
+        .swiper-button-prev{
+            background-image: url(../images/prev.png);
+        }
+        .swiper-button-next{
+            background-image: url(../images/next.png);
+        }
+        .swiper-button-prev, .swiper-button-next{
+            width: 50px;
+            height: 110px;
+            top: 45%;
+            background-color: rgba(0, 0, 0, .3);
+        }
+    }
+    .media{
+        height: 140px;
+        margin-top: 12px;
+        border: 1px solid #DEDEDE;
+        padding: 14px 18px;
+        .swiper-slide{
+            border: 2px solid transparent;
+            transition: .8s;
+            &:hover{
+                opacity: 0.8;
+            }
+        }
+        .gallery-thumbs img{
+            width: 100%;
+            height: 114px;
+        }
+        li{
+            .fl;
+            margin-right: 15px;
+            &:last-child{
+                margin-right: 0;
+            }
+            img{
+                width: 160px;
+                height: 112px;
+            }
+        }
+    }
+    .bto{
+        margin-top: 12px;
+        height: 120px;
+        padding: 25px 28px;
+        border: 1px solid #DEDEDE;
+    }
+}
+
+
+
+.address-top{
+    height: 60px;
+    line-height: 60px;
+    border: 1px solid #ddd;
+    border-top:  none;
+    padding-left: 15px;
+    .layui-input{
+        display: inline-block;
+    }
+}
+.address-bto{
+    border: 1px solid #ddd;
+    border-top: none;
+    height: 590px;
+    padding: 7px;
+    .layui-form-item{
+        margin-left: 0;
+    }
+    img{
+        width: 100%;
+        height: 100%;
+        margin-top: -10px;
+    }
+}
+
+
+.material-con{
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-top: none;
+    h2{
+        height: 24px;
+        line-height: 24px;
+        padding-left: 10px;
+        border-left: 2px solid #e9131b;
+        margin-bottom: 15px;
+    }
+    p{margin-bottom: 10px;}
+}
+
+.release-checked{
+    margin-bottom: 0!important;    
+}
+
+
+.quanping{
+    display: inline-block;
+    position: absolute;
+    z-index: 999999;
+    right: 35px;
+    top: 15px;
+    cursor: pointer;
+    width: 126px;
+    height: 40px;
+    line-height: 40px;
+    background: rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+    border-radius: 100px;
+    font-size: 14px;
+    img {
+         margin-top: -2px;
+         margin-right: 5px;
+    }
+}
+
+.qp-img{
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, .3);
+    z-index: 999;
+    display: none;
+    div{
+        position: relative;
+    }
+    i{
+        display: inline-block;
+        position: absolute;
+        right: -100px;
+        top: 30px;
+        font-size: 30px;
+        color: #ffffff;
+        cursor: pointer;
+    }
+    img{
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        width: 1200px;
+    }
+}
+
+
+
+
+
+
+
+// overflow : hidden;
+// text-overflow: ellipsis;
+// display: -webkit-box;
+// -webkit-line-clamp: 2;
+// -webkit-box-orient: vertical;

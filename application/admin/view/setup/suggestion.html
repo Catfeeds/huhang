@@ -1,0 +1,126 @@
+{include file="common/header" /}
+<div class="layui-body" style="margin-top: 60px">
+    <div style="margin-top: 5px;margin-bottom: 3px;">
+    <span class="layui-breadcrumb" lay-separator=">">
+        <a>平台设置</a>
+        <a>其他咨询</a>
+        <a><cite>投诉建议</cite></a>
+    </span>
+    </div>
+    <hr/>
+    <table lay-skin="line" class="layui-table" lay-filter="demo" lay-data="{height: 'full-200', cellMinWidth:80, url:'/admin/setup/suggestData/',limit:15,limits:[15,30,50] ,id: 'testReload',page:'true'}" >
+        <thead>
+        <tr>
+            <th lay-data="{field:'sg_bid', sort: true}">编号</th>
+            <th lay-data="{field:'sg_type'}">投诉类型</th>
+            <th lay-data="{field:'sg_content'}">投诉内容</th>
+            <th lay-data="{field:'sg_ip'}">投诉ip</th>
+            <th lay-data="{field:'sg_link'}">投诉人联系方式</th>
+            <th lay-data="{field:'sg_addtime'}">投诉时间</th>
+            <th lay-data="{toolbar: '#barDemo',width:160}">操作</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="replay"><i class="layui-icon">&#xe705;</i>查看</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
+</script>
+{include file="common/footer" /}
+<script>
+    layui.use(['table','form'], function(){
+        var table = layui.table
+            ,form = layui.form;
+        //修改排序
+        table.on('edit(demo)', function(obj){
+            var value = obj.value;
+            var type_id = obj.data.type_id;
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('setup/levelOrder')?>",
+                data:{type_id:type_id,value:value},
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    layer.msg(data.msg);
+                }
+            });
+        });
+        table.on('tool(demo)', function(obj){
+            var data = obj.data;
+            var sg_id = data.sg_id;
+            if(obj.event === 'replay'){
+                layer.open({
+                    type: 2,
+                    title: '回复',
+                    shadeClose: true,
+                    shade: false,
+                    maxmin: false,
+                    area: ['600px', '400px'],
+                    content: "<?=url('setup/suggestReplay')?>?sg_id="+sg_id
+                });
+            } else if(obj.event === 'del'){
+                layer.confirm('确定删除该投诉建议？删除后不可恢复！', {
+                    btn : [ '确定', '取消' ]//按钮
+                }, function() {
+                    $.ajax({
+                        'type':"get",
+                        'url':"<?=url('setup/delSuggestion')?>",
+                        'data':{sg_id:sg_id},
+                        'success':function (result) {
+                            if(result.code < 1){
+                                layer.msg(result.msg);
+                            }else {
+                                layer.msg(result.msg);
+                                layer.open({
+                                    title: '信息'
+                                    ,content: result.msg
+                                    ,yes: function(index){
+                                        layer.close(index);
+                                        window.location.href='<?=url("setup/suggestion")?>';
+                                    }
+                                    ,cancel:function (index) {
+                                        layer.close(index);
+                                        window.location.href='<?=url("setup/suggestion")?>';
+                                    }
+                                });
+                            }
+                        },
+                        'error':function () {
+                            console.log('error');
+                        }
+                    })
+                },function(){
+                    layer.msg('您已取消该操作！',{
+                        time: 2000
+                    });
+                });
+            }
+        });
+        //监听是否开启操作
+        form.on('switch(sexDemo)', function(obj){
+            var id = this.value;
+            //如果选中状态是true,后台数据将要改为显示
+            var change = obj.elem.checked;
+            if(change){
+                change = 1;
+            }else{
+                change = 2;
+            }
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('setup/levelStatus')?>?type_id="+id+ "&type_isable="+change,
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    layer.msg(data.msg);
+                }
+            });
+        });
+    });
+</script>
+<script type="text/javascript">
+    function addType(){
+        window.location.href="<?=url('setup/addLevel')?>";
+    }
+</script>

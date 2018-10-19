@@ -1,0 +1,154 @@
+{include file="common/header" /}
+<style>
+    .one-pan{
+        position: relative;
+    }
+    .one{
+        position: absolute;
+        left:300px;
+        top:0;
+    }
+    .logoPre{
+        width: 216px;
+        height: 150px;
+    }
+</style>
+<div class="layui-body" style="margin-top: 60px">
+    <div style="margin-top: 5px;margin-bottom: 3px;">
+    <span class="layui-breadcrumb" lay-separator=">">
+        <a>平台设置</a>
+        <a>类型参数</a>
+        <a href="<?=url('setup/rank')?>">等级指数</a>
+        <a><cite>修改等级</cite></a>
+    </span>
+        <div style="float:right;margin-right:20px;margin-bottom: 12px;">
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="<?=url('setup/rank')?>">
+                <i class="layui-icon layui-icon-return"></i>
+                返回列表
+            </a>
+        </div>
+    </div>
+    <hr/>
+    <div style="padding: 15px;">
+        <form class="layui-form layui-form-pane1" id="addForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>
+                    等级名称
+                </label>
+                <div class="layui-input-block">
+                    <input type="text" name="type_name" value="{$rank.type_name}" lay-verify="required" placeholder='请输入类型名称' autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item one-pan">
+                <label class="layui-form-label"><span style="color: red;">*</span>等级图标</label>
+                <div  {if condition="$rank.type_img eq null"} class="layui-upload-drag"{/if} id="uploadLogo1" style="display:inline-block;">
+                <image id="logoPre1" {if condition="$rank.type_img eq null"}
+                       {else/}
+                src="__PUBLICS__{$rank.type_img}"
+                class="logoPre"
+                {/if}>
+                <input type="hidden" lay-verify="imgReg" name="type_img" id="type_img" value="{$rank.type_img}"/>
+                </image>
+                {if condition="$rank.type_img eq null"}
+                <div id="display1">
+                    <i class="layui-icon"></i>
+                    <p>请点击此处上传封面图片</p>
+                </div>
+                {/if}
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>
+                    所需积分
+                </label>
+                <div class="layui-input-block">
+                    <input type="text" name="type_img_alt" value="{$rank.type_img_alt}" lay-verify="required" placeholder='请输入积分数额' autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label"><span style="color: red;">*</span>
+                    等级简介
+                </label>
+                <div class="layui-input-block">
+                    <textarea placeholder="请输入等级简介" name="type_remarks" lay-verify="required" class="layui-textarea">{$rank.type_remarks}</textarea>
+                </div>
+            </div>
+            <div class="layui-form-item" pane>
+                <label class="layui-form-label">是否可用</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="type_isable" value="1" title="是" {if condition="$rank.type_isable eq 1"}checked{/if} >
+                    <input type="radio" name="type_isable" value="2" title="否" {if condition="$rank.type_isable eq 2"}checked{/if} >
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <span class="layui-btn" id="addType">修改</span>
+                    <a class="layui-btn layui-btn-primary" href="<?=url('setup/rank')?>">返回</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="common/footer" /}
+<script>
+    layui.use(['form','upload','jquery'] ,function(){
+        var form = layui.form,
+            $ = layui.jquery,
+            upload = layui.upload;
+        form.on('radio', function(data){
+            console.log(data);
+        });
+        //长方形图像上传
+        upload.render({
+            elem: '#uploadLogo1'
+            ,url: '{:url("setup/upload")}'
+            ,size:600 //限制文件大小，单位 KB
+            ,ext: 'jpg|png|gif'
+            ,accept: 'images' //限制文件大小，单位 KB
+            ,before: function(input){
+                loading = layer.load(2, {
+                    shade: [0.2,'#000']
+                });
+            }
+            ,done: function(res){
+                $('#logoPre1').removeAttr('src');
+                $('#type_img').val('');
+                console.log(res);
+                layer.close(loading);
+                $('#type_img').val(res.path);
+                $('#uploadLogo1').removeClass('layui-upload-drag');
+                $('#logoPre1').css('width','216px');
+                $('#logoPre1').css('height','150px');
+                $('#logoPre1').attr('src',"__PUBLICS__"+res.path);
+                $('#display1').hide();
+                layer.msg(res.msg, {icon: 1, time: 1000});
+            }
+            ,error: function(res){
+                layer.msg(res.msg, {icon: 2, time: 1000});
+            }
+        });
+
+
+        //提交要添加的数据
+        $('#addType').click(function () {
+            $.ajax({
+                'type':"post",
+                'url':"<?=url('setup/editRank')?>?type_id={$rank.type_id}",
+                'data':$('#addForm').serialize(),
+                'success':function (result) {
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            location.href="<?=url('setup/rank')?>";
+                        });
+                    }else if(result.code == '2'){
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }else if(result.code == '3'){
+                        layer.msg(result.msg, {icon: 3, time: 3000});
+                    }
+                },
+                'error':function (error) {
+                    console.log(error);
+                }
+            })
+        });
+    });
+</script>

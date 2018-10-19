@@ -1,0 +1,235 @@
+{include file="common/top" /}
+<div id="banner">
+    <div class="bd" id="header1">
+        <ul>
+            {volist name="banner" id="ban"}
+            <li><a {if condition="$ban.ba_url neq null"} href="{$ban.ba_url}" target="_blank" {/if} style="background:url({$ban.ba_img}) center top no-repeat"></a></li>
+            {/volist}
+        </ul>
+    </div>
+    <div class="hd">
+        <ul>
+        </ul>
+    </div>
+    <a href="javascript:void(0)" class="prev bnt"><img src="__SUPER__/statics/images/bnt_about_prev_hover.png" /></a>
+    <a href="javascript:void(0)" class="next bnt"><img src="__SUPER__/statics/images/bnt_about_next_hover.png" /></a>
+</div>
+
+<div class="clear"></div>
+
+
+<!--============================content============================= -->
+<article id="s_main_box" >
+    <section id="s_case">
+        <div class="main_box">
+            <div class="s_title"  >
+                <strong>Classic case</strong>
+                <h1>项目案例</h1>
+
+            </div>
+            <div class="content" id="list_video" >
+                <ul>
+                    {volist name="caseInfo" id="case"}
+                        <li  aos="fade-up" aos-duration="3000">
+                        <a href="<?=url('index/detail')?>?case_id={$case.case_id}">
+                            <div class="pic_box"><img src="{$case.case_img}" alt="{$case.case_title}"  /></div>
+                            <h1>{$case.case_title}</h1>
+                        </a>
+                    </li>
+                    {/volist}
+                    <div class="clear"></div>
+                </ul>
+
+            </div>
+            <a class="s_more" href="<?=url('index/example')?>">查看更多</a>
+        </div>
+
+    </section>
+
+    <section id="s_service">
+        <div class="j_parallax" data-stellar-background"-ratio=-0-">
+        <div class="main_box">
+            <section id="s_about" aos="fade-up" aos-duration="3000">
+                <div class="title">
+                    <strong>ABOUT</strong>
+                    <h1>公司简介</h1>
+                </div>
+                <div class="p">{$merchant.mt_description}</div>
+                <a href="<?=url('index/about')?>" class="more">more +</a>
+            </section>
+            <div class="content" >
+                <ul>
+                    <li  aos="fade-up" aos-duration="1000">
+
+                        <div class="pic_box"><img  src="__SUPER__/statics/images/icon_service1.png" alt="" /></div>
+                        <h1><strong>前期沟通</strong><span>Communicate</span></h1>
+
+                    </li>
+                    <li  aos="fade-up" aos-duration="3000">
+
+                        <div class="pic_box"><img  src="__SUPER__/statics/images/icon_service2.png" alt="" /></div>
+                        <h1><strong>风格与材质选择</strong><span>Style choice</span></h1>
+
+                    </li>
+                    <li  aos="fade-up" aos-duration="1000">
+
+                        <div class="pic_box"><img  src="__SUPER__/statics/images/icon_service3.png" alt="" /></div>
+                        <h1><strong>设计出图</strong><span>Design a drawing</span></h1>
+
+                    </li>
+                    <li  aos="fade-up" aos-duration="3000">
+
+                        <div class="pic_box"><img  src="__SUPER__/statics/images/icon_service4.png" alt="" /></div>
+                        <h1><strong>开始施工</strong><span>Construction</span></h1>
+
+                    </li>
+                    <li  aos="fade-up" aos-duration="2000">
+
+                        <div class="pic_box"><img  src="__SUPER__/statics/images/icon_service5.png" alt="" /></div>
+                        <h1><strong>验收</strong><span>Be completed</span></h1>
+
+                    </li>
+                    <div class="clear"></div>
+                </ul>
+                <div class="clear"></div>
+            </div>
+
+        </div>
+        </div>
+    </section>
+    <section id="s_team">
+        <div class="main_box">
+            <img class="mark" src="__SUPER__/statics/images/bg_team.jpg"  />
+            <div class="s_title">
+                <strong>Design team</strong>
+                <h1>设计团队</h1>
+                <p>对于设计，我们具备专业个性化创意</p>
+            </div>
+
+            <div class="content bd" style="height: 360px; overflow: hidden;">
+                <ul  >
+                    <li style="float: left;">
+                        <a href="javascript:void(0)">
+                            <img src="__SUPER__/api/thumb/941d0512fd747d5b4dff6b43f5a03edb.jpg" alt="杨艺帆"  aos="flip-down" aos-duration="3000" />
+                            <div class="text_box">
+                                <div class="box">
+
+                                    <h1>陈海州 </h1><span>创意总监</span>
+                                    <div class="p">
+                                        <p>设计总监，软装设计师，高级室内建筑师，建筑装饰设计师，环境艺术设计工程师，亚太酒店协会会员，陕西省建筑装饰协会会员，陕西省室内装饰协会会员，中国室内装饰协会会员。具有丰富的设计、软装配饰经验。</p><p><br/></p>		                	 			</div>
+
+                                </div>
+
+                            </div>
+                        </a>
+                    </li>
+                    <li style="float: left;">
+                        <a href="javascript:void(0)">
+                            <img src="__SUPER__/api/thumb/43c191c899bf91d75c308e56e22a1f78.jpg"  alt="李少雷"  aos="flip-down" aos-duration="3000" />
+                            <div class="text_box">
+                                <div class="box">
+
+                                    <h1>方升宇 </h1><span>创意总监</span>
+                                    <div class="p">
+                                        <p>高级室内建筑师，建筑装饰设计师，亚太酒店协会会员，陕西省建筑装饰协会会员，陕西省室内装饰协会会员，中国室内装饰协会会员。具有丰富的室内设计经验，曾与国内知名设计师多次交流学习。</p><p><br/></p>		                	 			</div>
+
+                                </div>
+
+                            </div>
+                        </a>
+                    </li>
+                    <li style="float: left;">
+                        <a href="javascript:void(0)">
+                            <img src="__SUPER__/api/thumb/49b08d4e30838f9fc5bc42ca5685dd70.jpg" alt="陈韬"  aos="flip-down" aos-duration="3000" />
+                            <div class="text_box">
+                                <div class="box">
+
+                                    <h1>陈韬 </h1><span>创意总监</span>
+                                    <div class="p">
+                                        <p>高级室内建筑师，建筑装饰设计师，亚太酒店协会会员，陕西省建筑装饰协会会员，陕西省室内装饰协会会员，中国室内装饰协会会员。从业12年间，精研高端住宅、酒店及商业地产和综合体等设计服务。本着对设计的诠释和尊重，呈现出符合时代精神和审美的设计作品。</p><p><br/></p>		                	 			</div>
+
+                                </div>
+
+                            </div>
+                        </a>
+                    </li>
+                    <li style="float: left;">
+                        <a href="javascript:void(0)">
+                            <img src="__SUPER__/api/thumb/f6755d9d6d25fd8b80754b64cf084dfe.jpg" alt="董艾"  aos="flip-down" aos-duration="3000" />
+                            <div class="text_box">
+                                <div class="box">
+
+                                    <h1>董艾 </h1><span>主案设计师</span>
+                                    <div class="p">
+                                        <p>软装设计师，高级室内建筑师，陕西省建筑装饰协会会员，陕西省室内装饰协会会员，中国室内装饰协会会员。<br/>具有丰富的室内设计、软装配饰经验，曾与国内知名设计师多次交流学习。</p><p><br/></p>		                	 			</div>
+
+                                </div>
+
+                            </div>
+                        </a>
+                    </li>
+                    <li style="float: left;">
+                        <a href="javascript:void(0)">
+                            <img src="__SUPER__/api/thumb/967c3c9447ee61b88df06330972ed774.jpg" alt="王朝辉"  aos="flip-down" aos-duration="3000" />
+                            <div class="text_box">
+                                <div class="box">
+
+                                    <h1>王朝辉 </h1><span>主案设计师</span>
+                                    <div class="p">
+                                        <p>高级室内建筑师，陕西省建筑装饰协会会员，陕西省室内装饰协会会员，中国室内装饰协会会员。<br/>具有丰富的设计、软装配饰经验，曾与国内知名设计师多次交流学习。</p><p><br/></p>		                	 			</div>
+
+                                </div>
+
+                            </div>
+                        </a>
+                    </li>
+
+                </ul>
+                <div class="hd">
+                    <a href="javascript:void(0)" class="prev">&lt;</a>
+                    <a href="javascript:void(0)" class="next">&gt;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="s_news">
+        <div class="main_box">
+            <div class="s_title"   aos="fade-up" aos-duration="3000">
+                <strong>information</strong>
+                <h1>新闻资讯</h1>
+            </div>
+            <div class="content" aos="fade-up" aos-duration="3000">
+                <div class="bd">
+                    <ul>
+                        {volist name="article" id="art"}
+                            <li >
+
+                            <div class="pic_box" >
+                                <a href="<?=url('index/details')?>?art_id={$art.art_id}" >
+                                    <img  src="{$art.art_img}" alt="{$art.art_title}" />
+                                </a>
+                            </div>
+                            <div class="text_box">
+                                <h1><a href="<?=url('index/details')?>?art_id={$art.art_id}" >{$art.art_title}</a></h1>
+                                <p>{$art.art_subtitle}
+                                    </p>
+                                <span>{$art.art_updatetime}</span>
+                                <a class="more" href="<?=url('index/details')?>?art_id={$art.art_id}">更多..</a>
+                            </div>
+
+                        </li>
+                        {/volist}
+                    </ul>
+                </div>
+                <div class="hd">
+                    <a href="javascript:void(0)" class="prev"></a>
+                    <a href="javascript:void(0)" class="next"></a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</article>
+<!--============================footer============================= -->
+{include file="common/footer" /}

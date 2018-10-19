@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="__LAY__/css/layui.css">
+    <script src="__PUBLIC__/js/jquery.js"></script>
+    <script src="__LAY__/layui.js"></script>
+</head>
+<form class="layui-form" id="addForm" style="margin-top: 10px;">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label"><b>活动标题</b></label>
+            <div class="layui-input-block" style="line-height: 36px">
+                {$activity.act_title}
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label"><b>活动时间</b></label>
+            <div class="layui-input-block" style="line-height: 36px">
+                {$activity.act_time}
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label"><b>活动地点</b></label>
+            <div class="layui-input-block" style="line-height: 36px">
+                {$activity.act_address}
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label"><b>活动详情</b></label>
+            <div class="layui-input-block" style="margin-top: 10px;">
+                {$activity.act_content}
+            </div>
+        </div>
+    </div>
+    {if condition="$activity.is_signed eq null"}
+
+    {else/}
+
+    {/if}
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">联系人姓名</label>
+            <div class="layui-input-block">
+                <input type="hidden" name="sign_act_id" value="{$activity.act_id}"/>
+                {if condition="$activity.is_signed eq null"}
+                <input type="text" name="sign_link_person" lay-verify="required|title" class="layui-input" placeholder="请输入联系人姓名"/>
+                {else/}
+                <input type="text" name="sign_link_person" readonly lay-verify="required|title" value="{$activity.is_signed.sign_link_person}" class="layui-input" placeholder="请输入联系人姓名"/>
+                {/if}
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">联系电话</label>
+            <div class="layui-input-block">
+                {if condition="$activity.is_signed eq null"}
+                <input type="text" name="sign_link_phone" lay-verify="required|phone" class="layui-input" placeholder="请输入联系人姓名"/>
+                {else/}
+                <input type="text" readonly value="{$activity.is_signed.sign_link_phone}" class="layui-input"/>
+                {/if}
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            {if condition="$activity.is_signed eq null"}
+            <span class="layui-btn" lay-submit="" lay-filter="editCus">保存</span>
+            {else/}
+            <span class="layui-btn">您{$activity.is_signed.sign_addtime|date="m月d日 H:i",###}已报名</span>
+            {/if}
+        </div>
+    </div>
+</form>
+</html>
+<script>
+    layui.use(['form', 'jquery'], function(){
+        var form = layui.form
+            ,$ = layui.jquery;
+        form.on('submit(editCus)', function(){
+            $('#addType').removeAttr('lay-filter');
+            $.ajax({
+                'type':"post",
+                'url':"<?=url('activity/signAct')?>",
+                'data':$('#addForm').serialize(),
+                'success':function (result) {
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            var index=parent.layer.getFrameIndex(window.name);
+                            parent.layer.close(index);
+                            window.parent.location.reload();
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }
+                },
+                'error':function (error) {
+                    console.log(error);
+                }
+            })
+        });
+    });
+</script>

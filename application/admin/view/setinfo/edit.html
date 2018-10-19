@@ -1,0 +1,108 @@
+{include file="common/header" /}
+<div class="layui-body" style="margin-top: 60px">
+    <div style="margin-top: 5px;margin-bottom: 3px;">
+    <span class="layui-breadcrumb" lay-separator=">">
+       <a>系统配置</a>
+        <a>基础配置</a>
+        <a href="<?=url('setinfo/index')?>">平台配置</a>
+        <a><cite>添加配置</cite></a>
+    </span>
+        <div style="float:right;margin-right:20px;margin-bottom: 12px;">
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="<?=url('setinfo/index')?>">
+                <i class="layui-icon layui-icon-return"></i>
+                返回列表
+            </a>
+        </div>
+    </div>
+    <hr/>
+    <div style="padding: 15px;">
+        <form class="layui-form layui-form-pane1" id="addForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>配置key</label>
+                <div class="layui-input-block">
+                    <input type="text" name="s_key" value="{$find.s_key}" readonly lay-verify="required" placeholder="请输入配置key" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>配置名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="s_desc" value="{$find.s_desc}" lay-verify="required" placeholder="请输入配置名称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>配置value</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="s_value" value="{$find.s_value}" id="s_value" lay-verify="required" placeholder="请输入配置value" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-input-inline">
+                    <button type="button" class="layui-btn layui-btn-danger" id="test7"><i class="layui-icon"></i>上传图片</button>
+                </div>
+            </div>
+            <div class="layui-form-item" pane>
+                <label class="layui-form-label">是否可用</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="s_is_able" value="1" title="是" {if condition="$find.s_is_able eq 1"}checked{/if}>
+                    <input type="radio" name="s_is_able" value="2" title="否" {if condition="$find.s_is_able eq 2"}checked{/if}>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <span class="layui-btn" id="addBtn">添加</span>
+                    <a class="layui-btn layui-btn-primary" href="<?=url('setinfo/index')?>">返回</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="common/footer" /}
+<script>
+    layui.use(['form','upload','jquery'] ,function(){
+        var form = layui.form,
+            $ = layui.jquery,
+            upload = layui.upload;
+        form.on('radio', function(data){
+            console.log(data);
+        });
+        $('#s_value').focus(function () {
+            $('#s_value').val('');
+        });
+        upload.render({
+            elem: '#test7'
+            ,url: '{:url("setinfo/upload")}'
+            ,size: 1024 //限制文件大小，单位 KB
+            ,done: function(res){
+                $('#s_value').val('');
+                $('#s_value').val(res.path);
+                $('#s_value').focus(function () {
+                    $('#s_value').val('');
+                });
+            }
+            ,error: function(res){
+                layer.msg(res.msg, {icon: 2, time: 1000});
+            }
+        });
+
+        //提交要添加的数据
+        $('#addBtn').click(function () {
+            $.ajax({
+                'type':"post",
+                'url':"<?=url('setinfo/edit')?>?s_id={$find.s_id}",
+                'data':$('#addForm').serialize(),
+                'success':function (result) {
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            location.href="<?=url('setinfo/index')?>";
+                        });
+                    }else if(result.code == '2'){
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }else if(result.code == '3'){
+                        layer.msg(result.msg, {icon: 3, time: 3000});
+                    }
+                },
+                'error':function (error) {
+                    console.log(error);
+                }
+            })
+        });
+    });
+</script>

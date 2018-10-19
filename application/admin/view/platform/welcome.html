@@ -1,0 +1,40 @@
+{include file="common/toper" /}
+<div class="layui-side layui-bg-black" style="top: 120px!important;">
+    <div class="layui-side-scroll">
+        <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+
+            <li class="layui-nav-item">
+                <a href="javascript:;">内容管理</a>
+                <!--所有平台站点案例列表-->
+                <dl class="layui-nav-child">
+                    <dd><a data-url="<?=url('platform/article')?>">文章管理</a></dd>
+                    <!--所有平台站点案例列表-->
+                    <dd><a data-url="<?=url('platform/example')?>">案例管理</a></dd>
+                    <!--所有商家资质管理-->
+                    <dd><a data-url="<?=url('platform/honor')?>">荣誉资质</a></dd>
+                    <!--所有站点，商家招聘-->
+                    <dd><a data-url="<?=url('platform/wanted')?>">招聘管理</a></dd>
+                    <!--平台所有商家以及站点问答-->
+                    <dd><a data-url="<?=url('platform/question')?>">问答管理</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">广告管理</a>
+                <!--所有分站以及商家广告管理-->
+                <dl class="layui-nav-child">
+                    <dd><a data-url="<?=url('platform/banner')?>">站点广告</a></dd>
+                    <dd><a data-url="<?=url('platform/bannerm')?>">商户广告</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class='layui-body'>
+    <iframe id='option' src="<?=url('index/welcome')?>" frameborder='no' width='100%' height='99%'>
+    </iframe>
+</div>
+<div class="layui-footer">
+    <!-- 底部固定区域 -->
+    © layui.com - 底部固定区域123
+</div>
+{include file="common/footer" /}

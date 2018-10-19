@@ -1,0 +1,124 @@
+<div class="the-con-right fr">
+         <span>
+                <img src="__PUBLIC__/images/x-adv1.png" alt="">
+         </span>
+    <!-- 招标 -->
+    <div class="delegate">
+        <h3>委托招标</h3>
+        <form id="addForm" class="layui-form">
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <select name="cus_type" lay-verify="required">
+                        <option value="" selected="">请选择您的招标类型</option>
+                        {volist name="typeData" id="type"}
+                        <option value="{$type.type_id}">{$type.type_name}</option>
+                        {/volist}
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <input type="text" name="cus_area"  class="layui-input" placeholder="请输入您的装修面积" lay-verify="required">
+                </div>
+            </div>
+            <input name='cus_position' type='hidden' value='平台端首页'>
+            <input type=hidden name=cus_from class=laiyuan>
+            <input type=hidden name=cus_origin class=chuangyi>
+            <input type=hidden name=cus_ip class=userIp>
+            <input type=hidden name=cus_link class=curUrl>
+            <input type=hidden name=refer class=refer>
+            <div class="layui-form-item">
+                <div class="layui-input-inline">
+                    <select name="cus_provid" lay-verify="required" lay-filter="art_p_id">
+                        <option value="" selected="">省份</option>
+                        {volist name="prov" id="vo"}
+                        <option value="{$vo.p_id}">{$vo.p_name}</option>
+                        {/volist}
+                    </select>
+                </div>
+                <div class="layui-input-inline">
+                    <select name="cus_cityid" id="city" lay-verify="required">
+                        <option value="" selected>城市</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <input type="text" name="cus_name" class="layui-input" placeholder="请输入您的称呼" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <input type="text" name="cus_phone" class="layui-input" placeholder="请输入您的手机号" lay-verify="phone">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block" style="text-align: center">
+                    <span lay-submit lay-filter="addType" id="addType" style="width: 100%"  class="layui-btn layui-icon layui-icon-form layui-btn-red layui-btn-fluid"> 免费设计报价</span>
+                </div>
+            </div>
+        </form>
+        <p>已有
+            <em>{$allOrder}</em>人预约服务</p>
+    </div>
+    <!-- 精品 -->
+    <div class="Boutique">
+        <h3>如何找合适的精品装修公司？</h3>
+        <div class="clearfix Boutique-container">
+                    <span class="fl">
+                        <img src="__PUBLIC__/images/the-icon11.png" alt="">
+                    </span>
+            <div class="fl">
+                <p>比方案</p>
+                <span>比4套设计方案</span>
+            </div>
+        </div>
+        <div class="clearfix Boutique-container">
+                    <span class="fl">
+                        <img src="__PUBLIC__/images/the-icon12.png" alt="">
+                    </span>
+            <div class="fl">
+                <p>比报价</p>
+                <span>比4家公司报价，选最佳</span>
+            </div>
+        </div>
+        <div class="clearfix Boutique-container">
+                    <span class="fl">
+                        <img src="__PUBLIC__/images/the-icon13.png" alt="">
+                    </span>
+            <div class="fl">
+                <p>比服务</p>
+                <span>比客服服务，让您省心，放心</span>
+            </div>
+        </div>
+        <div class="clearfix Boutique-container">
+                    <span class="fl">
+                        <img src="__PUBLIC__/images/the-icon14.png" alt="">
+                    </span>
+            <div class="fl">
+                <p>比保障</p>
+                <span>比6大保障帮助业主安心装修</span>
+            </div>
+        </div>
+    </div>
+    <!-- 大家都在看 -->
+    <div class="eve-watching">
+        <div class="watching-title">
+            <i></i>
+            <span>大家都在看</span>
+            <i></i>
+        </div>
+        <div class="watching-container">
+            {volist name="caseInfo" id="case" key="k"}
+            <div class="watching-item">
+                <a href="">
+                    <span>{$k}、{$case.case_title}…</span>
+                    <div class="watching-content">
+                        <img src="{$case.case_img}" alt="{$case.case_img_alt}">
+                    </div>
+                </a>
+            </div>
+            {/volist}
+        </div>
+    </div>
+</div>

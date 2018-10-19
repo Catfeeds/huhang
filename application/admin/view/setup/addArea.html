@@ -1,0 +1,100 @@
+{include file="common/header" /}
+<div class="layui-body" style="margin-top: 60px">
+    <div style="margin-top: 5px;margin-bottom: 3px;">
+    <span class="layui-breadcrumb" lay-separator=">">
+        <a>平台设置</a>
+        <a>类型参数</a>
+        <a href="<?=url('setup/area')?>">区域管理</a>
+        <a><cite>添加县区</cite></a>
+    </span>
+        <div  style="float:right;margin-right:20px;margin-bottom: 12px;">
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="<?=url('setup/area')?>">
+                <i class="layui-icon layui-icon-return"></i>
+                返回列表
+            </a>
+        </div>
+    </div>
+    <hr/>
+    <div style="padding: 15px;">
+        <form class="layui-form layui-form-pane1" id="addForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>省份选择</label>
+                <div class="layui-input-inline">
+                    <select name="p_id" lay-verify="required" lay-filter="art_p_id">
+                        <option value="">请选择省份</option>
+                        {volist name='prov' id='vo'}
+                        <option value="{$vo.p_id}">{$vo.p_name}</option>
+                        {/volist}
+                    </select>
+                </div>
+                <div class="layui-input-inline">
+                    <select name="c_id" lay-verify="required" id="c_p_id">
+                        <option value="">请选择城市</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>县区名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="a_name" lay-verify="required" placeholder="请输入县区名称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <span class="layui-btn" id="saveInfo" >添加</span>
+                    <a class="layui-btn" href="<?=url('setup/area')?>">返回</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="common/footer" /}
+<script>
+    layui.use(['form','jquery'], function(){
+        var     $ = layui.jquery
+            ,form=layui.form;
+        //根据联动的省份id查找城市
+        form.on('select(art_p_id)', function(data){
+            var p_id=data.value;
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('common/getCityName')?>?p_id="+p_id,
+                data: {p_id:p_id},
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    var code=data.data;
+                    $("#c_p_id").html("<option value=''>请选择城市</option>");
+                    $.each(code, function(i, val) {
+                        var option1 = $("<option>").val(val.c_id).text(val.c_name);
+                        $("#c_p_id").append(option1);
+                        form.render('select');
+                    });
+                    $("#c_p_id").get(0).selectedIndex=0;
+                }
+            });
+        });
+        $('#saveInfo').click(function () {
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('setup/addArea')?>",
+                data:$('#addForm').serialize(),
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    console.log(data.code);
+                    if(data.code == 1){
+                        layer.alert('添加成功！', {
+                            icon: 1,
+                            skin: 'layer-ext-moon',
+                            time: 2000,
+                            end: function(){
+                                window.location.href='<?=url("setup/area")?>';
+                            }
+                        });
+                    }
+                }
+            });
+        });
+    });
+</script>

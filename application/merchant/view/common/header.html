@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>工装平台-商家首页</title>
+    <link rel="stylesheet" href="__LAY__/css/layui.css">
+    <link rel="stylesheet" href="__MERCH__/css/swiper.css">
+    <link rel="stylesheet" href="__MERCH__/css/index.css">
+
+    <style>
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- 顶部 -->
+<div class="in-top-bg">
+    <div class="in-top con clearfix">
+        <!-- 左 -->
+        <div class="fl left city-con-bg">
+            <i class="fl">
+                <img src="__MERCH__/images/city.png" alt="">
+            </i>
+            <em>欢迎来到{$cityName.c_name}{$platName}网！</em>
+        </div>
+        <!-- 右 -->
+        <div class="fr right clearfix">
+            <div class="fl drop-down-container" href="">
+                <a>商务咨询</a>
+                <div class="drop-down-item">
+                    <p>
+                        <a href="<?=url('wanted/suggestion')?>">投诉建议</a>
+                    </p>
+                    <p>
+                        <a href="">商务合作</a>
+                    </p>
+                    <p>
+                        <a href="">城市加盟</a>
+                    </p>
+                </div>
+            </div>
+            <span class="layui-breadcrumb" lay-separator="|">
+                    <span lay-separator="">|</span>
+                    <a href="">地产合作</a>
+                    <a href="">商户服务</a>
+                </span>
+
+        </div>
+    </div>
+</div>
+
+<!-- logo -->
+<div id="header-logo-bg">
+    <div class="header-logo con clearfix">
+        <div class="fl left">
+            <h1>
+                <a href="<?=url('index/index')?>?mt_id={$mt_id}">
+                    <img src="__MERCH__/images/logo.png" alt="">
+                </a>
+            </h1>
+        </div>
+        <div class="fr header-logo-right" style="background: #FF6600;padding-left: 10px;">
+            <i class="layui-icon fl layui-icon-praise"></i>
+            工装护航口碑值
+            <em>666666</em>
+        </div>
+    </div>
+</div>
+
+<!-- nav -->
+<div class="nav-bg">
+    <div class="nav-con con">
+        <ul class="clearfix">
+            {volist name="navInfo" id="nav"}
+                <li>
+                    <a href="/merchant/{$nav.nav_url}.html?mt_id={$mt_id}">{$nav.nav_title}</a>
+                </li>
+            {/volist}
+        </ul>
+    </div>
+</div>

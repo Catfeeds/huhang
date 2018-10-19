@@ -1,0 +1,213 @@
+/*
+ * @Author: caolei 
+ * @Date: 2018-06-06 14:45:15 
+ * @Last Modified by: caolei
+ * @Last Modified time: 2018-06-14 16:29:32
+ */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+html,
+body {
+    width: 100%;
+}
+
+body{
+    color: #555;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+}
+// 字体库 引入
+// @font-face {
+//     font-family: fangzheng;
+//     src: url('../fonts/fangzhneg.ttf');
+// }
+a{
+    color: #555;
+}
+a,
+a:hover {
+    text-decoration: none;
+}
+
+input,
+textarea,
+select,
+button {
+    font: 14px Verdana, Helvetica, Arial, sans-serif;
+    outline: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+    font-size: 100%;
+}
+em,
+i {
+    font-style: normal;
+}
+ul li,
+ol li{
+    list-style: none;
+}
+.cur{
+    cursor: pointer;
+}
+.clearfix:after,
+.clearfix:before {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.con {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+
+// 宽
+.w(@w:1200px){
+    width: @w;
+}
+// 高
+.h(@h:110px){
+    height: @h;
+}
+.bg(@color:#fff;){
+    background: @color;
+}
+// 外边距
+.mar(@mar:0 0){
+    margin: @mar;
+}
+.mt(@mt:30px){
+    margin-top: @mt;
+}
+.ml(@ml:30px){
+    margin-left: @ml;
+}
+.mr(@mr:30px){
+    margin-right: @mr;
+}
+.mb(@mb:30px){
+    margin-bottom: @mb;
+}
+
+//  内边距
+.pl(@pl:30px){
+    padding-left: @pl;
+}
+.pr(@pr:30px){
+    padding-right: @pr;
+}
+.pt(@pt:30px){
+    padding-top: @pt;
+}.pb(@pb:30px){
+    padding-bottom: @pb;
+}
+
+// 行高
+.lh(@lh:30px){
+    line-height: @lh;
+}
+// 字体大小
+.fz(@fz:16px){
+    font-size: @fz;
+}
+// 颜色
+.color(@c:#646464){
+    color: @c;
+}
+
+.dis(@d:inline-block){
+    display:@d;
+}
+.weight(@we:600){
+    font-weight: @we;
+}
+.c(@c:center){
+    text-align: @c;
+}
+.bd(@bd:#ddd){
+    border: 1px solid @bd;
+}
+
+.fl{
+    float: left;
+}
+.fr{
+    float: right
+}
+.bdr(@bdr:5px){
+    border-radius: @bdr;
+}
+.trs(@trs:1s){
+    transition: @trs;
+}
+.none{
+    display: none;
+}
+.fw(@fw:600){
+    font-weight:@fw; 
+}
+
+// 通用input
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:#808080; opacity:1;
+}
+ ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #808080;opacity:1;
+}
+ input:-ms-input-placeholder{
+    color: #808080;opacity:1;
+}
+ input::-webkit-input-placeholder{
+    color: #808080;opacity:1;
+}
+ input[type=number] {  
+    -moz-appearance:textfield;  
+}  
+input[type=number]::-webkit-inner-spin-button,  
+input[type=number]::-webkit-outer-spin-button {  
+    -webkit-appearance: none;  
+    margin: 0;  
+}
+
+
+.layui-btn-red {
+    background-color: #E9131B!important;
+}
+
+
+
+
+.text-red{
+    color: #E9131B;
+}
+
+

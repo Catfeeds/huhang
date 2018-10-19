@@ -1,0 +1,81 @@
+@import (less, optional) "common.less";
+
+body{
+    max-width:640px;
+    margin:0 auto;
+}
+
+.case-list {
+    padding:0.36rem;
+    background: #fff;
+    .mt(1.2rem);
+  
+}
+.case-list ul.list-header{
+    overflow: hidden;
+    .ml(-2%); 
+    li{ 
+        float:left;
+        border-radius: 3px;
+        border:1px solid #d9d9d9;
+        .w(23%);
+        .ml(2%); 
+        position: relative;
+        select{
+            border:none;
+            width: 100%;
+            padding:0.19rem 0.2rem;
+            text-align: center;
+            color:#000;
+            background: none;
+        }
+    }
+}
+ 
+.case-list ul.list-header li:nth-child(1),.case-list ul.list-header li:nth-child(2),.case-list ul.list-header li:nth-child(3){
+    .w(21%); 
+}
+.case-list ul.list-header li:nth-child(4){
+    .w(29%); 
+}
+ 
+.list-header li i {
+    position: absolute;
+    top:7px;
+    right:10px;
+    .w(10px);
+    display: inline-block;
+    img{
+        .w(100%);
+    }
+}
+.case-ul {
+    overflow: hidden;
+    
+    .ml(-4%);
+    li{
+        float:left;
+        .ml(4%);
+        width:46%;
+        border-radius: 5px;
+        overflow: hidden;
+        .mt(0.36rem);
+        img{
+            .w;
+            display:block;
+        }
+        p{
+            .h(0.6rem);
+            line-height:0.6rem;
+            text-align: center;
+            background: #f0f0f0;
+            color:#646464;
+            font-size:0.29rem
+        }
+    }
+}
+
+
+@media (-webkit-min-device-pixel-ratio: 2) {
+    
+}

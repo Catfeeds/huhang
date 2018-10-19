@@ -1,0 +1,414 @@
+{include file="common/header" /}
+<!-- 页面主体 -->
+<!-- banner -->
+<div class="release-banner">
+    <h1>
+        <img src="__PUBLIC__/images/release-tltle.png" alt="">
+    </h1>
+    <div class="release-ban-con clearfix">
+        <div class="release-ban-left fl">
+            <h2>
+                <small>已有
+                    <em>{$allOrder}</em> 位业主获取了装修预算
+                </small>
+            </h2>
+            <form id="addForm" class="layui-form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">项目情况</label>
+                    <div class="layui-input-inline">
+                        <input type="radio" name="cus_isrent" value="1" checked title="已租房">
+                        <input type="radio" name="cus_isrent" value="2" title="未租房">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">项目类型</label>
+                    <div class="layui-input-inline">
+                        <select name="cus_type" lay-verify="required">
+                            <option value="" selected>请选择您的招标类型</option>
+                            {volist name="typeData" id="type"}
+                            <option value="{$type.type_id}">{$type.type_name}</option>
+                            {/volist}
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"> </label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" name="cus_area" placeholder="请输入您的房屋面积" lay-verify="required">
+                    </div>
+                </div>
+                <input name='cus_position' type='hidden' value='平台端首页'>
+                <input type=hidden name=cus_from class=laiyuan>
+                <input type=hidden name=cus_origin class=chuangyi>
+                <input type=hidden name=cus_ip class=userIp>
+                <input type=hidden name=cus_link class=curUrl>
+                <input type=hidden name=refer class=refer>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"> </label>
+                    <div class="layui-input-inline" style="width: 125px;">
+                        <select name="cus_provid" lay-verify="required" lay-filter="art_p_id">
+                            <option value="" selected>省份</option>
+                            {volist name="prov" id="vo"}
+                            <option value="{$vo.p_id}">{$vo.p_name}</option>
+                            {/volist}
+                        </select>
+                    </div>
+                    <div class="layui-input-inline" style="width: 125px;">
+                        <select name="cus_cityid" id="city" lay-verify="required">
+                            <option value="" selected>城市</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">联系方式</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" name="cus_phone" placeholder="请输入您的手机号码" lay-verify="required">
+                        <p style="margin-top:17px;">
+                            <i style="color: #ff3535">*</i> 您的信息将被严格保密</p>
+                    </div>
+
+                </div>
+        </div>
+        <div class="release-ban-center" lay-submit lay-filter="addTypes" id="addTypes" >
+            <span> </span>
+            <em>
+                <i>立即</i>
+                <i>计算</i>
+            </em>
+
+        </div>
+        </form>
+        <div class="release-ban-right fr">
+            <h2>智能估价结果：</h2>
+            <ul>
+                <li>
+                    <span>项目名称</span>
+                    <em>估价结果</em>
+                </li>
+                <li>
+                    <span>方案设计</span>
+                    <em>
+                        <i>12345</i>元
+                    </em>
+                </li>
+                <li>
+                    <span>装修施工</span>
+                    <em>
+                        <i>？</i>元
+                    </em>
+                </li>
+                <li>
+                    <span>办公家具</span>
+                    <em>
+                        <i>？</i>元
+                    </em>
+                </li>
+            </ul>
+            <p>您还可以获得四家本地优秀装修公司为您免费上门量房、 免费做预算、免费出方案
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<!-- 轻松量房 -->
+<div class="release-navbar">
+    <div class="con">
+        <h3 class="release-title">轻松获取
+            <em>免费量房、 设计及报价</em>
+        </h3>
+        <ul class="clearfix">
+            <li>
+                    <span class="color-1">
+                        <img src="__PUBLIC__/images/release1.png" alt="">
+                    </span>
+                <p>通过网络</p>
+                <p>发布装修招标</p>
+            </li>
+            <li>
+                    <span class="color-2">
+                        <img src="__PUBLIC__/images/release2.png" alt="">
+                    </span>
+                <p>收到申请，装修顾问</p>
+                <p>30分钟内安排装修公司</p>
+            </li>
+            <li>
+                    <span class="color-3">
+                        <img src="__PUBLIC__/images/release3.png" alt="">
+                    </span>
+                <p>四家公司</p>
+                <p>免费上门量房预算</p>
+            </li>
+            <li>
+                    <span class="color-4">
+                        <img src="__PUBLIC__/images/release4.png" alt="">
+                    </span>
+                <p>4套方案报价</p>
+                <p>终极对比优选方案</p>
+            </li>
+            <li>
+                    <span class="color-5">
+                        <img src="__PUBLIC__/images/release5.png" alt="">
+                    </span>
+                <p>确定公司</p>
+                <p>签订合同开工大吉</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<!-- 四家装饰公司 -->
+<div class="release-shi">
+    <div class="release-shi-con con">
+        <h3 class="release-title">
+            四家装饰公司
+            <em>上门免费量房</em>
+        </h3>
+        <ul class="clearfix">
+            <li>
+                <div class="color-6">
+                    <img src="__PUBLIC__/images/release7.png" alt="">
+                </div>
+                <p>专业设计师精准测量项目空间尺寸</p>
+                <span></span>
+            </li>
+            <li>
+                <div class="color-7">
+                    <img src="__PUBLIC__/images/release8.png" alt="">
+                </div>
+                <p>专业设计师精准测量项目空间尺寸</p>
+                <span></span>
+            </li>
+            <li>
+                <div class="color-8">
+                    <img src="__PUBLIC__/images/release9.png" alt="">
+                </div>
+                <p>专业设计师精准测量项目空间尺寸</p>
+                <span></span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- 4套设计方案全面PK -->
+<div class="release-shi" style="background: #fff;">
+    <div class="release-shi-con con">
+        <h3 class="release-title">
+            <em>4套设计方案全面PK</em>
+            挑选满意的方案
+        </h3>
+        <ul class="clearfix">
+            <li>
+                <div class="color-9">
+                    <img src="__PUBLIC__/images/release10.png" alt="">
+                </div>
+                <p>专业设计师精准测量项目空间尺寸</p>
+                <span></span>
+            </li>
+            <li>
+                <div class="color-10">
+                    <img src="__PUBLIC__/images/release11.png" alt="">
+                </div>
+                <p>专业设计师精准测量项目空间尺寸</p>
+                <span></span>
+            </li>
+            <li>
+                <div class="color-11">
+                    <img src="__PUBLIC__/images/release12.png" alt="">
+                </div>
+                <p>专业设计师精准测量项目空间尺寸</p>
+                <span></span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- 4套预算竞价比对 -->
+<div class="release-shi" style="background: url(__PUBLIC__/images/release-bg2.png) no-repeat center;background-size: 100% 100%">
+    <div class="release-shi-con con">
+        <h3 class="release-title">
+            4套预算竞价比对
+            <em>选出合理的装修报价</em>
+        </h3>
+        <ul class="clearfix">
+            <li>
+                <div class="color-12">
+                    <img src="__PUBLIC__/images/release7.png" alt="">
+                </div>
+                <p>专业设计师精准测量项目空间尺寸</p>
+                <span></span>
+            </li>
+            <li>
+                <div class="color-13">
+                    <img src="__PUBLIC__/images/release13.png" alt="">
+                </div>
+                <p>专业设计师精准测量项目空间尺寸</p>
+                <span></span>
+            </li>
+            <li>
+                <div class="color-14">
+                    <img src="__PUBLIC__/images/release14.png" alt="">
+                </div>
+                <p>专业设计师精准测量项目空间尺寸</p>
+                <span></span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- 4套设计方案全面PK -->
+<div class="release-shig" style="background: #fff;">
+    <div class="release-shi-con con">
+        <h3 class="release-title">
+            他们刚刚
+            <em>免费获取</em>
+            了装修报价
+        </h3>
+        <table class="layui-table" lay-skin="nob">
+            <colgroup>
+                <col width="16.5%">
+                <col width="16.5%">
+                <col width="16.5%">
+                <col width="16.5%">
+                <col width="16.5%">
+                <col width="16.5%">
+            </colgroup>
+            <thead>
+            <tr>
+                <th>项目编号</th>
+                <th>项目类型</th>
+                <th>城市</th>
+                <th>建筑面积</th>
+                <th>装修当次</th>
+                <th>发布时间</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>123456</td>
+                <td>办公装修</td>
+                <td>西安</td>
+                <td>1562米²</td>
+                <td>中档装修</td>
+                <td>2018-06-23 14:07:08</td>
+            </tr>
+            <tr>
+                <td>123456</td>
+                <td>办公装修</td>
+                <td>西安</td>
+                <td>1562米²</td>
+                <td>中档装修</td>
+                <td>2018-06-23 14:07:08</td>
+            </tr>
+            <tr>
+                <td>123456</td>
+                <td>办公装修</td>
+                <td>西安</td>
+                <td>1562米²</td>
+                <td>中档装修</td>
+                <td>2018-06-23 14:07:08</td>
+            </tr>
+            <tr>
+                <td>123456</td>
+                <td>办公装修</td>
+                <td>西安</td>
+                <td>1562米²</td>
+                <td>中档装修</td>
+                <td>2018-06-23 14:07:08</td>
+            </tr>
+            <tr>
+                <td>123456</td>
+                <td>办公装修</td>
+                <td>西安</td>
+                <td>1562米²</td>
+                <td>中档装修</td>
+                <td>2018-06-23 14:07:08</td>
+            </tr>
+            <tr>
+                <td>123456</td>
+                <td>办公装修</td>
+                <td>西安</td>
+                <td>1562米²</td>
+                <td>中档装修</td>
+                <td>2018-06-23 14:07:08</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- 页面主体结束 -->
+
+<!-- 页脚 -->
+{include file="common/bottom" /}
+<script>
+    layui.use(['form','jquery'] ,function(){
+        var form = layui.form,
+            $ = layui.jquery;
+        //根据联动的省份id查找城市
+        form.on('select(art_p_id)', function(data){
+            var p_id=data.value;
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('admin/common/getCityName')?>?p_id="+p_id,
+                data: {p_id:p_id},
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    var code=data.data;
+                    $("#city").html("<option value=''>城市</option>");
+                    $.each(code, function(i, val) {
+                        var option1 = $("<option>").val(val.c_id).text(val.c_name);
+                        $("#city").append(option1);
+                        form.render('select');
+                    });
+                    $("#city").get(0).selectedIndex=0;
+                }
+            });
+        });
+        //提交要添加的数据
+        form.on('submit(addTypes)', function(){
+            $('#addTypes').removeAttr('lay-filter');
+            $.ajax({
+                type:"post",
+                url:"<?=url('index/point')?>",
+                data:$("#addForm").serialize(),
+                success:function (result) {
+                    console.log(result);
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            window.location.reload();
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }
+                },
+                error:function (error) {
+                    console.log(error);
+                }
+            })
+        });
+        $('#typeData span:first ').addClass('btn-this');
+    });
+</script>
+<script type="text/javascript" src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<script>
+    function getUrlParms(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)
+            return unescape(r[2]);
+        return null;
+    }
+    var refer=document.referrer;
+    var userIp= returnCitySN.cip;
+    var laiyuan=getUrlParms("laiyuan");
+    var chuangyi=getUrlParms("chuangyi");
+    var curUrl = window.location.href;
+    $('.laiyuan').val(laiyuan);
+    $('.chuangyi').val(chuangyi);
+    $('.userIp').val(userIp);
+    $('.curUrl').val(curUrl);
+    $('.refer').val(refer);
+</script>

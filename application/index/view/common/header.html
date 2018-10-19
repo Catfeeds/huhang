@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>工装平台-首页</title>
+    <link rel="stylesheet" href="__LAY__/css/layui.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/swiper.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/index.css">
+    <style>
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+<!-- 顶部 -->
+<div class="in-top-bg">
+    <div class="in-top con clearfix">
+        <!-- 左 -->
+        <div class="fl left city-con-bg">
+            <i class="fl">
+                <img src="__PUBLIC__/images/city.png" alt="">
+            </i>
+            <em>西安</em>
+            <div class="fr city-container">[城市切换]
+                <div class="city-item">
+                    <div class="city-item-title">
+                        <span>
+                            <a href="javascript:;">热门城市</a>
+                        </span>
+                        <span>
+                            <a href="javascript:;">ABCD</a>
+                        </span>
+                        <span>
+                            <a href="javascript:;">FGHJ</a>
+                        </span>
+                        <span>
+                            <a href="javascript:;">KLMN</a>
+                        </span>
+                        <span>
+                            <a href="javascript:;">QSTW</a>
+                        </span>
+                        <span>
+                            <a href="javascript:;">XYZ</a>
+                        </span>
+                    </div>
+                    <div class="city-item-con">
+                        <ul class="clearfix">
+                            <li>
+                                <a href="">北京市</a>
+                            </li>
+                            <li>
+                                <a href="">上海市</a>
+                            </li>
+                            <li>
+                                <a href="">西安市</a>
+                            </li>
+                            <li>
+                                <a href="">成都市</a>
+                            </li>
+                            <li>
+                                <a href="">重庆市</a>
+                            </li>
+                            <li>
+                                <a href="">重庆市</a>
+                            </li>
+                            <li>
+                                <a href="">北京市</a>
+                            </li>
+                            <li>
+                                <a href="">上海市</a>
+                            </li>
+                            <li>
+                                <a href="">西安市</a>
+                            </li>
+                            <li>
+                                <a href="">成都市</a>
+                            </li>
+                            <li>
+                                <a href="">重庆市</a>
+                            </li>
+                            <li>
+                                <a href="">重庆市</a>
+                            </li>
+                            <li>
+                                <a href="">北京市</a>
+                            </li>
+                            <li>
+                                <a href="">上海市</a>
+                            </li>
+                            <li>
+                                <a href="">西安市</a>
+                            </li>
+                            <li>
+                                <a href="">成都市</a>
+                            </li>
+                            <li>
+                                <a href="">重庆市</a>
+                            </li>
+                            <li>
+                                <a href="">重庆市</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 右 -->
+        <div class="fr right clearfix">
+            <div class="fl drop-down-container">
+                <a>商务咨询</a>
+                <div class="drop-down-item">
+                    <p>
+                        <a href="<?=url('index/suggestion')?>">投诉建议</a>
+                    </p>
+                    <p>
+                        <a href="<?=url('join/index')?>">商务合作</a>
+                    </p>
+                    <!--<p>-->
+                        <!--<a href="">城市加盟</a>-->
+                    <!--</p>-->
+                </div>
+            </div>
+            <span class="fl layui-breadcrumb" lay-separator="|">
+                    <span lay-separator="">|</span>
+                    <a href="<?=url('join/index')?>">地产合作</a>
+                </span>
+            <span class="fl layui-breadcrumb" lay-separator="|">
+                    <span lay-separator="">|</span>
+                </span>
+            <div class="fl drop-down-container" href="">
+                <a href="<?=url('register/login')?>">商户服务</a>
+                <div class="drop-down-item">
+                    <p>
+                        <a href="<?=url('register/login')?>">商户中心</a>
+                    </p>
+                    <p>
+                        <a href="<?=url('register/register')?>">商户入驻</a>
+                    </p>
+                </div>
+            </div>
+            <div class="top-phone-rwm fr">
+                <i class="fl">
+                    <img src="__PUBLIC__/images/phone.png" alt="">
+                </i>
+                {$hotLine}
+                <div class="top-phone-item">
+                    <h2>联系{$paltName[0]}客服</h2>
+                    <form class="layui-form">
+                        <div class="layui-form-item">
+                            <div class="layui-input-inline" style="margin-right: 0;">
+                                <input type="text" placeholder="请输入手机号码自动回拨" lay-verify="required" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-inline">
+                                <button class="layui-btn layui-btn-red" style="width: 190px;margin-left: 5px;" lay-submit>立即免费通话</button>
+                            </div>
+                        </div>
+                    </form>
+                    <p>
+                        *通话结束后，本次通话记录将以短信形式免费发送到您的手机上！
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- logo -->
+<div class="in-logo-bg">
+    <div class="in-logo clearfix con">
+        <h1 class="fl">
+            <a href="">
+                <img src="__PUBLIC__/images/logo.png" alt="">
+            </a>
+        </h1>
+        <div class="fr">
+            <img src="__PUBLIC__/images/xuan.png" alt="">
+        </div>
+    </div>
+</div>
+<!-- nav -->
+<style>
+    .clearfix li a{
+        font-size: 15px;
+        clear: both;
+    }
+</style>
+<div class="nav-bg">
+    <div class="nav-con con">
+        <ul class="clearfix">
+            {volist name="navInfo" id="nav"}
+            <li>
+                <a href="/index/{$nav.nav_url}.html">{$nav.nav_title}</a>
+            </li>
+            {/volist}
+        </ul>
+    </div>
+</div>

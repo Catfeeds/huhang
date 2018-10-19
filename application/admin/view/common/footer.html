@@ -1,0 +1,20 @@
+<div class="layui-footer">
+    <!-- 底部固定区域 -->
+    © layui.com - 底部固定区域123
+</div>
+</div>
+<script src="__ADMIN__/js/jquery-1.10.2.min.js"></script>
+<script src="__LAY__/layui.js"></script>
+<script>
+    //JavaScript代码区域
+    layui.use(['element','jquery','layer'], function(){
+        var element = layui.element,
+            $ = layui.jquery;
+        element.on('nav(test)',function(elem){
+            var $url = $(elem).eq(0).attr('data-url');
+            $("#option").attr('src',$url)
+        })
+    });
+</script>
+</body>
+</html>

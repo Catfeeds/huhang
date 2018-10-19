@@ -1,0 +1,375 @@
+<?php
+if(!defined('InEmpireCMS'))
+{
+	exit();
+}
+?><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width"/>
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="applicable-device" content="mobile">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <title>千百炼装饰-装修报价</title>
+    <meta content="西安装修公司排名,西安装修公司,西安十大装修公司,西安品牌装修公司,西安家庭装修,西安室内装修,西安装饰公司,西安装修公司哪家好,西安千百炼装饰公司,西安千百炼装修公司,西安千百炼装饰,千百炼装修,千百炼装饰" name="keywords">
+	<meta content="千百炼家装集团，是一家专注于整体家装服务的集团化公司，旨在为业主提供家装一站服务的完美解决方案。装修热线：400-029-1986" name="description">
+    <script src="/mobile/static/js/flexible.js"></script>
+    <link rel="stylesheet" href="/mobile/static/css/common.css">
+    <link rel="stylesheet" href="/mobile/static/css/swiper-3.4.2.min.css">
+    <link rel="stylesheet" href="/mobile/static/css/our.css">
+    <style>
+    </style>
+</head>
+<body> 
+    <!-- 顶部变量模板 -->
+           <nav class="nav-ul-index">
+        <i></i>
+        <ul>
+            <li>
+                <a href="/mobile/index.html">
+                    <img src="/mobile/static/images/navicon01.png" />
+                    <p>网站首页</p>
+                </a>
+            </li>
+            <li>
+                <a href="/mobile/design/index.html">
+                    <img src="/mobile/static/images/navicon06.png" />
+                    <p>量房设计</p>
+                </a>
+            </li>
+            <li>
+                <a href="/mobile/product/index.html">
+                    <img src="/mobile/static/images/navicon02.png" />
+                    <p>整装产品</p>
+                </a>
+            </li>
+            <li>
+                <a href="/mobile/quote/index.html">
+                    <img src="/mobile/static/images/navicon04.png" />
+                    <p>装修报价</p>
+                </a>
+            </li>
+            <li>
+                <a href="tel:400-029-1986">
+                    <img src="/mobile/static/images/navicon09.png" />
+                    <p>电话咨询</p>
+                </a>
+            </li>
+            <li>
+                <a href="/mobile/loans/index.html">
+                    <img src="/mobile/static/images/navicon03.png" />
+                    <p>装修贷款</p>
+                </a>
+            </li>
+            <li>
+                <a href="/mobile/activity/index.html">
+                    <img src="/mobile/static/images/navicon05.png" />
+                    <p>最新优惠</p>
+                </a>
+            </li>
+            <li>
+                <a href="/mobile/drops/index.html">
+                    <img src="/mobile/static/images/navicon07.png" />
+                    <p>滴滴接驾</p>
+                </a>
+            </li>
+            <li>
+                <a href="/mobile/stores_nav/index.html">
+                    <img src="/mobile/static/images/navicon08.png" />
+                    <p>门店导航</p>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!-- 导航 end -->
+     <!-- 头部 begin -->
+    <header class="header">
+        <!-- logo begin -->
+        <div class="logo">
+            <a href="/mobile/index.html">
+                <img src="/mobile/static/images/logo.png" alt="">
+            </a>
+        </div>
+        <!-- logo end -->
+        <!-- 城市分区 begin -->
+        <div class="city">
+            <div class="head-city">
+                <a href="javascript:;" class="cityshow">
+                    西安
+                </a>
+                <i class="xiala"></i>
+            </div>
+            <ul class="city-list">
+                <li><h3>选择城市</h3></li>
+                <li class="citys"><a href="xian.qblzs.com.cn">西安</a></li>
+                <li class="citys"><a href="wuhan.qblzs.com.cn">武汉</a></li>
+                <li class="citys"><a href="kunming.qblzs.com.cn">昆明</a></li>
+                <li class="citys"><a href="baoji.qblzs.com.cn">宝鸡</a></li>
+                <li class="citys"><a href="guiyang.qblzs.com.cn">贵阳</a></li>
+            </ul>
+        </div>
+        <!-- 城市分区 end -->
+        <i class="nav-icon"></i>
+    </header>
+    
+    <section class="banner">
+        <img src="/mobile/static/images/ban02.jpg" alt="">
+    </section>
+    <section class="mobile">
+        <!-- 智能报价 begin -->
+        <article class="quote">
+            <h3>ERP智能报价系统精准预算</h3>
+            <div class="calculator">
+                <p class="unit">元</p>
+                <div class="num-window">
+                    <div class="ge">
+                        <img src="/mobile/static/images/num0.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num1.png" alt="" style="display:inline">
+                        <img src="/mobile/static/images/num2.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num3.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num4.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num5.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num6.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num7.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num8.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num9.png" alt="" style="display:none">
+                    </div>
+                    <div class="shi">
+                        <img src="/mobile/static/images/num0.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num1.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num2.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num3.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num4.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num5.png" alt="" style="display:inline">
+                        <img src="/mobile/static/images/num6.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num7.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num8.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num9.png" alt="" style="display:none">
+                    </div>
+                    <div class="bai">
+                        <img src="/mobile/static/images/num0.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num1.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num2.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num3.png" alt="" style="display:inline">
+                        <img src="/mobile/static/images/num4.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num5.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num6.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num7.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num8.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num9.png" alt="" style="display:none">
+                    </div>
+                    <div class="qian">
+                        <img src="/mobile/static/images/num0.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num1.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num2.png" alt="" style="display:inline">
+                        <img src="/mobile/static/images/num3.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num4.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num5.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num6.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num7.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num8.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num9.png" alt="" style="display:none">
+                    </div>
+                    <div class="wan">
+                        <img src="/mobile/static/images/num0.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num1.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num2.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num3.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num4.png" alt="" style="display:inline">
+                        <img src="/mobile/static/images/num5.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num6.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num7.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num8.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num9.png" alt="" style="display:none">
+                    </div>
+                    <div class="shiwan">
+                        <img src="/mobile/static/images/num0.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num1.png" alt="" style="display:inline">
+                        <img src="/mobile/static/images/num2.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num3.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num4.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num5.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num6.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num7.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num8.png" alt="" style="display:none">
+                        <img src="/mobile/static/images/num9.png" alt="" style="display:none">
+                    </div>
+                </div>
+            </div>
+            <ul class="price-list">
+                <li>人工费<strong class="price" id="price1">0</strong>元</li>
+                <li>材料费<strong class="price" id="price2">0</strong>元</li>
+                <li>家居费<strong class="price" id="price3">0</strong>元</li>
+                <li>家具费<strong class="price" id="price4">0</strong>元</li>
+                <li>监理费<strong class="price" id="price5">0</strong>元</li>
+                <li>家电费<strong class="price" id="price6">0</strong>元</li>
+            </ul>
+            
+        </article>
+    </section>
+     <!-- 空间配置 -->
+     <article class="space-d">
+        
+  
+        <div class="sd-form" >
+            <form id="quote-form1" class="form-price all-form" name='feedback' method='post' enctype='multipart/form-data' action='/e/enews/index.php' style="margin-top:0">
+                <input type=hidden name=ecmsfrom value="/mobile/quote/index.html"> 
+                <input name='enews' type='hidden' value='AddFeedback'>
+                <input name='title' type='hidden' value='装修报价表单'> 
+                <input type=hidden name=bid value=1> 
+                <input type=hidden name=laiyuan id=laiyuan>                   
+                <input type=hidden name=chuangyi id=chuangyi>
+                <!-- 有效表单 begin -->
+                <input type="text" name="name" id="name" class="nickname writebox" placeholder="请输入您的称呼" style="margin-top:0">
+                <label class="all-mj"><input type="tel" name="mianji" id="tel" class="area writebox" placeholder="请输入您的房屋面积"><i>㎡</i></label>
+                <div class="xl-box">
+                    <div class="xl-lt">
+                        <i><img src="/mobile/static/images/ic1.png" alt=""></i>
+                        <select name="weishengjian" id="">
+                            <option value="1个卫生间">1个卫生间</option>
+                            <option value="2个卫生间">2个卫生间</option>
+                            <option value="3个卫生间">3个卫生间</option>
+                        </select>
+                    </div>
+                    <div class="xl-rt">
+                        <i><img src="/mobile/static/images/ic1.png" alt=""></i>
+                        <select name="yangtai" id="">
+                            <option value="1个阳台">1个阳台</option>
+                            <option value="2个阳台">2个阳台</option>
+                            <option value="3个阳台">3个阳台</option>
+                        </select>
+                    </div>   
+                </div>
+                <input type="tel" name="mycall" id="tel" class="tel writebox" placeholder="请输入您的手机号码，获取您家的整装报价">
+                <input type="submit" value="10秒获取预算" class="ys-btn">
+                <p style="line-height:0.6rem;color:#646464;margin-top:10px;text-align:center;">已有<b style="color:#c70000">5123</b>人获取报价</p>
+            </form>
+        </div>
+        
+        <ul class="ticket" style="margin-top:0.36rem;">
+            <li class="sjbtn">
+                <!-- <img src="/mobile/static/images/quan01.png" alt="">
+                <span>已领<strong>57</strong>张</span> -->
+                <div class="quan-box">
+                    <p class="q-price">500</p>
+                    <p class="q-unit">￥</p>
+                    <p class="q-line"></p>
+                    <p class="q-rule">定金满5000可用</p>
+                    <p class="q-type">设计券</p>
+                    <p class="q-btn">立即领取</p>
+                    <p class="q-num">已领<strong class="nums">51</strong>张</p>
+                </div>
+            </li>
+            <li class="lfbtn">
+                <!-- <img src="/mobile/static/images/quan02.png" alt="">
+                <span>已领<strong>176</strong>张</span> -->
+                <div class="quan-box">
+                    <p class="q-price">800</p>
+                    <p class="q-unit">￥</p>
+                    <p class="q-line"></p>
+                    <p class="q-rule">活动期间可用</p>
+                    <p class="q-type">量房券</p>
+                    <p class="q-btn">立即领取</p>
+                    <p class="q-num">已领<strong class="nums">189</strong>张</p>
+                </div>
+            </li>
+        </ul>
+            
+        <div class="quan-form sj-quan">
+            <form id="quote-q1" class="form-center" name='feedback' method='post' enctype='multipart/form-data' action='/e/enews/index.php'>
+                <p class="yhq-title">设计优惠券</p>
+                <img src="/mobile/static/images/close.png" alt="" class="close">
+                <input type=hidden name=ecmsfrom value="/mobile/quote/index.html"> 
+                <input name='enews' type='hidden' value='AddFeedback'>
+                <input name='title' type='hidden' value='首页设计500元优惠券表单'> 
+                <input type=hidden name=bid value=1> 
+                <input type=hidden name=laiyuan id=laiyuan>                   
+                <input type=hidden name=chuangyi id=chuangyi>
+                <!-- 有效表单 begin -->
+                <input type="tel" name="mycall" id="tel" class="tel" placeholder="请输入您的手机号码">
+                <input type="submit" value="立即领取优惠券" class="quan-btn">
+            </form>
+        </div>
+        <div id="quote-q2" class="quan-form lf-quan">
+            <form class="form-center" name='feedback' method='post' enctype='multipart/form-data' action='/e/enews/index.php'>
+                <p class="yhq-title">量房优惠券</p>
+                <img src="/mobile/static/images/close.png" alt="" class="close">
+                <input type=hidden name=ecmsfrom value="/mobile/quote/index.html"> 
+                <input name='enews' type='hidden' value='AddFeedback'>
+                <input name='title' type='hidden' value='首页量房800元优惠券表单'> 
+                <input type=hidden name=bid value=1> 
+                <input type=hidden name=laiyuan id=laiyuan>                   
+                <input type=hidden name=chuangyi id=chuangyi>
+                <!-- 有效表单 begin -->
+                <input type="tel" name="mycall" id="tel" class="tel" placeholder="请输入您的手机号码">
+                <input type="submit" value="立即领取优惠券" class="quan-btn">
+            </form>
+        </div>
+    </article>
+    <!-- 底部变量模板 -->
+        <section class="quote-price">
+        <a href="tel:400-029-1986" class="zx">免费咨询</a><a href="/mobile/quote/index.html" class="bj">快速报价</a>
+    </section>
+    <!-- 底部 begin -->
+    <footer>
+        <h3>装修不到千百炼   要花不少冤枉钱</h3>
+        <p>千百炼@Copyright版权所有</p>
+        <p>陕ICP备17003733号</p>
+    </footer>
+    <script src="/mobile/static/js/jquery-1.8.3.min.js"></script>
+    <script src="/mobile/static/js/swiper-3.4.2.min.js"></script>
+    <script src="/mobile/static/js/common.js"></script>
+    <script src="/mobile/static/js/index.js"></script>
+    <script>
+        // 随机数................
+        var t = 1000; //在这里设置刷新时间，单位是毫秒，比如1秒钟就是1000
+        var min = 100; //生成的最小的数字，比如200
+        var max = 500000; //生成的最大的数字，比如500
+        var maxx = 5000;
+        window.onload = function() {
+            Refresh();
+            setInterval("Refresh();", t);
+        }
+        function Refresh() {
+            document.getElementById('price1').innerHTML = parseInt(Math.random() * (maxx - min + 1) + min);
+            document.getElementById('price2').innerHTML = parseInt(Math.random() * (maxx - min + 1) + min);
+            document.getElementById('price3').innerHTML = parseInt(Math.random() * (maxx - min + 1) + min);
+            document.getElementById('price4').innerHTML = parseInt(Math.random() * (maxx - min + 1) + min);
+            document.getElementById('price5').innerHTML = parseInt(Math.random() * (maxx - min + 1) + min);
+            document.getElementById('price6').innerHTML = parseInt(Math.random() * (maxx - min + 1) + min);
+           
+        }
+    </script>
+	<!-- 来源_分析 -->
+	    <script>  
+        function getUrlParms(name){  
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");  
+            var r = window.location.search.substr(1).match(reg);  
+            if(r!=null)  
+                return unescape(r[2]);  
+                return null;  
+        }  
+        document.getElementById("laiyuan").value=getUrlParms("laiyuan");  
+        document.getElementById("chuangyi").value=getUrlParms("chuangyi");  
+    </script>  
+	<!-- 获取号码 -->
+	[!--temp.zhuaqu--]
+	<!-- 统计_客服 -->
+       <!--53客服-->
+<script>(function() {var _53code = document.createElement("script");_53code.src = "https://tb.53kf.com/code/code/10151974/1";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(_53code, s);})();</script>
+   <!--站长统计-->
+   <script src="https://s13.cnzz.com/z_stat.php?id=1273005258&web_id=1273005258" language="JavaScript"></script>
+   <!--百度统计-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?2cb05ffa737ee9115d5021bdd41be3f1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>

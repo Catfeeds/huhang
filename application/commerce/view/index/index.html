@@ -1,0 +1,65 @@
+{include file="common/header" /}
+<div class="layui-side layui-bg-black" style="top: 60px!important;">
+    <div class="layui-side-scroll">
+        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+        <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+            <li class="layui-nav-item"><a href="">起始页</a></li>
+            <li class="layui-nav-item">
+                <a class="" href="javascript:;">客户管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a data-url="<?=url('user/order')?>">未接单</a></dd>
+                    <dd><a data-url="<?=url('user/ordered')?>">已接单</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">站点运营</a>
+                <dl class="layui-nav-child">
+                    <dd><a data-url="<?=url('example/index')?>">案例列表</a></dd>
+                    <dd><a data-url="<?=url('designer/index')?>">设计团队</a></dd>
+                    <dd><a data-url="<?=url('article/index')?>">文章列表</a></dd>
+                    <dd><a data-url="<?=url('recruit/index')?>">招聘列表</a></dd>
+                    <dd><a data-url="<?=url('honor/index')?>">资质列表</a></dd>
+                    <dd><a data-url="<?=url('question/index')?>">问答列表</a></dd>
+                    <dd><a data-url="<?=url('banner/index')?>">广告列表</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">活动报名</a>
+                <dl class="layui-nav-child">
+                    <dd><a data-url="<?=url('activity/index')?>">活动列表</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">基础信息</a>
+                <dl class="layui-nav-child">
+                    <dd><a data-url="<?=url('basic/reciveSet')?>">接单设置</a></dd>
+                    <!--此处“站点信息”为商家站点-->
+                    <dd><a data-url="<?=url('basic/index')?>">站点信息</a></dd>
+                    <dd><a data-url="<?=url('basic/template')?>">站点模板</a></dd>
+                    <dd><a data-url="<?=url('basic/security')?>">安全中心</a></dd>
+                    <dd><a data-url="<?=url('basic/mangerIdenty')?>">实名认证</a></dd>
+                    <dd><a data-url="<?=url('basic/merchantIdenty')?>">企业实名</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">财务中心</a>
+                <dl class="layui-nav-child">
+                    <dd><a data-url="<?=url('activity/index')?>">钱包</a></dd>
+                    <dd><a data-url="<?=url('activity/index')?>">保证金</a></dd>
+                    <dd><a data-url="<?=url('activity/index')?>">平台费</a></dd>
+                    <dd><a data-url="<?=url('activity/index')?>">合作费</a></dd>
+                    <dd><a data-url="<?=url('activity/index')?>">订单发票</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class='layui-body'>
+    <iframe id='option' src="<?=url('index/welcome')?>" frameborder='no' width='100%' height='99%'>
+    </iframe>
+</div>
+<div class="layui-footer">
+    <!-- 底部固定区域 -->
+    © layui.com - 底部固定区域123
+</div>
+{include file="common/footer" /}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>投诉建议</title>
+    <link rel="stylesheet" href="__LAY__/css/layui.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/swiper.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/index.css">
+    <style>
+        body,
+        html {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            background-color: #e5e5e5;
+        }
+    </style>
+</head>
+
+<body>
+<div class="compla-con con clearfix">
+    <div class="compla-con-left fl">
+        <h1>
+            <img src="__PUBLIC__/images/logo.png" alt="">
+        </h1>
+        <span>老板信箱</span>
+        <ul class="compla-tab-menu">
+            <li class="compla-tab-this" data-value="1">投诉商家</li>
+            <li data-value="2" >投诉平台</li>
+            <li data-value="3" >投诉员工</li>
+            <li data-value="4" >其他意见</li>
+            <li data-value="5" >鼓励表扬</li>
+        </ul>
+    </div>
+    <div class="compla-con-right fl">
+        <h2>欢迎反馈问题，您的建议就是我们的动力！</h2>
+        <p>我们会认真查阅您反馈的每一个问题，并尽快给您答复</p>
+        <form id="addForm" class="layui-form">
+            <div class="compla-con-right-area">
+                    <span>
+                        <img src="__PUBLIC__/images/comp-bj.png" alt="">
+                    </span>
+                <textarea name="sg_content" lay-verify="required" placeholder="欢迎反馈问题，您的建议就是我们的动力！"></textarea>
+            </div>
+            <input type="hidden" name="sg_type" id="sg_type"/>
+            <div class="comp-btn">
+                <div class="layui-form-item">
+                    <label class="layui-form-label" style="width: 90px;">联系方式</label>
+                    <div class="layui-input-inline" style="width: 260px;">
+                        <input type="text" name="sg_link" lay-verify="required" class="layui-input" placeholder="QQ/微信/手机号/邮箱等" >
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">* {$platName}网老板信箱将对您的信息严格保密！</div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <!--同一个ip一天只能提交3条投诉建议-->
+                        <span id="addType" class="layui-btn" lay-submit lay-filter="addType">立即提交</span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+<script src="__PUBLIC__/js/jquery.js"></script>
+<script src="__PUBLIC__/js/less.js"></script>
+<script src="__PUBLIC__/js/swiper.js"></script>
+<script src="__LAY__/layui.js"></script>
+<script src="__PUBLIC__/js/index.js"></script>
+<script>
+    layui.use(['form'],function(){
+        var form = layui.form;
+        form.on('submit(addType)', function(){
+            var sg_type=$('.compla-tab-this').attr('data-value');
+            $('#sg_type').val(sg_type);
+            $('#addType').removeAttr('lay-filter');
+            $.ajax({
+                'type':"post",
+                'url':"<?=url('wanted/suggestion')?>",
+                'data':$('#addForm').serialize(),
+                'success':function (result) {
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            location.href="<?=url('index/index')?>";
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 2, time: 3000},function () {
+                            location.href="<?=url('index/index')?>";
+                        });
+                    }
+                },
+                'error':function (error) {
+                    console.log(error);
+                }
+            })
+        });
+    })
+</script>
+</html>

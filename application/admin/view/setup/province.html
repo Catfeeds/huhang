@@ -1,0 +1,152 @@
+{include file="common/header" /}
+<style>
+    #pages .layui-laypage-prev {
+        padding: 0 12px;
+    }
+    #pages .layui-laypage-next{
+        padding: 0 12px;
+    }
+    #pages .layui-laypage a{
+        border:none;
+    }
+    #pages .layui-laypage-curr{
+        padding: 0 11px;
+        height: 24px;
+        line-height: 24px;
+    }
+    #pages .layui-laypage input{
+        padding: 0 11px;
+        height: 26px;
+        line-height: 26px;
+    }
+    #pages .layui-laypage input, .layui-laypage button{
+        padding: 0 11px;
+        height: 26px;
+        line-height: 26px;
+    }
+    #pages .layui-laypage select{
+        height: 18px;
+    }
+</style>
+<div class="layui-body" style="margin-top: 60px">
+    <div style="margin-top: 5px;margin-bottom: 3px;">
+    <span class="layui-breadcrumb" lay-separator=">">
+       <a>平台设置</a>
+        <a>类型参数</a>
+        <a><cite>区域管理</cite></a>
+    </span>
+        <div  style="float:right;margin-right:20px;margin-bottom: 12px;">
+            <button class="layui-btn layui-btn-primary layui-btn-sm"  onclick="addProv()"><i class="layui-icon"></i>添加省份</button>
+        </div>
+    </div>
+    <hr/>
+    <ul class="layui-tab-title">
+        <li class="layui-this">省份</li>
+        <li><a href="<?=url('setup/city')?>">城市</a></li>
+        <li><a href="<?=url('setup/area')?>">县区</a></li>
+    </ul>
+    <table lay-skin="line" class="layui-table" lay-filter="parse-table-demo" style="padding: 30px;text-align: center;border: 1px;solid-color: #28282c;text-align: left">
+        <colgroup>
+            <col width="500">
+            <col width="1060">
+            <col width="1060">
+            <col width="1060">
+            <col width="300">
+        </colgroup>
+        <thead>
+        <tr>
+            <td style="padding-left: 50px;" >编号</td>
+            <td>省份名称</td>
+            <td>操作时间</td>
+            <td>操作人</td>
+            <td >操作</td>
+        </tr>
+        </thead>
+        <tbody>
+        {volist name='provInfo' id='prov'}
+        <tr>
+            <td style="padding-left: 50px;">{$prov.p_id}</td>
+            <td >{$prov.p_name}</td>
+            <td >{$prov.p_opeatime}</td>
+            <td >{$prov.ad_realname}</td>
+            <td >
+                <button class="layui-btn layui-btn-xs" onclick="editProv({$prov.p_id})"><i class="layui-icon">&#xe642;</i>编辑</button>
+                <button class="layui-btn layui-btn-danger layui-btn-xs" onclick="delProv({$prov.p_id})" data-type="test2"><i class="layui-icon">&#xe640;</i>删除</button>
+            </td>
+        </tr>
+        {/volist}
+        </tbody>
+    </table>
+    {if condition="$provInfo eq null"}
+    {else/}
+    <div id="pages" style="text-align: left;padding: 7px;"></div>
+    {/if}
+</div>
+{include file="common/footer" /}
+<script>
+    layui.use(['laypage','jquery'], function(){
+        var laypage = layui.laypage,
+            $ = layui.jquery;
+        laypage.render({
+            //自定义每页条数的选择项
+            elem: 'pages'
+            ,count: {$count}
+            ,limit: {$limit}
+            ,curr: {$page}
+            ,limits: [15, 30, 50]
+            ,prev:'<i class="layui-icon">&#xe603;</i>'
+            ,next:'<i class="layui-icon">&#xe602;</i>'
+            ,layout: ['prev', 'page', 'next', 'skip','count',  'limit']
+            ,jump: function(obj,frist){
+                if(!frist){
+                    window.location.href="<?=url('setup/province')?>?page="+obj.curr+"&limit="+obj.limit;
+                }
+            }
+        });
+    });
+    function delProv(p_id) {
+        layer.confirm('确定删除这个省份？删除后不可恢复！', {
+            btn : [ '确定', '取消' ]//按钮
+        }, function() {
+            $.ajax({
+                'type':"get",
+                'url':"<?=url('setup/delProv')?>",
+                'data':{p_id:p_id},
+                'success':function (result) {
+                    if(result.code < 1){
+                        layer.msg(result.msg);
+                    }else {
+                        layer.msg(result.msg);
+                        layer.open({
+                            title: '信息'
+                            ,content: result.msg
+                            ,yes: function(index){
+                                layer.close(index);
+                                window.location.href='<?=url("setup/province")?>';
+                            }
+                            ,cancel:function (index) {
+                                layer.close(index);
+                                window.location.href='<?=url("setup/province")?>';
+                            }
+                        });
+                    }
+                },
+                'error':function () {
+                    console.log('error');
+                }
+            })
+        },function(){
+            layer.msg('您已取消该操作！',{
+                time: 2000
+            });
+        });
+    }
+</script>
+<script type="text/javascript">
+    function addProv(){
+        window.location.href="<?=url('setup/addProvince')?>";
+    }
+    function editProv(p_id){
+        window.location.href='<?=url("setup/editProvince")?>?p_id='+ p_id ;
+    }
+</script>

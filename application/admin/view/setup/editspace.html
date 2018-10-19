@@ -1,0 +1,98 @@
+{include file="common/header" /}
+<div class="layui-body" style="margin-top: 60px">
+    <div style="margin-top: 5px;margin-bottom: 3px;">
+    <span class="layui-breadcrumb" lay-separator=">">
+        <a>平台设置</a>
+        <a>类型参数</a>
+        <a href="<?=url('setup/space')?>">空间大小</a>
+        <a><cite>修改空间</cite></a>
+    </span>
+        <div style="float:right;margin-right:20px;margin-bottom: 12px;">
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="<?=url('setup/space')?>">
+                <i class="layui-icon layui-icon-return"></i>
+                返回列表
+            </a>
+        </div>
+    </div>
+    <hr/>
+    <div style="padding: 15px;">
+        <form class="layui-form layui-form-pane1" id="addForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>
+                    空间名称
+                </label>
+                <div class="layui-input-block">
+                    <input type="text" name="sp_name" value="{$space.sp_name}" lay-verify="required" placeholder='请输入空间名称' autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>
+                    空间大小
+                </label>
+                <div class="layui-input-inline" style="width: 100px;">
+                    <input type="text" name="sp_min" lay-verify="required"  value="{$space.sp_min}" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid">-</div>
+                <div class="layui-input-inline" style="width: 100px;">
+                    <input type="text" name="sp_max" lay-verify="required" value="{$space.sp_max}"  autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid">单位：（m²）</div>
+                <div class="layui-form-mid layui-word-aux">请填写请填写空间参数（如：80-100 表示面积大于等于80，小于100）</div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label"><span style="color: red;">*</span>
+                    空间简介
+                </label>
+                <div class="layui-input-block">
+                    <textarea placeholder="请输入空间简介"name="sp_remarks" lay-verify="required" class="layui-textarea">{$space.sp_remarks}</textarea>
+                </div>
+            </div>
+            <div class="layui-form-item" pane>
+                <label class="layui-form-label">是否可用</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="sp_isable" value="1" title="是" {if condition="$space.sp_isable eq 1"}checked{/if} >
+                    <input type="radio" name="sp_isable" value="2" title="否" {if condition="$space.sp_isable eq 2"}checked{/if} >
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <span class="layui-btn" id="addType">修改</span>
+                    <a class="layui-btn layui-btn-primary" href="<?=url('setup/space')?>">返回</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="common/footer" /}
+<script>
+    layui.use(['form','upload','jquery'] ,function(){
+        var form = layui.form,
+            $ = layui.jquery,
+            upload = layui.upload;
+        form.on('radio', function(data){
+            console.log(data);
+        });
+        //提交要添加的数据
+        $('#addType').click(function () {
+            $.ajax({
+                'type':"post",
+                'url':"<?=url('setup/editSpace')?>?sp_id={$space.sp_id}",
+                'data':$('#addForm').serialize(),
+                'success':function (result) {
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            location.href="<?=url('setup/space')?>";
+                        });
+                    }else if(result.code == '2'){
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }else if(result.code == '3'){
+                        layer.msg(result.msg, {icon: 3, time: 3000});
+                    }
+                },
+                'error':function (error) {
+                    console.log(error);
+                }
+            })
+        });
+    });
+</script>

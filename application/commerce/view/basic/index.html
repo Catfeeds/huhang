@@ -1,0 +1,284 @@
+{include file="common/toper" /}
+<style>
+    .one-pan{
+        position: relative;
+    }
+    .one{
+        position: absolute;
+        left:300px;
+        top:0;
+    }
+    .logoPre{
+        width: 216px;
+        height: 150px;
+    }
+</style>
+<div class="layui-body">
+    <div style="margin-top: 5px;margin-bottom: 3px;">
+    <span class="layui-breadcrumb" lay-separator=">">
+        <a>基础信息</a>
+        <a><cite>站点信息</cite></a>
+    </span>
+    </div>
+    <hr/>
+    <div style="padding: 15px;">
+        <form class="layui-form layui-form-pane1" id="addForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>公司全称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="mt_name" id="mt_name" value="{$merchant.mt_name}" {gt name="$merchant.mt_rank" value="1"}readonly {/gt}  lay-verify="required|title" placeholder="请输入公司全称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>公司简称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="mt_short_name"  {gt name="$merchant.mt_rank" value="1"}readonly {/gt}   value="{$merchant.mt_short_name}" lay-verify="required"  placeholder="请输入公司简称。" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+			<div class="layui-form-item">
+			<!--升级版本之后可显示到前端，否则显示平台热线-->
+                <label class="layui-form-label"><span style="color: red;">*</span>热线电话</label>
+                <div class="layui-input-block">
+                    <input type="text" name="mt_hotline"  {gt name="$merchant.mt_rank" value="1"}readonly {/gt}   value="{$merchant.mt_hotline}" lay-verify="required"  placeholder="请输入热线电话" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+			<!--升级版本之后可显示到前端，否则显示平台热线-->
+                <label class="layui-form-label"><span style="color: red;">*</span>电子邮箱</label>
+                <div class="layui-input-block">
+                    <input type="text" name="mt_email"  {gt name="$merchant.mt_rank" value="1"}readonly {/gt}   value="{$merchant.mt_email}" lay-verify="required"  placeholder="请输入电子邮箱" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item one-pan">
+                <label class="layui-form-label"><span style="color: red;">*</span>方形LOGO</label>
+                <div {if condition="$merchant.mt_logoa eq null"} class="layui-upload-drag"{/if} {lt name="$merchant.mt_rank" value="2"} id="uploadLogo" {/lt} style="display:inline-block;">
+                    <image id="logoPre"
+                           {if condition="$merchant.mt_logoa eq null"}
+                           {else/}
+                            src="__PUBLICS__{$merchant.mt_logoa}"
+                            class="logoPre"
+                            {/if}
+                    >
+                        <input type="hidden" lay-verify="avatarReg" name="mt_logo" id="mt_logo" value="{$merchant.mt_logoa}"/>
+                    </image>
+                {if condition="$merchant.mt_logoa eq null"}
+                <div id="display">
+                    <i class="layui-icon"></i>
+                    <p>请点击此处上传封面图片</p>
+                </div>
+                {/if}
+                </div>
+            </div>
+            <div class="layui-form-item one-pan">
+                <label class="layui-form-label"><span style="color: red;">*</span>矩形LOGO</label>
+                <div {if condition="$merchant.mt_logos eq null"} class="layui-upload-drag"{/if} {lt name="$merchant.mt_rank" value="2"} id="uploadLogo1" {/lt} style="display:inline-block;">
+                    <image id="logoPre1"
+                           {if condition="$merchant.mt_logos eq null"}
+                           {else/}
+                        src="__PUBLICS__{$merchant.mt_logos}"
+                        class="logoPre"
+                        {/if}
+                    >
+                        <input type="hidden" lay-verify="imgReg" name="mt_logos" id="mt_logos" value="{$merchant.mt_logos}"/>
+                    </image>
+                {if condition="$merchant.mt_logo eq null"}
+                <div id="display1">
+                    <i class="layui-icon"></i>
+                    <p>请点击此处上传封面图片</p>
+                </div>
+                {/if}
+                </div>
+            </div>
+
+
+            <div class="layui-form-item one-pan">
+                <label class="layui-form-label"><span style="color: red;">*</span>微信二维码</label>
+                <div {if condition="$merchant.mt_wechat eq null"} class="layui-upload-drag"{/if} {lt name="$merchant.mt_rank" value="2"} id="uploadLogo2" {/lt} style="display:inline-block;">
+                <image id="logoPre2"
+                       {if condition="$merchant.mt_wechat eq null"}
+                       {else/}
+                src="__PUBLICS__{$merchant.mt_wechat}"
+                class="logoPre"
+                {/if}
+                >
+                <input type="hidden" lay-verify="imgReg" name="mt_wechat" id="mt_wechat" value="{$merchant.mt_wechat}"/>
+                </image>
+                {if condition="$merchant.mt_wechat eq null"}
+                <div id="display2">
+                    <i class="layui-icon"></i>
+                    <p>请点击此处上传图片</p>
+                </div>
+                {/if}
+            </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>联系人</label>
+                <div class="layui-input-block">
+                    <input type="text" name="mt_manger"  {gt name="$merchant.mt_rank" value="1"}readonly {/gt}   value="{$merchant.mt_manger}" lay-verify="required" placeholder="请输入联系人" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>联系地址</label>
+                <div class="layui-input-block">
+                    <input type="text" name="mt_address"  {gt name="$merchant.mt_rank" value="1"}readonly {/gt}   value="{$merchant.mt_address}" lay-verify="required" placeholder="请输入联系地址" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span>坐标</label>
+                <div class="layui-input-block">
+                    <input type="text" name="mt_location"  {gt name="$merchant.mt_rank" value="1"}readonly {/gt}   value="{$merchant.mt_location}"  lay-verify="required" placeholder="请输入坐标" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label"><span style="color: red;">*</span>公司简介</label>
+                <div class="layui-input-block">
+                    <textarea placeholder="请输入公司简介" style="height: 500px;"  {gt name="$merchant.mt_rank" value="1"}readonly {/gt}    lay-verify="required"  name="mt_description" class="layui-textarea">{$merchant.mt_description}</textarea>
+                </div>
+            </div>
+            {eq name="$merchant.mt_rank" value="1"}
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <span class="layui-btn" id="addType" lay-submit lay-filter="addType">更新</span>
+                    </div>
+                </div>
+            {/eq}
+        </form>
+    </div>
+</div>
+{include file="common/footer" /}
+<script>
+    layui.use(['form','upload','jquery','upload'] ,function(){
+        var form = layui.form,
+            upload = layui.upload,
+            $ = layui.jquery;
+        form.on('radio', function(data){
+            console.log(data);
+        });
+        //正方形图像上传
+        upload.render({
+            elem: '#uploadLogo'
+            ,url: '{:url("basic/upload")}'
+            ,size:600 //限制文件大小，单位 KB
+            ,ext: 'jpg|png|gif'
+            ,accept: 'images' //限制文件大小，单位 KB
+            ,before: function(input){
+                loading = layer.load(2, {
+                    shade: [0.2,'#000']
+                });
+            }
+            ,done: function(res){
+                $('#logoPre').removeAttr('src');
+                $('#mt_logo').val('');
+                console.log(res);
+                layer.close(loading);
+                $('#mt_logo').val(res.path);
+                $('#uploadLogo').removeClass('layui-upload-drag');
+                $('#logoPre').css('width','216px');
+                $('#logoPre').css('height','150px');
+                $('#logoPre').attr('src',"__PUBLICS__"+res.path);
+                $('#display').hide();
+                layer.msg(res.msg, {icon: 1, time: 1000});
+            }
+            ,error: function(res){
+                layer.msg(res.msg, {icon: 2, time: 1000});
+            }
+        });
+        //长方形图像上传
+        upload.render({
+            elem: '#uploadLogo1'
+            ,url: '{:url("basic/upload")}'
+            ,size:600 //限制文件大小，单位 KB
+            ,ext: 'jpg|png|gif'
+            ,accept: 'images' //限制文件大小，单位 KB
+            ,before: function(input){
+                loading = layer.load(2, {
+                    shade: [0.2,'#000']
+                });
+            }
+            ,done: function(res){
+                $('#logoPre1').removeAttr('src');
+                $('#mt_logos').val('');
+                console.log(res);
+                layer.close(loading);
+                $('#mt_logos').val(res.path);
+                $('#uploadLogo1').removeClass('layui-upload-drag');
+                $('#logoPre1').css('width','216px');
+                $('#logoPre1').css('height','150px');
+                $('#logoPre1').attr('src',"__PUBLICS__"+res.path);
+                $('#display1').hide();
+                layer.msg(res.msg, {icon: 1, time: 1000});
+            }
+            ,error: function(res){
+                layer.msg(res.msg, {icon: 2, time: 1000});
+            }
+        });
+        //长方形图像上传
+        upload.render({
+            elem: '#uploadLogo2'
+            ,url: '{:url("basic/upload")}'
+            ,size:600 //限制文件大小，单位 KB
+            ,ext: 'jpg|png|gif'
+            ,accept: 'images' //限制文件大小，单位 KB
+            ,before: function(input){
+                loading = layer.load(2, {
+                    shade: [0.2,'#000']
+                });
+            }
+            ,done: function(res){
+                $('#logoPre2').removeAttr('src');
+                $('#mt_wechat').val('');
+                console.log(res);
+                layer.close(loading);
+                $('#mt_wechat').val(res.path);
+                $('#uploadLogo2').removeClass('layui-upload-drag');
+                $('#logoPre2').css('width','216px');
+                $('#logoPre2').css('height','150px');
+                $('#logoPre2').attr('src',"__PUBLICS__"+res.path);
+                $('#display2').hide();
+                layer.msg(res.msg, {icon: 1, time: 1000});
+            }
+            ,error: function(res){
+                layer.msg(res.msg, {icon: 2, time: 1000});
+            }
+        });
+        //自定义验证规则
+        form.verify({
+            title: function(value){
+                if(value.length < 2){
+                    return '至少得2个字符啊';
+                }
+            }
+            ,imgReg:function (value) {
+                if(value.length <= 0){
+                    return '请上传方形LOGO';
+                }
+            }
+            ,avatarReg:function (value) {
+                if(value.length <= 0){
+                    return '请上传矩形LOGO';
+                }
+            }
+        });
+        form.on('submit(addType)', function(){
+            $('#addType').removeAttr('lay-filter');
+            $.ajax({
+                'type':"post",
+                'url':"<?=url('basic/index')?>",
+                'data':$('#addForm').serialize(),
+                'success':function (result) {
+                    if(result.code == '1'){
+                        layer.msg(result.msg, {icon: 1, time: 2000},function () {
+                            location.href="<?=url('basic/index')?>";
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 2, time: 3000});
+                    }
+                },
+                'error':function (error) {
+                    console.log(error);
+                }
+            })
+        });
+    });
+</script>

@@ -1,0 +1,138 @@
+{include file="common/header" /}
+<div class="layui-body" style="margin-top: 60px">
+    <div style="margin-top: 5px;margin-bottom: 3px;">
+    <span class="layui-breadcrumb" lay-separator=">">
+        <a>运营管理</a>
+        <a>内容管理</a>
+        <a><cite>问答管理</cite></a>
+    </span>
+        <div style="float:right;margin-right:20px;margin-bottom: 12px;">
+            <button class="layui-btn layui-btn-primary layui-btn-sm"  onclick="addType()"><i class="layui-icon"></i>添加问答</button>
+        </div>
+    </div>
+    <hr/>
+    <table lay-skin="line" class="layui-table" lay-filter="demo" lay-data="{height: 'full-200', cellMinWidth:80, url:'/admin/platform/questionData/', limit:15,limits:[15,30,50] ,id: 'testReload',page:'true'}" >
+        <thead>
+        <tr>
+            <th lay-data="{field:'qa_bid', sort: true}">问题编号</th>
+            <th lay-data="{field:'qa_p_id'}">区域城市</th>
+            <th lay-data="{field:'mt_short_name'}">商户名称</th>
+            <th lay-data="{field:'qa_question'}">问题名称</th>
+            <th lay-data="{field:'qa_type'}">问题类型</th>
+            <th lay-data="{field:'qa_count'}">回复次数</th>
+            <th lay-data="{field:'qa_status'}">审核状态</th>
+            <th lay-data="{field:'qa_istop',templet: '#topTpl',sort:true, unresize: true}">是否置顶</th>
+            <th lay-data="{field:'qa_isable',templet: '#switchTpl',sort:true, unresize: true}">是否显示</th>
+            <th lay-data="{field:'qa_addtime',sort: true}">操作时间</th>
+            <th lay-data="{field:'ad_realname',sort: true}">操作人</th>
+            <th lay-data="{toolbar: '#barDemo',width:260}">操作</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<script type="text/html" id="topTpl">
+    <input type="checkbox" name="sex" lay-skin="switch" value="{{d.qa_id}}" lay-text="是|否" lay-filter="topDemo" {{ d.qa_istop == 1 ? 'checked' : '' }}>
+</script>
+<script type="text/html" id="switchTpl">
+    <input type="checkbox" name="sex" lay-skin="switch" value="{{d.qa_id}}" lay-text="是|否" lay-filter="sexDemo" {{ d.qa_isable == 1 ? 'checked' : '' }}>
+</script>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit"><i class="layui-icon">&#xe642;</i>编辑</a>
+    <a class="layui-btn layui-btn-xs" lay-event="answer"><i class="layui-icon">&#xe642;</i>查看回复</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
+</script>
+{include file="common/footer" /}
+<script>
+    layui.use(['table','form'], function(){
+        var table = layui.table
+            ,form = layui.form;
+        table.on('tool(demo)', function(obj){
+            var data = obj.data;
+            var qa_id = data.qa_id;
+            if(obj.event === 'edit'){
+                window.location.href='<?=url("platform/editQuestion")?>?qa_id='+ qa_id;
+            } else if(obj.event === 'del'){
+                layer.confirm('确定删除该文章？删除后不可恢复！', {
+                    btn : [ '确定', '取消' ]//按钮
+                }, function() {
+                    $.ajax({
+                        'type':"get",
+                        'url':"<?=url('platform/delQuestion')?>?qa_id="+ qa_id,
+                        'data':{qa_id:qa_id},
+                        'success':function (result) {
+                            if(result.code < 1){
+                                layer.msg(result.msg);
+                            }else {
+                                layer.msg(result.msg);
+                                layer.open({
+                                    title: '信息'
+                                    ,content: result.msg
+                                    ,yes: function(index){
+                                        layer.close(index);
+                                        window.location.href='<?=url("platform/question")?>';
+                                    }
+                                    ,cancel:function (index) {
+                                        layer.close(index);
+                                        window.location.href='<?=url("platform/question")?>';
+                                    }
+                                });
+                            }
+                        },
+                        'error':function () {
+                            console.log('error');
+                        }
+                    })
+                },function(){
+                    layer.msg('您已取消该操作！',{
+                        time: 2000
+                    });
+                });
+            }else if(obj.event === 'answer'){
+                window.location.href='<?=url("platform/answer")?>?qa_id='+ qa_id;
+            }
+        });
+        form.on('switch(sexDemo)', function(obj){
+            var id = this.value;
+            //如果选中状态是true,后台数据将要改为显示
+            var change = obj.elem.checked;
+            if(change){
+                change = 1;
+            }else{
+                change = 2;
+            }
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('platform/questionStatus')?>?qa_id="+id+ "&qa_isable="+change,
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    layer.msg(data.msg);
+                }
+            });
+        });
+        form.on('switch(topDemo)', function(obj){
+            var id = this.value;
+            //如果选中状态是true,后台数据将要改为显示
+            var change = obj.elem.checked;
+            if(change){
+                change = 1;
+            }else{
+                change = 2;
+            }
+            $.ajax({
+                type: 'POST',
+                url: "<?=url('platform/questionTop')?>?qa_id="+id+ "&qa_istop="+change,
+                dataType:  'json',
+                success: function(data){
+                    console.log(data);
+                    layer.msg(data.msg);
+                }
+            });
+        });
+    });
+</script>
+<script type="text/javascript">
+    function addType(){
+        window.location.href="<?=url('platform/addQuestion')?>";
+    }
+</script>

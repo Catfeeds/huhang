@@ -1,0 +1,67 @@
+{include file="common/toper" /}
+    <div class="layui-side layui-bg-black" style="top: 120px!important;">
+        <div class="layui-side-scroll">
+
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">基础配置</a>
+                    <dl class="layui-nav-child">
+                        <dd><a data-url="<?=url('setinfo/index')?>">平台配置</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">导航管理</a>
+                    <dl class="layui-nav-child">
+                        <!--分站平台-->
+                        <dd><a data-url="<?=url('nav/nav')?>">平台导航</a></dd>
+                        <!--商户端-->
+                        <dd><a data-url="<?=url('nav/navm')?>">商户导航</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">站点管理</a>
+                    <!--平台统一简介-->
+                    <dl class="layui-nav-child">
+                        <dd><a data-url="<?=url('setinfo/branch')?>">站点列表</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">端口配置</a>
+                    <dl class="layui-nav-child">
+                        <dd><a data-url="<?=url('user/order')?>">短信配置</a></dd>
+                        <!-- 里面有不同类型的短信配置，例如预约通知，管理员通知，客户通知等等 -->
+                        <dd><a data-url="<?=url('user/join')?>">邮箱配置</a></dd>
+                        <!-- 里面有不同类型的邮箱配置，例如预约通知，管理员通知，客户通知等等 -->
+                        <dd><a data-url="<?=url('user/join')?>">快捷登录</a></dd>
+                        <dd><a data-url="<?=url('user/join')?>">支付配置</a></dd>
+                        <!-- 微信、QQ、微博、支付宝登录配置 -->
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">常用参数</a>
+                    <dl class="layui-nav-child">
+                        <dd><a data-url="<?=url('setup/project')?>">项目类型</a></dd>
+                        <dd><a data-url="<?=url('setup/space')?>">空间大小</a></dd>
+                        <dd><a data-url="<?=url('setup/province')?>">区域配置</a></dd>
+                        <dd><a data-url="<?=url('setup/rank')?>">指数配置</a></dd>
+                        <dd><a data-url="<?=url('setup/service')?>">服务类型</a></dd>
+                        <dd><a data-url="<?=url('setup/level')?>">装修品质</a></dd>
+                        <dd><a data-url="<?=url('setup/rankCity')?>">城市等级</a></dd>
+                        <dd><a data-url="<?=url('setup/article')?>">文章类型</a></dd>
+                        <dd><a data-url="<?=url('userstatus/index')?>">商家客户状态</a></dd>
+                        <dd><a data-url="<?=url('setup/job')?>">客户身份</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class='layui-body'>
+        <iframe id='option' src="<?=url('index/welcome')?>" frameborder='no' width='100%' height='99%'>
+        </iframe>
+    </div>
+<div class="layui-footer">
+    <!-- 底部固定区域 -->
+    © layui.com - 底部固定区域123
+</div>
+{include file="common/footer" /}

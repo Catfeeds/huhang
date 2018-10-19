@@ -1,0 +1,384 @@
+
+.clearfix:after,
+.clearfix:before {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+.banner {
+    overflow: hidden;
+    height: 6.2656rem;
+}
+.banner img {
+    width: 100%;
+    height: 6.2656rem;
+}
+/* 预约成功 */ 
+.reservations {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    padding: 0.36rem 0;
+    background: #fff;
+    margin-top: 0.24rem;
+    text-align: center;
+  }
+  .reservations i {
+    width: 0.6094rem;
+    display: inline-block;
+    margin-left: 0.1563rem;
+  }
+  .reservations i img {
+    width: 100%;
+  }
+  .reservations .swiper-container {
+    width: 90%;
+    font-size: 0.4rem;
+    height: 0.5rem;
+    margin-top: 0.1rem;
+    line-height: 0.5rem;
+  }
+  .reservations .swiper-container .swiper-slide span {
+    margin-left: 0.2563rem;
+    color: #323232;
+    display: inline-block;
+    &:first-of-type{
+        margin-left: 0;
+    }
+  }
+  .reservations .swiper-container .swiper-slide span:nth-child(1) {
+    text-align: left;
+  }
+  .reservations .swiper-container .swiper-slide span:nth-child(3) {
+    text-align: right;
+  }
+
+/* form */
+.body-box{
+    background: #9be44e;
+    padding: 0 0.2188rem 0.7813rem;
+}
+.form-bg{
+    background: #fff;
+    border-radius: 0.0625rem;
+    font-size: 0.4375rem;
+    padding: 0.3125rem 0.25rem;
+    color: #909090;
+    input:-moz-placeholder,
+    textarea:-moz-placeholder { 
+        color: #909090;
+    }
+    input:-ms-input-placeholder,
+    textarea:-ms-input-placeholder { 
+        color: #909090;
+    }
+    input::-webkit-input-placeholder,
+    textarea::-webkit-input-placeholder { 
+        color: #909090;
+    }
+    input{
+        width: 100%;
+        height: 1.4375rem;
+        border-radius: 0.0938rem;
+        font-size: 0.4375rem;
+    }
+    input[type="text"],
+    input[type="number"]{
+        border: 1px solid #d9d9d9;
+        margin-bottom: 32px;
+        padding-left: 22px;
+    }
+    input[type="submit"]{
+        background: #7c9112;
+        color: #fff;
+        font-weight: 600;
+        border: none;
+        font-size: 0.5rem;
+    }
+}   
+// 预约有好礼
+.gifts{
+    background: url("../images/huxi9.png") no-repeat center;
+    width: 100%;
+    height: 10.1875rem;
+    padding: 1.25rem 0.3125rem 0;
+    background-size: contain;
+    ul{
+        margin-top: 0.7813rem;
+        li{
+            float: left;
+            img{
+                width: 2.8125rem;
+                margin-right: 0.2344rem;
+            }
+            &:last-of-type img{
+                margin-right: 0;
+            }
+        }
+    }
+    .gifts-bto{
+        margin-top: 0.3125rem;
+        position: relative;
+        .swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction{
+            top:4.5rem;
+        }
+        >span{
+            display: inline-block;
+            background: url("../images/vr.png") no-repeat center;
+            width: 1.3438rem;
+            height: 1.0313rem;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin:  auto;
+            z-index: 999;
+        }
+        img{
+            width: 100%;
+            height: 5.1094rem;
+        }
+        .swiper-pagination-bullet{
+            width: 0.25rem;
+            height: 0.25rem;
+        }
+        .swiper-pagination-bullet-active{
+            background: #fff;
+        }
+       
+    }
+}
+/* 到店有惊喜 */
+.surprise{
+    width: 100%;
+    height: 26.375rem;
+    background: url("../images/huxi14.png") no-repeat top center;
+    background-size: contain;
+    ul{
+        width: 100%;
+        margin-top: 3.3281rem;
+        font-size: 0.36rem;
+        li{
+            height: 3.7188rem;
+            margin-bottom: 1.2313rem;
+            position: relative;
+            span{
+                display: inline-block;
+                background: url("../images/huxi16.png") no-repeat center;
+                background-size: 100% 100%;
+                width: 3.2688rem;
+                height: 0.8438rem;
+                color: #fff;
+                font-weight: 600;
+                text-align: center;
+                line-height: 0.8438rem;
+              
+            }
+        }
+        .posr-right{
+            position: absolute;
+            right: 0.8688rem;
+            bottom: 0;
+        }
+        .posr-left{
+            position: absolute;
+            left: 0.7rem;
+            bottom: 0;
+        }
+    }
+   
+} 
+/* 签约有优惠 */ 
+.contract{
+    width: 100%;
+    height: 26.5469rem;
+    background: url("../images/bgbg.png") no-repeat top center;
+    background-size: contain;
+    margin-top: -3.0625rem;
+    padding: 1.25rem 0.3125rem 0;
+    li{
+        .pull-left;
+        width: 4.3438rem;
+        height: 5.5469rem;
+        text-align: center;
+        margin-right: 0.2344rem;
+        margin-bottom: 0.5525rem;
+        &:nth-of-type(2n){
+            margin-right: 0;
+        }
+        div{
+            position: relative;
+            padding-top: 3.6875rem;
+            img{
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+        }
+        em{
+            font-size: 0.4375rem;
+            color: #7C9112;
+            font-weight: bold;
+       
+            position: relative;
+        }
+        span{
+            display: inline-block;
+            background: url("../images/huxi16.png") no-repeat center;
+            background-size: 100% 100%;
+            width: 3.2688rem;
+            height: 0.8438rem;
+            color: #fff;
+            font-weight: 600;
+            text-align: center;
+            line-height: 0.8438rem;
+            margin-top: 0.1563rem;
+            position: relative;
+            font-size: 0.36rem
+        }
+        
+    }
+}
+.footer-bar{
+    text-align: center;
+    font-size: 0.338rem;
+    margin-top: 0.5156rem;
+    color: #1A1A1A;
+    small{
+        color:#323232;
+    }
+}
+// 弹出层
+.in-layer{
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.4);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 9999;
+    h3{
+        height: 1.25rem;
+        line-height: 1.25rem;
+        font-size: 0.4375rem;
+        color: #fff;
+        background: #7c9112;
+        text-align: center;
+        font-weight: 600;
+        border-radius: 0.1563rem 0.1563rem 0 0;
+    }
+    .in-layer-con{
+        width: 8.125rem;
+        height: 7.625rem;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        border-radius: 0.1563rem;
+        background: #fff;
+        div{
+            padding: 0.4688rem;
+            text-align: center;
+            input[type="text"] , 
+            input[type="number"]{
+                height: 1.375rem;
+                line-height: 1.375rem;
+                border: 1px solid #d9d9d9;
+                width: 100%;
+                display: block;
+                font-size: 0.4375rem;
+                padding-left: 0.2813rem;
+                margin-bottom: 0.4688rem;
+            }
+            input[type="submit"]{
+                width: 3.9375rem;
+                height: 1.0313rem;
+                background: url("../images/huxi16.png") no-repeat center;
+                color: #fff;
+                border: none;
+                font-size: 0.4375rem;
+            }
+        }
+        .layer-x1{
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            bottom: -0.9375rem;
+            display: inline-block;
+            height: 0.6563rem;
+            width: 0.6563rem;
+            background: url("../images/x.png") no-repeat center;
+            background-size: 100% 100%;
+        }
+    }
+}
+// 弹出层二
+.in-layer2{
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.4);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 9999;
+    h3{
+        height: 1.25rem;
+        line-height: 1.25rem;
+        font-size: 0.4375rem;
+        color: #fff;
+        background: #7c9112;
+        text-align: center;
+        font-weight: 600;
+        border-radius: 0.1563rem 0.1563rem 0 0;
+    }
+    .in-layer-con{
+        width: 8.125rem;
+        height: 6.625rem;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        border-radius: 0.1563rem;
+        background: #fff;
+        .layer-x2{
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            bottom: -0.9375rem;
+            display: inline-block;
+            height: 0.6563rem;
+            width: 0.6563rem;
+            background: url("../images/x.png") no-repeat center;
+            background-size: 100% 100%;
+        }
+        .layer-text{
+            padding: 0.9375rem 0.5469rem;
+            font-size: 0.4063rem;
+            color: #7c9112;
+        }
+    }
+}
